@@ -140,6 +140,7 @@ observed results
 
 This separation is required for any valid testing or model training.
 ---
+
 ## 🎮 Our World as a Virtual Game
 
 Are we NPCs or Players?
