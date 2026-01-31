@@ -73,7 +73,7 @@ class Supreme_Wisdom:
 
     def life(self):
         return 1 / self.time_frame()
-
+```
 ---
 
 ## 🔮 Predictions
