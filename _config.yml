@@ -1,1 +1,47 @@
+# ════════════════════════════════════════════════════════════════════
+# Seth Li · sethfengli.com — Jekyll / GitHub Pages 站点配置（SEO）
+# 与 README.md 一起放在仓库根目录：github.com/seth2000/SethLee
+#
+# 原理：README.md 仍是主页（GitHub Pages 自动渲染），本文件提供站点级
+#       <title> / meta description / Open Graph / Twitter Card /
+#       JSON-LD Person(sameAs) / sitemap.xml 等 SEO 输出，
+#       经 jekyll-seo-tag 与 jekyll-sitemap 插件注入（均为 Pages 白名单插件）。
+# ════════════════════════════════════════════════════════════════════
 
+# ── 基础站点信息 ──────────────────────────────────────────────
+title: "Seth Li — Senior Software Developer · Full-Stack & Database Engineer · AI Explorer"
+description: >-
+  Personal homepage of Seth Li — Senior Software Developer at DASH Technology Group, Sydney.
+  Full-Stack Software Engineer & Database Developer with 30+ years of experience.
+  Generative AI, NLP, Python, PowerShell, TypeScript, Angular, SQL, Azure DevOps.
+  Zen practitioner, creator of Hui Deng Zen Temple (zen.sethfengli.com) and Feng Tech (fengtech.com.au).
+
+url: "https://sethfengli.com"
+lang: en
+timezone: Australia/Sydney
+
+# ── 主题与插件（与当前 Pages 渲染保持一致） ───────────────────
+theme: cayman
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# ── 作者与社交（生成 JSON-LD Person / sameAs） ────────────────
+author:
+  name: Seth Li
+social:
+  name: Seth Li
+  links:
+    - https://www.linkedin.com/in/seth-li-a825893b
+    - https://github.com/seth2000
+    - https://zen.sethfengli.com/
+    - https://www.fengtech.com.au/home
+
+# og:image（Open Graph 分享图；使用 GitHub 头像，稳定且可免费商用）
+logo: https://avatars.githubusercontent.com/u/13928333?v=4
+
+# ── 搜索引擎站长验证（可选；取得令牌后取消注释并填入） ────────
+# webmaster_verifications:
+#   google: 你的-google-site-verification-令牌
+#   bing: 你的-bing-验证码
+#   yandex: 你的-yandex-验证码
