@@ -1,6 +1,6 @@
 <!--
   ════════════════════════════════════════════════════════════════════════
-   Seth Lee · 个人主页（单文件版） · "禅 × 码" 设计系统
+   Seth Li · 个人主页（单文件版） · "禅 × 码" 设计系统
   ════════════════════════════════════════════════════════════════════════
    线上地址 : https://sethfengli.com/          (GitHub Pages, 由本 README 渲染)
    仓库地址 : https://github.com/seth2000/SethLee
@@ -352,7 +352,7 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--line); padd
   <div class="nav-inner">
     <a class="brand" href="#top" data-scroll="#top" aria-label="返回顶部">
       <span class="brand-mark" aria-hidden="true">禅</span>
-      <span>Seth Lee</span>
+      <span>Seth Li</span>
     </a>
     <button id="zh-burger" aria-label="打开导航菜单" aria-expanded="false" aria-controls="zh-menu">☰</button>
     <nav class="nav-links" id="zh-menu" aria-label="主导航">
@@ -371,11 +371,11 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--line); padd
 <section class="hero" id="top" aria-label="首页">
   <canvas id="zh-stars" aria-hidden="true"></canvas>
   <div class="hero-inner">
-    <p class="eyebrow">~/seth-lee ▸ sydney · senior software engineer · zen practitioner<span class="caret">▍</span></p>
-    <h1 class="hero-title">Seth Lee<span class="hero-sub">以码参禅 · 以禅入码</span></h1>
+    <p class="eyebrow">~/seth-li ▸ sydney · senior software engineer · zen practitioner<span class="caret">▍</span></p>
+    <h1 class="hero-title">Seth(Feng) Li<span class="hero-sub">以码参禅 · 以禅入码</span></h1>
     <p class="hero-type"><span id="zh-typing">以码参禅，以禅入码。</span><span class="caret">▍</span></p>
     <p class="hero-bio">
-      现居悉尼的<strong>资深全栈工程师</strong>，自 2015 年踏上开源之路，深耕企业自动化、Web 工程与数据探索；
+      现居悉尼的<strong>资深全栈工程师</strong>，自 1993 年踏上开源之路，深耕企业自动化、Web 工程与数据探索；
       同时也是一名<strong>佛学爱好者</strong>——相信「理解抽象」是编程与修行的共同法门，
       并运营线上数字禅院「慧灯禅院」。在这里，代码与禅，同源同修。
     </p>
@@ -385,7 +385,7 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--line); padd
       <a class="btn btn-ghost" href="#contact" data-scroll="#contact">联系我</a>
     </div>
     <div class="hero-stats">
-      <div class="stat"><b>2015</b><span>GitHub 启程</span></div>
+      <div class="stat"><b>1993</b><span>开源启程</span></div>
       <div class="stat"><b>8</b><span>开源仓库</span></div>
       <div class="stat"><b>1</b><span>数字禅院</span></div>
       <div class="stat"><b>∞</b><span>持续精进</span></div>
@@ -413,7 +413,7 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--line); padd
             <div class="card-icon" aria-hidden="true">🖥️</div>
             <h3>工程师 <span>· Engineer</span></h3>
             <p>
-              十多年企业工程与自动化经验，信奉「自动化一切可自动化的」。
+              三十多年企业工程与自动化经验，信奉「自动化一切可自动化的」。
               从 Active Directory 运维工具到自动写诗的古诗生成器，再到 Web 前后端与数据实验，
               在 PowerShell、Python、JavaScript 之间自由穿行。
             </p>
@@ -549,7 +549,7 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--line); padd
         </article>
         <article class="card poem-card reveal" style="--d:.1s">
           <p class="poem">
-            <small>📜 签诗 · 2021/07/20 — 回收台湾</small>
+            <small>📜 预测回收台湾签诗 · 2021/07/20 — </small>
             欲进又徘徊，心危事不危。<br>
             水边人指引，名利得荣归。
           </p>
@@ -659,10 +659,10 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--line); padd
       </p>
       <div class="stats-row">
         <a href="https://github.com/seth2000" target="_blank" rel="noopener">
-          <img src="https://github-readme-stats.vercel.app/api?username=seth2000&amp;show_icons=true&amp;hide_title=true&amp;hide_rank=true&amp;hide=contribs&amp;bg_color=0b1022&amp;title_color=e6c07a&amp;text_color=9aa5bd&amp;icon_color=7dd3fc&amp;border_color=ffffff14" alt="Seth Lee 的 GitHub 统计" loading="lazy">
+          <img src="https://github-readme-stats.vercel.app/api?username=seth2000&amp;show_icons=true&amp;hide_title=true&amp;hide_rank=true&amp;hide=contribs&amp;bg_color=0b1022&amp;title_color=e6c07a&amp;text_color=9aa5bd&amp;icon_color=7dd3fc&amp;border_color=ffffff14" alt="Seth Li 的 GitHub 统计" loading="lazy">
         </a>
         <a href="https://github.com/seth2000" target="_blank" rel="noopener">
-          <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=seth2000&amp;layout=compact&amp;hide_title=true&amp;bg_color=0b1022&amp;title_color=e6c07a&amp;text_color=9aa5bd&amp;border_color=ffffff14&amp;langs_count=6" alt="Seth Lee 最常用的语言" loading="lazy">
+          <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=seth2000&amp;layout=compact&amp;hide_title=true&amp;bg_color=0b1022&amp;title_color=e6c07a&amp;text_color=9aa5bd&amp;border_color=ffffff14&amp;langs_count=6" alt="Seth Li 最常用的语言" loading="lazy">
         </a>
       </div>
     </div>
@@ -741,7 +741,7 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--line); padd
     <div class="foot-grid">
       <div class="foot-brand">
         禅 · 码 · 同修
-        <small>Seth Lee — Senior Software Engineer × Zen Practitioner</small>
+        <small>Seth Li — Senior Software Engineer × Zen Practitioner</small>
       </div>
       <div class="foot-credits">
         图片来源：<a href="https://unsplash.com/photos/misty-mountains-shrouded-in-dense-fog-and-clouds-J6hzH64fNHg" target="_blank" rel="noopener">Jayakrishnan K P</a> ·
@@ -754,7 +754,7 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--line); padd
       </div>
     </div>
     <div class="foot-copy">
-      <span>© <span id="zh-year">2025</span> Seth Lee · 以码参禅，以禅入码</span>
+      <span>© <span id="zh-year">2025</span> Seth Li · 以码参禅，以禅入码</span>
       <span>All things being equal = Everything happens as expected</span>
     </div>
   </div>
