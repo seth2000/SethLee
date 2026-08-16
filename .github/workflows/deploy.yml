@@ -1,9 +1,0 @@
-steps:
-  # Update actions/checkout to the latest version (e.g., v4.2.0 or newer)
-  - uses: actions/checkout@v4
-    # Note: Ensure you are referencing @v4 or pin to the latest specific release tag
-
-  # If you are setup-node, ensure it's on v4+ as well
-  - uses: actions/setup-node@v4
-    with:
-      node-version: '24'
