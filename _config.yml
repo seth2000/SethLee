@@ -21,7 +21,7 @@ lang: en
 timezone: Australia/Sydney
 
 # ── 主题与插件（与当前 Pages 渲染保持一致） ───────────────────
-theme: cayman
+remote_theme: pages-themes/cayman@v0.2.0   # ← 原来是 theme: cayman
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
