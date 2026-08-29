@@ -459,12 +459,34 @@ html.js .reveal.in { opacity: 1; transform: none; }
 
 .code-row { display: grid; grid-template-columns: 1.2fr 1fr; gap: 22px; margin-top: 22px; }
 
-/* ── 12 Matrix panel (code card) ──────────────────────────── */
-.code-card { background: var(--matrix-dim); border-color: rgba(45, 208, 111, 0.35); }
-.code-card::before { background: linear-gradient(90deg, transparent, rgba(45, 208, 111, 0.7), transparent); }
-#matrix { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
+/* ── 12 CRT monitor (code-rain panel) ─────────────────────── */
+.code-card {
+  background: radial-gradient(ellipse at 50% 42%, #0d2412 0%, #071009 62%, #040905 100%);
+  border-color: rgba(62, 242, 143, 0.30);
+  min-height: 480px;
+}
+.code-card::before { background: linear-gradient(90deg, transparent, rgba(62, 242, 143, 0.6), transparent); }
+
+/* 老式显示器：扫描线 + 玻璃高光 + 轻微闪烁 */
+.crt {
+  position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  background:
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.26) 0 1px, transparent 1px 3px),
+    radial-gradient(ellipse at 50% 30%, rgba(62, 242, 143, 0.10), transparent 60%);
+  animation: crt-flicker 0.9s ease-in-out infinite;
+}
+.crt::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.05) 48%, rgba(255, 255, 255, 0.07) 52%, transparent 100%);
+  mix-blend-mode: screen;
+}
+@keyframes crt-flicker {
+  0%, 100% { opacity: 0.94; }
+  50%      { opacity: 1; }
+}
+
 .code-tag {
-  position: absolute; top: 12px; right: 16px; z-index: 2;
+  position: absolute; top: 12px; right: 16px; z-index: 4;
   font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em;
   text-transform: uppercase; color: var(--matrix-body);
 }
@@ -474,12 +496,32 @@ html.js .reveal.in { opacity: 1; transform: none; }
   box-shadow: 0 0 8px var(--matrix-body);
   animation: blink 1.2s steps(1) infinite;
 }
+
+/* 代码字符雨：由 JS 从现有代码字符生成，纯 CSS 动画驱动（不依赖 canvas/IO） */
+.code-rain { --ch: 480px; position: absolute; inset: 0; z-index: 1; overflow: hidden; }
+.rain-col { position: absolute; top: 0; width: 16px; height: 100%; }
+.char {
+  position: absolute; top: 0; left: 0;
+  font-family: 'JetBrains Mono', monospace; font-size: 15px; line-height: 1;
+  color: var(--matrix-body);
+  text-shadow: 0 0 7px rgba(62, 242, 143, 0.75);
+  transform: translateY(-24px);
+  animation: code-rain linear infinite;
+}
+@keyframes code-rain {
+  0%   { transform: translateY(-24px); opacity: 0; }
+  7%   { opacity: 1; }
+  92%  { opacity: 1; }
+  100% { transform: translateY(var(--ch)); opacity: 0; }
+}
+
+/* 静态代码（无 JS 时的兜底显示） */
 pre.code {
-  position: relative; z-index: 1;
-  margin: 0; padding: 26px 28px; overflow-x: auto;
-  font-family: 'JetBrains Mono', monospace; font-size: 12.8px; line-height: 1.8;
-  color: var(--code-ink); background: rgba(6, 10, 7, 0.5);
-  text-shadow: 0 0 10px rgba(45, 208, 111, 0.4);
+  position: relative; z-index: 2;
+  margin: 0; padding: 30px 30px; overflow-x: auto;
+  font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.8;
+  color: var(--code-ink); background: transparent;
+  text-shadow: 0 0 10px rgba(62, 242, 143, 0.45);
 }
 pre.code::-webkit-scrollbar { height: 8px; }
 pre.code::-webkit-scrollbar-thumb { background: var(--matrix-body); }
@@ -589,6 +631,7 @@ pre.code .c-p { color: var(--tok-p); }
   .browser-stage iframe { height: 480px; }
   .hero { padding-top: 100px; min-height: auto; }
   .tl-item { grid-template-columns: 1fr; gap: 8px; }
+  .code-card { min-height: 400px; }
 }
 
 @media (max-width: 860px) {
@@ -615,6 +658,7 @@ pre.code .c-p { color: var(--tok-p); }
   .foot-copy { flex-direction: column; }
   .float-brand { padding: 0 6px; }
   .float-name { display: none; }
+  .code-card { min-height: 320px; }
 }
 
 /* ── 16 Reduced motion ────────────────────────────────────── */

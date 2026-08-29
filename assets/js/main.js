@@ -3,7 +3,7 @@
    01 i18n (EN default in DOM, ZH dictionary) · 02 theme ·
    03 nav (progress, scrollspy, burger, float-nav) · 04 typing ·
    05 reveal · 06 quotes · 07 device preview · 08 starfield ·
-   09 matrix rain · 10 misc
+   09 CRT code-rain · 10 misc
    ════════════════════════════════════════════════════════════ */
 (function () {
   'use strict';
@@ -441,78 +441,49 @@
     })();
   }
 
-  /* ── 09 Matrix rain (code panel) ───────────────────────────
-     启动即绘制一帧（绝不黑屏）；滚动进入视口后开始流动。
-     尊重 prefers-reduced-motion：只显示静态字符帧，不滚动。     */
-  var mcv = doc.getElementById('matrix');
-  if (mcv && mcv.getContext) {
-    var mctx = mcv.getContext('2d');
-    var MTX = 'アィウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEF<>{}[]=+*#$%&';
-    var mfs = 16, mcols = 0, mdrops = [], mspeeds = [];
+  /* ── 09 CRT code-rain ──────────────────────────────────────
+     用「现有代码」的字符生成雨点，纯 CSS 动画驱动：
+     不依赖 canvas / IntersectionObserver / rAF，稳定可靠。
+     每列随机时长与相位；字符取自 code-source 的非空白字符。 */
+  var codeSrc = doc.getElementById('code-source');
+  if (codeSrc && codeSrc.textContent) {
+    try {
+      var glyphs = codeSrc.textContent.replace(/\s+/g, '').split('');
+      if (glyphs.length) {
+        var card = codeSrc.closest ? codeSrc.closest('.code-card') : null;
+        if (!card) { card = codeSrc.parentNode; }
+        var W = Math.max(card.clientWidth, 320);
+        var H = Math.max(card.clientHeight, 320);
+        var fw = 16, fh = 19;
+        var cols = Math.max(6, Math.floor(W / fw));
+        var rows = Math.ceil(H / fh) + 1;
 
-    function mResize() {
-      var w = Math.max(mcv.clientWidth, 320);
-      var h = Math.max(mcv.clientHeight, 220);
-      mcv.width = w;
-      mcv.height = h;
-      mcols = Math.max(4, Math.floor(w / mfs));
-      mdrops = [];
-      mspeeds = [];
-      for (var i = 0; i < mcols; i++) {
-        mdrops.push(Math.floor(Math.random() * (h / mfs)));
-        mspeeds.push(0.4 + Math.random() * 0.9);
-      }
-      mctx.fillStyle = 'rgb(6,10,7)';
-      mctx.fillRect(0, 0, w, h);
-      mPaint(false);               /* 先画一帧静态字符，任何人都能看到 */
-    }
-    function mPaint(fade) {
-      var w = mcv.width, h = mcv.height;
-      mctx.fillStyle = fade ? 'rgba(6,10,7,0.12)' : 'rgb(6,10,7)';
-      mctx.fillRect(0, 0, w, h);
-      mctx.font = mfs + 'px "JetBrains Mono", monospace';
-      for (var i = 0; i < mcols; i++) {
-        var x = i * mfs;
-        var y = Math.floor(mdrops[i]) * mfs;
-        mctx.fillStyle = '#eafff2';
-        mctx.fillText(MTX.charAt(Math.floor(Math.random() * MTX.length)), x, y);
-        mctx.fillStyle = 'rgba(45,208,111,0.9)';
-        mctx.fillText(MTX.charAt(Math.floor(Math.random() * MTX.length)), x, y - mfs);
-        mctx.fillStyle = 'rgba(45,208,111,0.55)';
-        mctx.fillText(MTX.charAt(Math.floor(Math.random() * MTX.length)), x, y - mfs * 2);
-        if (fade) {
-          mdrops[i] += mspeeds[i];
-          if (y > h + mfs * 3 && Math.random() > 0.975) { mdrops[i] = 0; }
-        }
-      }
-    }
-    function mLoop() {
-      mPaint(true);
-      mRaf = requestAnimationFrame(mLoop);
-    }
-    mResize();
-    window.addEventListener('resize', mResize);
-    setTimeout(mResize, 600);      /* 字体/布局稳定后校准一次 */
+        var rain = doc.createElement('div');
+        rain.className = 'code-rain';
+        rain.setAttribute('aria-hidden', 'true');
+        rain.style.setProperty('--ch', H + 'px');
 
-    var mRunning = false, mRaf = null;
-    if (reduce) {
-      /* 减少动态效果：静态字符帧已由 mResize 绘制 */
-    } else if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (entries) {
-        entries.forEach(function (en) {
-          if (en.isIntersecting && !mRunning) {
-            mRunning = true;
-            mRaf = requestAnimationFrame(mLoop);
-          } else if (!en.isIntersecting && mRunning) {
-            mRunning = false;
-            cancelAnimationFrame(mRaf);
+        for (var c = 0; c < cols; c++) {
+          var col = doc.createElement('span');
+          col.className = 'rain-col';
+          col.style.left = (c * fw) + 'px';
+          var dur = 4 + Math.random() * 5;               /* 4–9 秒一列 */
+          var phase = Math.random() * dur;               /* 随机相位 */
+          var step = (fh / H) * dur;                     /* 相邻字符时间差 */
+          for (var r = 0; r < rows; r++) {
+            var s = doc.createElement('span');
+            s.className = 'char';
+            s.textContent = glyphs[Math.floor(Math.random() * glyphs.length)];
+            s.style.animationDuration = dur + 's';
+            s.style.animationDelay = (-phase - r * step) + 's';
+            col.appendChild(s);
           }
-        });
-      }, { threshold: 0.05 }).observe(mcv);
-    } else {
-      mRunning = true;
-      mRaf = requestAnimationFrame(mLoop);
-    }
+          rain.appendChild(col);
+        }
+        card.insertBefore(rain, card.firstChild);
+        codeSrc.style.display = 'none';                  /* 隐藏静态代码，雨已接管 */
+      }
+    } catch (e) { /* 失败则保留静态代码兜底 */ }
   }
 
   /* ── 10 Misc ─────────────────────────────────────────────── */
