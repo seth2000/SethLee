@@ -441,16 +441,18 @@
     })();
   }
 
-  /* ── 09 Matrix rain (code panel) ─────────────────────────── */
+  /* ── 09 Matrix rain (code panel) ───────────────────────────
+     启动即绘制一帧（绝不黑屏）；滚动进入视口后开始流动。
+     尊重 prefers-reduced-motion：只显示静态字符帧，不滚动。     */
   var mcv = doc.getElementById('matrix');
-  if (mcv && mcv.getContext && !reduce) {
+  if (mcv && mcv.getContext) {
     var mctx = mcv.getContext('2d');
     var MTX = 'アィウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEF<>{}[]=+*#$%&';
     var mfs = 16, mcols = 0, mdrops = [], mspeeds = [];
 
     function mResize() {
-      var w = mcv.clientWidth || 320;
-      var h = mcv.clientHeight || 220;
+      var w = Math.max(mcv.clientWidth, 320);
+      var h = Math.max(mcv.clientHeight, 220);
       mcv.width = w;
       mcv.height = h;
       mcols = Math.max(4, Math.floor(w / mfs));
@@ -462,34 +464,40 @@
       }
       mctx.fillStyle = 'rgb(6,10,7)';
       mctx.fillRect(0, 0, w, h);
+      mPaint(false);               /* 先画一帧静态字符，任何人都能看到 */
     }
-    mResize();
-    window.addEventListener('resize', mResize);
-    setTimeout(mResize, 600); /* 字体/布局稳定后校准一次 */
-
-    var mRunning = false, mRaf = null;
-    function mStep() {
+    function mPaint(fade) {
       var w = mcv.width, h = mcv.height;
-      mctx.fillStyle = 'rgba(6,10,7,0.12)';
+      mctx.fillStyle = fade ? 'rgba(6,10,7,0.12)' : 'rgb(6,10,7)';
       mctx.fillRect(0, 0, w, h);
       mctx.font = mfs + 'px "JetBrains Mono", monospace';
       for (var i = 0; i < mcols; i++) {
-        var ch = MTX.charAt(Math.floor(Math.random() * MTX.length));
         var x = i * mfs;
         var y = Math.floor(mdrops[i]) * mfs;
         mctx.fillStyle = '#eafff2';
-        mctx.fillText(ch, x, y);           /* 头部字符：亮白绿 */
-        mctx.fillStyle = 'rgba(45,208,111,0.85)';
+        mctx.fillText(MTX.charAt(Math.floor(Math.random() * MTX.length)), x, y);
+        mctx.fillStyle = 'rgba(45,208,111,0.9)';
         mctx.fillText(MTX.charAt(Math.floor(Math.random() * MTX.length)), x, y - mfs);
-        mdrops[i] += mspeeds[i];
-        if (y > h + mfs && Math.random() > 0.975) { mdrops[i] = 0; }
+        mctx.fillStyle = 'rgba(45,208,111,0.55)';
+        mctx.fillText(MTX.charAt(Math.floor(Math.random() * MTX.length)), x, y - mfs * 2);
+        if (fade) {
+          mdrops[i] += mspeeds[i];
+          if (y > h + mfs * 3 && Math.random() > 0.975) { mdrops[i] = 0; }
+        }
       }
     }
     function mLoop() {
-      mStep();
+      mPaint(true);
       mRaf = requestAnimationFrame(mLoop);
     }
-    if ('IntersectionObserver' in window) {
+    mResize();
+    window.addEventListener('resize', mResize);
+    setTimeout(mResize, 600);      /* 字体/布局稳定后校准一次 */
+
+    var mRunning = false, mRaf = null;
+    if (reduce) {
+      /* 减少动态效果：静态字符帧已由 mResize 绘制 */
+    } else if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (entries) {
         entries.forEach(function (en) {
           if (en.isIntersecting && !mRunning) {

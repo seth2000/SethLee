@@ -295,7 +295,11 @@ html[data-theme="night"] .theme-btn .i-moon { display: none; }
 .center { text-align: center; }
 
 .sec-head { max-width: 800px; margin-bottom: 48px; }
-.sec-head h2 { margin: 12px 0 12px; font-size: clamp(1.7rem, 4vw, 2.5rem); font-weight: 800; letter-spacing: -0.025em; }
+.sec-head h2 {
+  margin: 12px 0 12px; font-size: clamp(1.7rem, 4vw, 2.5rem); font-weight: 800; letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+.sec-head h2 span, .sec-head h2 em { display: inline-block; max-width: 100%; }
 .sec-head h2 em {
   font-style: normal;
   background: var(--grad-sun); -webkit-background-clip: text; background-clip: text;
@@ -474,8 +478,8 @@ pre.code {
   position: relative; z-index: 1;
   margin: 0; padding: 26px 28px; overflow-x: auto;
   font-family: 'JetBrains Mono', monospace; font-size: 12.8px; line-height: 1.8;
-  color: var(--code-ink); background: rgba(6, 10, 7, 0.68);
-  text-shadow: 0 0 10px rgba(45, 208, 111, 0.3);
+  color: var(--code-ink); background: rgba(6, 10, 7, 0.5);
+  text-shadow: 0 0 10px rgba(45, 208, 111, 0.4);
 }
 pre.code::-webkit-scrollbar { height: 8px; }
 pre.code::-webkit-scrollbar-thumb { background: var(--matrix-body); }
