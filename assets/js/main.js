@@ -160,10 +160,10 @@
     themeBtn.addEventListener('click', function () { applyTheme(theme === 'night' ? 'light' : 'night'); });
   }
 
-  /* GitHub stats cards — light / dark variants */
+  /* GitHub stats cards — paper / night variants */
   var STATS = [
-    { main: 'https://github-readme-stats.vercel.app/api?username=seth2000&show_icons=true&hide_title=true&hide_rank=true&hide=contribs&bg_color=ffffff&title_color=2563eb&text_color=475569&icon_color=06b6d4&border_color=e2e8f0', langs: 'https://github-readme-stats.vercel.app/api/top-langs/?username=seth2000&layout=compact&hide_title=true&bg_color=ffffff&title_color=2563eb&text_color=475569&border_color=e2e8f0&langs_count=6' },
-    { main: 'https://github-readme-stats.vercel.app/api?username=seth2000&show_icons=true&hide_title=true&hide_rank=true&hide=contribs&bg_color=0e1730&title_color=4f8bff&text_color=c4cfe6&icon_color=22d3ee&border_color=2b3a5e', langs: 'https://github-readme-stats.vercel.app/api/top-langs/?username=seth2000&layout=compact&hide_title=true&bg_color=0e1730&title_color=4f8bff&text_color=c4cfe6&border_color=2b3a5e&langs_count=6' }
+    { main: 'https://github-readme-stats.vercel.app/api?username=seth2000&show_icons=true&hide_title=true&hide_rank=true&hide=contribs&bg_color=f6f3ec&title_color=16181d&text_color=454a54&icon_color=ff4d00&border_color=16181d', langs: 'https://github-readme-stats.vercel.app/api/top-langs/?username=seth2000&layout=compact&hide_title=true&bg_color=f6f3ec&title_color=16181d&text_color=454a54&border_color=16181d&langs_count=6' },
+    { main: 'https://github-readme-stats.vercel.app/api?username=seth2000&show_icons=true&hide_title=true&hide_rank=true&hide=contribs&bg_color=202229&title_color=f2efe8&text_color=c6cad4&icon_color=ff5e1a&border_color=f2efe8', langs: 'https://github-readme-stats.vercel.app/api/top-langs/?username=seth2000&layout=compact&hide_title=true&bg_color=202229&title_color=f2efe8&text_color=c6cad4&border_color=f2efe8&langs_count=6' }
   ];
   function syncStatsCards() {
     var s = STATS[theme === 'night' ? 1 : 0];
@@ -173,10 +173,11 @@
     if (l) { l.src = s.langs; }
   }
 
-  /* ── 03 Nav: progress, scrollspy, smooth scroll, burger ── */
+  /* ── 03 Nav: progress, scrollspy, smooth scroll, burger,
+        float-nav ──────────────────────────────────────────── */
   var bar = doc.getElementById('progress');
   var nav = doc.getElementById('nav');
-  var spyLinks = qsa('.menu a[data-scroll]');
+  var spyLinks = qsa('.menu a[data-scroll], .float-menu a[data-scroll]');
   var spyTargets = spyLinks
     .map(function (a) { return doc.querySelector(a.getAttribute('data-scroll')); })
     .filter(Boolean);
@@ -224,6 +225,31 @@
         menu.classList.remove('open');
         burger.setAttribute('aria-expanded', 'false');
       }
+    });
+  }
+
+  /* Float-nav (top-left quick menu) */
+  var floatBrand = doc.getElementById('float-brand');
+  var floatMenu = doc.getElementById('float-menu');
+  function closeFloat() {
+    floatMenu.classList.remove('open');
+    floatBrand.setAttribute('aria-expanded', 'false');
+  }
+  if (floatBrand && floatMenu) {
+    floatBrand.addEventListener('click', function () {
+      var open = floatMenu.classList.toggle('open');
+      floatBrand.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    doc.addEventListener('click', function (e) {
+      if (!floatMenu.classList.contains('open')) { return; }
+      if (!floatMenu.contains(e.target) && !floatBrand.contains(e.target)) { closeFloat(); }
+    });
+    doc.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && floatMenu.classList.contains('open')) { closeFloat(); }
+    });
+    floatMenu.addEventListener('click', function (e) {
+      var a = e.target.closest ? e.target.closest('a[data-scroll]') : null;
+      if (a) { closeFloat(); }
     });
   }
 
@@ -342,8 +368,8 @@
   var cv = doc.getElementById('stars');
   var heroSec = doc.getElementById('top');
   var PALETTES = {
-    light: ['60,120,255', '40,180,220', '130,90,255', '120,140,180'],
-    night: ['110,160,255', '70,220,240', '180,150,255', '235,242,255']
+    light: ['255,77,0', '14,122,95', '212,120,40', '70,75,84'],
+    night: ['255,94,26', '46,180,144', '240,180,60', '242,239,232']
   };
 
   function palette() { return PALETTES[theme] || PALETTES.light; }

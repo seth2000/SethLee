@@ -14,12 +14,14 @@
 
 ## 📖 About the site (本站说明)
 
-A fast, bilingual (EN/中) **Jekyll + GitHub Pages** homepage with a bright, high-tech design:
-glass cards, gradient mesh background, animated starfield, scroll reveals, live iframe previews of
+A fast, bilingual (EN/中) **Jekyll + GitHub Pages** homepage in an "engineer's notebook" style —
+warm paper background, ink & vermilion palette, hard offset shadows, mono-first typography,
+blueprint dot grid, animated ember-star field, scroll reveals, live iframe previews of
 the two ventures (Feng Tech + Hui Deng Zen Temple), light/dark themes and a Chinese/English toggle.
 
-Fast, 双语（EN/中）的 **Jekyll + GitHub Pages** 个人主页：明亮高科技风格——玻璃卡片、渐变光斑背景、
-星尘粒子动画、滚动渐入、两个事业（Feng Tech 与慧灯禅院）的实时网页预览、明/暗主题与中英文切换。
+Fast, 双语（EN/中）的 **Jekyll + GitHub Pages** 个人主页：「工程师笔记本」风格——暖纸底色、墨黑与朱橙配色、
+硬偏移阴影、mono 优先字体、蓝图点阵背景、余烬粒子动画、滚动渐入、两个事业（Feng Tech 与慧灯禅院）的
+实时网页预览、明/暗主题与中英文切换。
 
 ## 🗂 Structure (目录结构)
 
@@ -30,6 +32,7 @@ SethLee/
 ├── _layouts/default.html      # HTML skeleton (head, nav, footer, scripts)
 ├── _includes/                 # One file per page section — easy to maintain
 │   ├── head.html              #   meta, fonts, pre-paint boot script
+│   ├── float-nav.html         #   floating top-left quick-nav block
 │   ├── nav.html               #   sticky nav + language/theme toggles
 │   ├── hero.html              #   hero: name, typing line, stats
 │   ├── about.html             #   why me: AI / Database / Full-Stack cards
@@ -58,7 +61,7 @@ Content lives in `_includes/*.html`; Chinese copy lives in the `ZH` dictionary i
 
 ## 🛠 Stack (技术栈)
 
-Jekyll · Liquid · Vanilla JS · CSS custom properties · Google Fonts (Inter / Space Grotesk /
+Jekyll · Liquid · Vanilla JS · CSS custom properties · Google Fonts (IBM Plex Sans /
 JetBrains Mono / Noto Serif SC, SIL OFL) · [github-readme-stats](https://github.com/anuraghazra/github-readme-stats)
 
 ## 📸 Image credits (图片来源 — 免费可商用)

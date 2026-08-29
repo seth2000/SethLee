@@ -1,115 +1,127 @@
 /* ════════════════════════════════════════════════════════════
-   Design tokens — bright, high-tech.
-   Light theme is the default; html[data-theme="night"] overrides.
-   Scope every color/effect here; keep component CSS in main.css.
+   Design tokens — "engineer's notebook" style.
+   Warm paper + ink black + vermilion accent. Bright by default,
+   html[data-theme="night"] overrides. Scope every color/effect
+   here; keep component CSS in main.css.
    ════════════════════════════════════════════════════════════ */
 
 :root {
   color-scheme: light;
 
-  /* Surfaces */
-  --bg: #f5f8fe;
-  --bg-2: #ecf3fc;
-  --surface: #ffffff;
-  --surface-2: #f1f5fd;
+  /* Surfaces — warm paper */
+  --bg: #f6f3ec;
+  --bg-2: #eeeadf;
+  --surface: #fffdf8;
+  --surface-2: #f0ece2;
 
   /* Ink */
-  --ink: #0d1b3e;          /* headings */
-  --text: #3b4a6b;         /* body copy */
-  --muted: #5d6b87;
-  --faint: #8a97ad;
+  --ink: #16181d;          /* headings / borders */
+  --text: #454a54;         /* body copy */
+  --muted: #666c78;
+  --faint: #9aa0ab;
 
   /* Lines */
-  --line: rgba(13, 27, 62, 0.09);
-  --line-2: rgba(13, 27, 62, 0.16);
+  --line: rgba(22, 24, 29, 0.13);
+  --line-2: rgba(22, 24, 29, 0.35);
 
   /* Brand accents */
-  --blue: #2563eb;
-  --cyan: #06b6d4;
-  --violet: #7c3aed;
-  --jade: #0d9488;
-  --gold: #d97706;
+  --accent: #ff4d00;       /* vermilion */
+  --accent-deep: #d63a00;
+  --teal: #0e7a5f;         /* data / zen */
+  --gold: #a16207;         /* zen gold */
 
-  --grad: linear-gradient(100deg, #2563eb 0%, #06b6d4 52%, #7c3aed 100%);
-  --grad-soft: linear-gradient(135deg, rgba(37, 99, 235, 0.10), rgba(6, 182, 212, 0.06), rgba(124, 58, 237, 0.10));
+  --accent-grad: linear-gradient(180deg, #ff5e1a, #e02e00);
+  --accent-soft: rgba(255, 77, 0, 0.07);
+  --teal-soft: rgba(14, 122, 95, 0.08);
 
-  /* Effects */
-  --glow: rgba(37, 99, 235, 0.28);
-  --shadow-sm: 0 2px 10px -4px rgba(23, 58, 120, 0.14);
-  --shadow-lg: 0 26px 70px -30px rgba(23, 58, 120, 0.30);
+  /* Effects — hard offset shadows (toolkit look) */
+  --glow: rgba(255, 77, 0, 0.28);
+  --shadow-sm: 2px 2px 0 var(--ink);
+  --shadow-lg: 6px 6px 0 var(--ink);
+  --shadow-paper: 10px 10px 0 var(--ink);
 
   /* Chrome */
-  --nav-bg: rgba(245, 248, 254, 0.82);
-  --menu-bg: rgba(255, 255, 255, 0.96);
-  --code-bg: #0d1b3e;
-  --code-ink: #c8d4ec;
-  --tok-k: #a78bfa; --tok-t: #7dd3fc; --tok-f: #ecd3a0;
-  --tok-s: #7fd1c0; --tok-m: #e8a0bf; --tok-p: #8fa3c8;
-  --ov: rgba(245, 248, 254, 0.94);
-  --ov-mid: rgba(245, 248, 254, 0.55);
-  --footer-bg: #0b1733;
-  --footer-ink: #e6ecf8;
-  --footer-dim: #9fb0cf;
-  --scrim: linear-gradient(180deg, rgba(6, 14, 32, 0) 34%, rgba(6, 14, 32, 0.72) 100%);
+  --nav-bg: rgba(246, 243, 236, 0.92);
+  --menu-bg: #fffdf8;
+  --code-bg: #16181d;
+  --code-ink: #e8e6df;
+  --tok-k: #ff8a4d; --tok-t: #6fd6c2; --tok-f: #f0c877;
+  --tok-s: #9fe0c8; --tok-m: #f29ab1; --tok-p: #aab0bd;
+  --ov: rgba(246, 243, 236, 0.94);
+  --ov-mid: rgba(246, 243, 236, 0.55);
+  --footer-bg: #16181d;
+  --footer-ink: #f2efe8;
+  --footer-dim: #9aa0ad;
+  --scrim: linear-gradient(180deg, rgba(15, 16, 21, 0) 34%, rgba(15, 16, 21, 0.78) 100%);
 
-  /* Background fx */
-  --mesh-a: rgba(37, 99, 235, 0.16);
-  --mesh-b: rgba(6, 182, 212, 0.13);
-  --mesh-c: rgba(124, 58, 237, 0.12);
-  --grid-line: rgba(37, 99, 235, 0.055);
+  /* Background fx — blueprint paper */
+  --mesh-a: rgba(255, 77, 0, 0.10);
+  --mesh-b: rgba(14, 122, 95, 0.08);
+  --mesh-c: rgba(161, 98, 7, 0.07);
+  --dot: rgba(22, 24, 29, 0.14);
 
-  --selection: rgba(6, 182, 212, 0.28);
-  --ring: rgba(37, 99, 235, 0.45);
-  --scroll-thumb: #c3d2ec;
+  --selection: #ff4d00;
+  --selection-ink: #ffffff;
+  --ring: #ff4d00;
+
+  /* Scrollbar */
+  --scroll-track: transparent;
+  --scroll-thumb: #16181d;
+  --scroll-thumb-hover: #ff4d00;
 }
 
 html[data-theme="night"] {
   color-scheme: dark;
 
-  --bg: #070d1f;
-  --bg-2: #0a1228;
-  --surface: #0e1730;
-  --surface-2: #101c3a;
+  --bg: #17181d;
+  --bg-2: #1d1f26;
+  --surface: #202229;
+  --surface-2: #262932;
 
-  --ink: #e9eefb;
-  --text: #c4cfe6;
-  --muted: #94a3c0;
-  --faint: #67779a;
+  --ink: #f2efe8;
+  --text: #c6cad4;
+  --muted: #9aa1ad;
+  --faint: #6d7480;
 
-  --line: rgba(233, 238, 251, 0.09);
-  --line-2: rgba(233, 238, 251, 0.16);
+  --line: rgba(242, 239, 232, 0.12);
+  --line-2: rgba(242, 239, 232, 0.30);
 
-  --blue: #4f8bff;
-  --cyan: #22d3ee;
-  --violet: #a78bfa;
-  --jade: #34d3b0;
-  --gold: #f0a83c;
+  --accent: #ff5e1a;
+  --accent-deep: #e8500e;
+  --teal: #2eb490;
+  --gold: #d3a04b;
 
-  --grad: linear-gradient(100deg, #4f8bff 0%, #22d3ee 52%, #a78bfa 100%);
-  --grad-soft: linear-gradient(135deg, rgba(79, 139, 255, 0.14), rgba(34, 211, 238, 0.08), rgba(167, 139, 250, 0.14));
+  --accent-grad: linear-gradient(180deg, #ff6a2a, #e8480f);
+  --accent-soft: rgba(255, 94, 26, 0.10);
+  --teal-soft: rgba(46, 180, 144, 0.10);
 
-  --glow: rgba(79, 139, 255, 0.35);
-  --shadow-sm: 0 2px 10px -4px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 26px 70px -30px rgba(0, 0, 0, 0.6);
+  --glow: rgba(255, 94, 26, 0.35);
+  --shadow-sm: 2px 2px 0 rgba(0, 0, 0, 0.85);
+  --shadow-lg: 6px 6px 0 rgba(0, 0, 0, 0.85);
+  --shadow-paper: 10px 10px 0 rgba(0, 0, 0, 0.85);
 
-  --nav-bg: rgba(7, 13, 31, 0.8);
-  --menu-bg: rgba(14, 23, 48, 0.97);
-  --code-bg: #101a38;
-  --code-ink: #c8d4ec;
+  --nav-bg: rgba(23, 24, 29, 0.92);
+  --menu-bg: #22242b;
+  --code-bg: #0f1013;
+  --code-ink: #e8e6df;
 
-  --ov: rgba(7, 13, 31, 0.94);
-  --ov-mid: rgba(7, 13, 31, 0.55);
-  --footer-bg: #050a18;
-  --footer-ink: #dfe7f8;
-  --footer-dim: #8fa0c2;
-  --scrim: linear-gradient(180deg, rgba(4, 9, 22, 0) 34%, rgba(4, 9, 22, 0.78) 100%);
+  --ov: rgba(23, 24, 29, 0.94);
+  --ov-mid: rgba(23, 24, 29, 0.55);
+  --footer-bg: #0f1015;
+  --footer-ink: #e9e6df;
+  --footer-dim: #8f95a3;
+  --scrim: linear-gradient(180deg, rgba(4, 5, 8, 0) 34%, rgba(4, 5, 8, 0.8) 100%);
 
-  --mesh-a: rgba(79, 139, 255, 0.16);
-  --mesh-b: rgba(34, 211, 238, 0.12);
-  --mesh-c: rgba(167, 139, 250, 0.13);
-  --grid-line: rgba(79, 139, 255, 0.06);
+  --mesh-a: rgba(255, 94, 26, 0.12);
+  --mesh-b: rgba(46, 180, 144, 0.09);
+  --mesh-c: rgba(211, 160, 75, 0.08);
+  --dot: rgba(242, 239, 232, 0.12);
 
-  --selection: rgba(34, 211, 238, 0.30);
-  --ring: rgba(79, 139, 255, 0.55);
-  --scroll-thumb: #24345c;
+  --selection: #ff5e1a;
+  --selection-ink: #16181d;
+  --ring: #ff5e1a;
+
+  --scroll-track: transparent;
+  --scroll-thumb: #f2efe8;
+  --scroll-thumb-hover: #ff5e1a;
 }
