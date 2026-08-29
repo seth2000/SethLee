@@ -14,14 +14,15 @@
 
 ## 📖 About the site (本站说明)
 
-A fast, bilingual (EN/中) **Jekyll + GitHub Pages** homepage in an "engineer's notebook" style —
-warm paper background, ink & vermilion palette, hard offset shadows, mono-first typography,
-blueprint dot grid, animated ember-star field, scroll reveals, live iframe previews of
-the two ventures (Feng Tech + Hui Deng Zen Temple), light/dark themes and a Chinese/English toggle.
+A fast, bilingual (EN/中) **Jekyll + GitHub Pages** homepage in a warm, sunny style —
+ivory paper background, sunshine-amber & sky-blue palette, grand Sora headlines,
+soft shadows, animated sun-haze background, ember-star field, scroll reveals,
+a live "Matrix rain" code panel, live iframe previews of the two ventures
+(Feng Tech + Hui Deng Zen Temple), light/dark themes and a Chinese/English toggle.
 
-Fast, 双语（EN/中）的 **Jekyll + GitHub Pages** 个人主页：「工程师笔记本」风格——暖纸底色、墨黑与朱橙配色、
-硬偏移阴影、mono 优先字体、蓝图点阵背景、余烬粒子动画、滚动渐入、两个事业（Feng Tech 与慧灯禅院）的
-实时网页预览、明/暗主题与中英文切换。
+Fast, 双语（EN/中）的 **Jekyll + GitHub Pages** 个人主页：温暖阳光风格——象牙纸底色、阳光琥珀与天空蓝配色、
+Sora 大字标题、柔和阴影、太阳光晕动画背景、余烬粒子、滚动渐入、「黑客帝国」式动态代码面板、
+两个事业（Feng Tech 与慧灯禅院）的实时网页预览、明/暗主题与中英文切换。
 
 ## 🗂 Structure (目录结构)
 
@@ -61,7 +62,7 @@ Content lives in `_includes/*.html`; Chinese copy lives in the `ZH` dictionary i
 
 ## 🛠 Stack (技术栈)
 
-Jekyll · Liquid · Vanilla JS · CSS custom properties · Google Fonts (IBM Plex Sans /
+Jekyll · Liquid · Vanilla JS · CSS custom properties · Google Fonts (Sora / Manrope /
 JetBrains Mono / Noto Serif SC, SIL OFL) · [github-readme-stats](https://github.com/anuraghazra/github-readme-stats)
 
 ## 📸 Image credits (图片来源 — 免费可商用)

@@ -1,8 +1,9 @@
 /* ════════════════════════════════════════════════════════════
    Seth Li — homepage interactions
    01 i18n (EN default in DOM, ZH dictionary) · 02 theme ·
-   03 nav (progress, scrollspy, burger) · 04 typing · 05 reveal ·
-   06 quotes · 07 device preview · 08 starfield · 09 misc
+   03 nav (progress, scrollspy, burger, float-nav) · 04 typing ·
+   05 reveal · 06 quotes · 07 device preview · 08 starfield ·
+   09 matrix rain · 10 misc
    ════════════════════════════════════════════════════════════ */
 (function () {
   'use strict';
@@ -160,10 +161,10 @@
     themeBtn.addEventListener('click', function () { applyTheme(theme === 'night' ? 'light' : 'night'); });
   }
 
-  /* GitHub stats cards — paper / night variants */
+  /* GitHub stats cards — ivory / night variants */
   var STATS = [
-    { main: 'https://github-readme-stats.vercel.app/api?username=seth2000&show_icons=true&hide_title=true&hide_rank=true&hide=contribs&bg_color=f6f3ec&title_color=16181d&text_color=454a54&icon_color=ff4d00&border_color=16181d', langs: 'https://github-readme-stats.vercel.app/api/top-langs/?username=seth2000&layout=compact&hide_title=true&bg_color=f6f3ec&title_color=16181d&text_color=454a54&border_color=16181d&langs_count=6' },
-    { main: 'https://github-readme-stats.vercel.app/api?username=seth2000&show_icons=true&hide_title=true&hide_rank=true&hide=contribs&bg_color=202229&title_color=f2efe8&text_color=c6cad4&icon_color=ff5e1a&border_color=f2efe8', langs: 'https://github-readme-stats.vercel.app/api/top-langs/?username=seth2000&layout=compact&hide_title=true&bg_color=202229&title_color=f2efe8&text_color=c6cad4&border_color=f2efe8&langs_count=6' }
+    { main: 'https://github-readme-stats.vercel.app/api?username=seth2000&show_icons=true&hide_title=true&hide_rank=true&hide=contribs&bg_color=fff9f0&title_color=22304a&text_color=4d5a72&icon_color=f59e0b&border_color=e6ddc9', langs: 'https://github-readme-stats.vercel.app/api/top-langs/?username=seth2000&layout=compact&hide_title=true&bg_color=fff9f0&title_color=22304a&text_color=4d5a72&border_color=e6ddc9&langs_count=6' },
+    { main: 'https://github-readme-stats.vercel.app/api?username=seth2000&show_icons=true&hide_title=true&hide_rank=true&hide=contribs&bg_color=1a2338&title_color=f2f6ff&text_color=c6d0e4&icon_color=ffb84d&border_color=2e3a55', langs: 'https://github-readme-stats.vercel.app/api/top-langs/?username=seth2000&layout=compact&hide_title=true&bg_color=1a2338&title_color=f2f6ff&text_color=c6d0e4&border_color=2e3a55&langs_count=6' }
   ];
   function syncStatsCards() {
     var s = STATS[theme === 'night' ? 1 : 0];
@@ -236,13 +237,17 @@
     floatBrand.setAttribute('aria-expanded', 'false');
   }
   if (floatBrand && floatMenu) {
-    floatBrand.addEventListener('click', function () {
+    /* 品牌按钮：阻止冒泡，避免同一次点击被 document 的
+       "点击外部关闭" 监听判定为外部点击（修复：点击后无法展开） */
+    floatBrand.addEventListener('click', function (e) {
+      e.stopPropagation();
       var open = floatMenu.classList.toggle('open');
       floatBrand.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
     doc.addEventListener('click', function (e) {
       if (!floatMenu.classList.contains('open')) { return; }
-      if (!floatMenu.contains(e.target) && !floatBrand.contains(e.target)) { closeFloat(); }
+      if (e.target && e.target.closest && e.target.closest('.float-nav')) { return; }
+      closeFloat();
     });
     doc.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && floatMenu.classList.contains('open')) { closeFloat(); }
@@ -368,8 +373,8 @@
   var cv = doc.getElementById('stars');
   var heroSec = doc.getElementById('top');
   var PALETTES = {
-    light: ['255,77,0', '14,122,95', '212,120,40', '70,75,84'],
-    night: ['255,94,26', '46,180,144', '240,180,60', '242,239,232']
+    light: ['245,158,11', '59,157,255', '23,178,106', '255,138,61'],
+    night: ['255,184,77', '108,182,255', '52,211,153', '242,246,255']
   };
 
   function palette() { return PALETTES[theme] || PALETTES.light; }
@@ -436,7 +441,73 @@
     })();
   }
 
-  /* ── 09 Misc ────────────────────────────────────────────── */
+  /* ── 09 Matrix rain (code panel) ─────────────────────────── */
+  var mcv = doc.getElementById('matrix');
+  if (mcv && mcv.getContext && !reduce) {
+    var mctx = mcv.getContext('2d');
+    var MTX = 'アィウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEF<>{}[]=+*#$%&';
+    var mfs = 16, mcols = 0, mdrops = [], mspeeds = [];
+
+    function mResize() {
+      var w = mcv.clientWidth || 320;
+      var h = mcv.clientHeight || 220;
+      mcv.width = w;
+      mcv.height = h;
+      mcols = Math.max(4, Math.floor(w / mfs));
+      mdrops = [];
+      mspeeds = [];
+      for (var i = 0; i < mcols; i++) {
+        mdrops.push(Math.floor(Math.random() * (h / mfs)));
+        mspeeds.push(0.4 + Math.random() * 0.9);
+      }
+      mctx.fillStyle = 'rgb(6,10,7)';
+      mctx.fillRect(0, 0, w, h);
+    }
+    mResize();
+    window.addEventListener('resize', mResize);
+    setTimeout(mResize, 600); /* 字体/布局稳定后校准一次 */
+
+    var mRunning = false, mRaf = null;
+    function mStep() {
+      var w = mcv.width, h = mcv.height;
+      mctx.fillStyle = 'rgba(6,10,7,0.12)';
+      mctx.fillRect(0, 0, w, h);
+      mctx.font = mfs + 'px "JetBrains Mono", monospace';
+      for (var i = 0; i < mcols; i++) {
+        var ch = MTX.charAt(Math.floor(Math.random() * MTX.length));
+        var x = i * mfs;
+        var y = Math.floor(mdrops[i]) * mfs;
+        mctx.fillStyle = '#eafff2';
+        mctx.fillText(ch, x, y);           /* 头部字符：亮白绿 */
+        mctx.fillStyle = 'rgba(45,208,111,0.85)';
+        mctx.fillText(MTX.charAt(Math.floor(Math.random() * MTX.length)), x, y - mfs);
+        mdrops[i] += mspeeds[i];
+        if (y > h + mfs && Math.random() > 0.975) { mdrops[i] = 0; }
+      }
+    }
+    function mLoop() {
+      mStep();
+      mRaf = requestAnimationFrame(mLoop);
+    }
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting && !mRunning) {
+            mRunning = true;
+            mRaf = requestAnimationFrame(mLoop);
+          } else if (!en.isIntersecting && mRunning) {
+            mRunning = false;
+            cancelAnimationFrame(mRaf);
+          }
+        });
+      }, { threshold: 0.05 }).observe(mcv);
+    } else {
+      mRunning = true;
+      mRaf = requestAnimationFrame(mLoop);
+    }
+  }
+
+  /* ── 10 Misc ─────────────────────────────────────────────── */
   var yr = doc.getElementById('year');
   if (yr) { yr.textContent = String(new Date().getFullYear()); }
 

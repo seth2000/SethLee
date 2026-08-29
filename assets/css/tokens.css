@@ -1,127 +1,140 @@
 /* ════════════════════════════════════════════════════════════
-   Design tokens — "engineer's notebook" style.
-   Warm paper + ink black + vermilion accent. Bright by default,
-   html[data-theme="night"] overrides. Scope every color/effect
-   here; keep component CSS in main.css.
+   Design tokens — "sunny & warm" palette.
+   Warm ivory paper + sunshine amber + sky blue + fresh leaf.
+   Bright by default; html[data-theme="night"] overrides.
+   Scope every color/effect here; keep component CSS in main.css.
    ════════════════════════════════════════════════════════════ */
 
 :root {
   color-scheme: light;
 
-  /* Surfaces — warm paper */
-  --bg: #f6f3ec;
-  --bg-2: #eeeadf;
-  --surface: #fffdf8;
-  --surface-2: #f0ece2;
+  /* Surfaces — warm ivory */
+  --bg: #fff9f0;
+  --bg-2: #fef3e2;
+  --surface: #ffffff;
+  --surface-2: #fdf3e3;
+  --edge: rgba(255, 184, 64, 0.55);
 
-  /* Ink */
-  --ink: #16181d;          /* headings / borders */
-  --text: #454a54;         /* body copy */
-  --muted: #666c78;
-  --faint: #9aa0ab;
+  /* Ink — deep trustworthy navy */
+  --ink: #22304a;
+  --text: #4d5a72;
+  --muted: #68758c;
+  --faint: #98a3b5;
 
   /* Lines */
-  --line: rgba(22, 24, 29, 0.13);
-  --line-2: rgba(22, 24, 29, 0.35);
+  --line: rgba(34, 48, 74, 0.09);
+  --line-2: rgba(34, 48, 74, 0.17);
 
   /* Brand accents */
-  --accent: #ff4d00;       /* vermilion */
-  --accent-deep: #d63a00;
-  --teal: #0e7a5f;         /* data / zen */
-  --gold: #a16207;         /* zen gold */
+  --sun: #f59e0b;          /* sunshine amber */
+  --sun-deep: #e07c00;
+  --peach: #ff7a3d;
+  --sky: #3b9dff;          /* clear sky */
+  --leaf: #17b26a;         /* fresh green */
+  --rose: #f76b8a;
 
-  --accent-grad: linear-gradient(180deg, #ff5e1a, #e02e00);
-  --accent-soft: rgba(255, 77, 0, 0.07);
-  --teal-soft: rgba(14, 122, 95, 0.08);
+  --grad-sun: linear-gradient(135deg, #ffb840 0%, #ff9a3d 55%, #ff7a61 100%);
+  --sun-soft: rgba(245, 158, 11, 0.10);
+  --sky-soft: rgba(59, 157, 255, 0.10);
+  --leaf-soft: rgba(23, 178, 106, 0.10);
 
-  /* Effects — hard offset shadows (toolkit look) */
-  --glow: rgba(255, 77, 0, 0.28);
-  --shadow-sm: 2px 2px 0 var(--ink);
-  --shadow-lg: 6px 6px 0 var(--ink);
-  --shadow-paper: 10px 10px 0 var(--ink);
+  /* Effects — soft, warm shadows */
+  --glow: rgba(245, 158, 11, 0.30);
+  --glow-soft: rgba(255, 138, 61, 0.22);
+  --shadow-sm: 0 2px 10px rgba(34, 48, 74, 0.07);
+  --shadow-md: 0 12px 32px -12px rgba(34, 48, 74, 0.16);
+  --shadow-lg: 0 24px 60px -20px rgba(34, 48, 74, 0.24);
+  --shadow-sun: 0 12px 32px -10px rgba(245, 158, 11, 0.35);
 
   /* Chrome */
-  --nav-bg: rgba(246, 243, 236, 0.92);
+  --nav-bg: rgba(255, 249, 240, 0.86);
   --menu-bg: #fffdf8;
-  --code-bg: #16181d;
-  --code-ink: #e8e6df;
-  --tok-k: #ff8a4d; --tok-t: #6fd6c2; --tok-f: #f0c877;
-  --tok-s: #9fe0c8; --tok-m: #f29ab1; --tok-p: #aab0bd;
-  --ov: rgba(246, 243, 236, 0.94);
-  --ov-mid: rgba(246, 243, 236, 0.55);
-  --footer-bg: #16181d;
-  --footer-ink: #f2efe8;
-  --footer-dim: #9aa0ad;
-  --scrim: linear-gradient(180deg, rgba(15, 16, 21, 0) 34%, rgba(15, 16, 21, 0.78) 100%);
+  --code-bg: #060a07;      /* always dark — matrix panel */
+  --code-ink: #c9f7d9;
+  --tok-k: #8ef0b0; --tok-t: #5ce6b2; --tok-f: #ffd591;
+  --tok-s: #9ff5c8; --tok-m: #ff9db0; --tok-p: #8ba0b0;
+  --matrix-head: #eafff2;
+  --matrix-body: #2dd06f;
+  --matrix-dim: rgba(6, 10, 7, 1);
+  --ov: rgba(255, 249, 240, 0.94);
+  --ov-mid: rgba(255, 249, 240, 0.55);
+  --footer-bg: #1b2a4a;
+  --footer-ink: #f4f0e6;
+  --footer-dim: #a9b4cd;
+  --scrim: linear-gradient(180deg, rgba(20, 30, 50, 0) 34%, rgba(20, 30, 50, 0.78) 100%);
 
-  /* Background fx — blueprint paper */
-  --mesh-a: rgba(255, 77, 0, 0.10);
-  --mesh-b: rgba(14, 122, 95, 0.08);
-  --mesh-c: rgba(161, 98, 7, 0.07);
-  --dot: rgba(22, 24, 29, 0.14);
+  /* Background fx — sunny haze */
+  --mesh-a: rgba(255, 184, 64, 0.20);
+  --mesh-b: rgba(59, 157, 255, 0.13);
+  --mesh-c: rgba(255, 138, 61, 0.14);
+  --dot: rgba(34, 48, 74, 0.08);
 
-  --selection: #ff4d00;
-  --selection-ink: #ffffff;
-  --ring: #ff4d00;
+  --selection: #ffc24d;
+  --selection-ink: #22304a;
+  --ring: #f59e0b;
 
   /* Scrollbar */
   --scroll-track: transparent;
-  --scroll-thumb: #16181d;
-  --scroll-thumb-hover: #ff4d00;
+  --scroll-thumb-grad: linear-gradient(180deg, #ffc046, #ff8a3d);
+  --scroll-thumb: #f59e0b;
 }
 
 html[data-theme="night"] {
   color-scheme: dark;
 
-  --bg: #17181d;
-  --bg-2: #1d1f26;
-  --surface: #202229;
-  --surface-2: #262932;
+  --bg: #121a2b;
+  --bg-2: #162036;
+  --surface: #1a2338;
+  --surface-2: #212c45;
+  --edge: rgba(255, 184, 77, 0.6);
 
-  --ink: #f2efe8;
-  --text: #c6cad4;
-  --muted: #9aa1ad;
-  --faint: #6d7480;
+  --ink: #f2f6ff;
+  --text: #c6d0e4;
+  --muted: #93a1ba;
+  --faint: #66738e;
 
-  --line: rgba(242, 239, 232, 0.12);
-  --line-2: rgba(242, 239, 232, 0.30);
+  --line: rgba(242, 246, 255, 0.10);
+  --line-2: rgba(242, 246, 255, 0.20);
 
-  --accent: #ff5e1a;
-  --accent-deep: #e8500e;
-  --teal: #2eb490;
-  --gold: #d3a04b;
+  --sun: #ffb84d;
+  --sun-deep: #ff9b2f;
+  --peach: #ff8a5c;
+  --sky: #6cb6ff;
+  --leaf: #34d399;
+  --rose: #ff8fab;
 
-  --accent-grad: linear-gradient(180deg, #ff6a2a, #e8480f);
-  --accent-soft: rgba(255, 94, 26, 0.10);
-  --teal-soft: rgba(46, 180, 144, 0.10);
+  --grad-sun: linear-gradient(135deg, #ffc046 0%, #ff9b4d 55%, #ff8570 100%);
+  --sun-soft: rgba(255, 184, 77, 0.12);
+  --sky-soft: rgba(108, 182, 255, 0.12);
+  --leaf-soft: rgba(52, 211, 153, 0.12);
 
-  --glow: rgba(255, 94, 26, 0.35);
-  --shadow-sm: 2px 2px 0 rgba(0, 0, 0, 0.85);
-  --shadow-lg: 6px 6px 0 rgba(0, 0, 0, 0.85);
-  --shadow-paper: 10px 10px 0 rgba(0, 0, 0, 0.85);
+  --glow: rgba(255, 184, 77, 0.35);
+  --glow-soft: rgba(255, 138, 92, 0.28);
+  --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 12px 32px -12px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 24px 60px -20px rgba(0, 0, 0, 0.55);
+  --shadow-sun: 0 12px 32px -10px rgba(255, 184, 77, 0.3);
 
-  --nav-bg: rgba(23, 24, 29, 0.92);
-  --menu-bg: #22242b;
-  --code-bg: #0f1013;
-  --code-ink: #e8e6df;
+  --nav-bg: rgba(18, 26, 43, 0.88);
+  --menu-bg: #1d2740;
 
-  --ov: rgba(23, 24, 29, 0.94);
-  --ov-mid: rgba(23, 24, 29, 0.55);
-  --footer-bg: #0f1015;
-  --footer-ink: #e9e6df;
-  --footer-dim: #8f95a3;
-  --scrim: linear-gradient(180deg, rgba(4, 5, 8, 0) 34%, rgba(4, 5, 8, 0.8) 100%);
+  --ov: rgba(18, 26, 43, 0.94);
+  --ov-mid: rgba(18, 26, 43, 0.55);
+  --footer-bg: #0c1425;
+  --footer-ink: #e9edf7;
+  --footer-dim: #8d9ab5;
+  --scrim: linear-gradient(180deg, rgba(4, 8, 16, 0) 34%, rgba(4, 8, 16, 0.8) 100%);
 
-  --mesh-a: rgba(255, 94, 26, 0.12);
-  --mesh-b: rgba(46, 180, 144, 0.09);
-  --mesh-c: rgba(211, 160, 75, 0.08);
-  --dot: rgba(242, 239, 232, 0.12);
+  --mesh-a: rgba(255, 184, 77, 0.15);
+  --mesh-b: rgba(108, 182, 255, 0.10);
+  --mesh-c: rgba(255, 138, 92, 0.11);
+  --dot: rgba(242, 246, 255, 0.09);
 
-  --selection: #ff5e1a;
-  --selection-ink: #16181d;
-  --ring: #ff5e1a;
+  --selection: #ffb84d;
+  --selection-ink: #1a2338;
+  --ring: #ffb84d;
 
   --scroll-track: transparent;
-  --scroll-thumb: #f2efe8;
-  --scroll-thumb-hover: #ff5e1a;
+  --scroll-thumb-grad: linear-gradient(180deg, #ffc46a, #ff9b4d);
+  --scroll-thumb: #ffb84d;
 }
