@@ -1,0 +1,15 @@
+<div class="browser-frame card reveal">
+  <div class="browser-bar">
+    <span class="browser-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="browser-url">{{ include.url }}</span>
+    <div class="browser-tools" role="group" aria-label="Device preview">
+      <button type="button" data-device="desktop" class="on" aria-pressed="true" data-i18n="frame.desktop">Desktop</button>
+      <button type="button" data-device="tablet" aria-pressed="false" data-i18n="frame.tablet">Tablet</button>
+      <button type="button" data-device="mobile" aria-pressed="false" data-i18n="frame.mobile">Mobile</button>
+      <a class="btn btn-ghost btn-sm" href="{{ include.url }}" target="_blank" rel="noopener" data-i18n="frame.open">Open ↗</a>
+    </div>
+  </div>
+  <div class="browser-stage">
+    <iframe src="{{ include.url }}" title="{{ include.title }}" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</div>

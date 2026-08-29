@@ -1,0 +1,79 @@
+<section class="sec sec-alt" id="insights">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">07 / insights</p>
+      <h2><span data-i18n="insights.title">Zen Is the Worldview,</span> <em data-i18n="insights.titleEm">Code Is the Method</em></h2>
+      <p class="sub" data-i18n="insights.sub">Classical Buddhist concepts, re-expressed in the language of programmers — the other side of the same practice.</p>
+    </div>
+
+    <div class="grid-3">
+      <article class="card ins-card reveal">
+        <span class="tag">Heart Sutra · OOP</span>
+        <h3 data-i18n="insights.c1Title">Emptiness Is an Abstract Class · 空即是色</h3>
+        <p data-i18n="insights.c1Text">
+          Emptiness is an abstract class, Form a concrete class, Appearance an instance. You see a cat:
+          this specific cat is the instance, "cat" is the abstract class, "black cat" the concrete class.
+          The mind moves from concrete to abstract — a verifiable cognitive path.
+        </p>
+        <span class="eng" data-i18n="insights.c1Eng">Emptiness : Form : Appearance = abstract class : concrete class : instance</span>
+      </article>
+
+      <article class="card ins-card reveal" style="--d:.08s">
+        <span class="tag">Diamond Sutra · Design</span>
+        <h3 data-i18n="insights.c2Title">"I" Cannot Be Instantiated</h3>
+        <p data-i18n="insights.c2Text">
+          "I" is fundamentally an abstract class: cannot use <code>this</code> → no self; cannot instantiate
+          → no person; no lifecycle methods → no lifespan. The end of the four lines is an object
+          that can never be new-ed.
+        </p>
+        <span class="eng" data-i18n="insights.c2Eng">no this · no instantiate · no lifecycle</span>
+      </article>
+
+      <article class="card ins-card reveal" style="--d:.16s">
+        <span class="tag">No Ego · Einstein</span>
+        <h3 data-i18n="insights.c3Title">More Knowledge, Less Ego · Ego = 1 / Knowledge</h3>
+        <p data-i18n="insights.c3Text">
+          "More the knowledge, lesser the ego; lesser the knowledge, more the ego." And the caution that
+          follows: "We should take care not to make the intellect our god — it has powerful muscles,
+          but no personality."
+        </p>
+        <span class="eng" data-i18n="insights.c3Eng">More the knowledge, lesser the ego</span>
+      </article>
+    </div>
+
+    <div class="code-row">
+      <article class="card reveal">
+        <pre class="code" aria-label="Conceptual Python model, Ego = 1 / Knowledge"><code><span class="c-k">class</span> <span class="c-t">Supreme_Wisdom</span>:
+    knowledge = math.inf
+
+    <span class="c-k">def</span> <span class="c-f">__init__</span>(<span class="c-p">self</span>):
+        <span class="c-f">print</span>(<span class="c-s">"All things being equal = Everything happens as expected"</span>)
+
+    <span class="c-k">def</span> <span class="c-f">ego</span>(<span class="c-p">self</span>):
+        <span class="c-k">return</span> <span class="c-m">1</span> / self.knowledge
+
+    <span class="c-k">def</span> <span class="c-f">power</span>(<span class="c-p">self</span>):
+        <span class="c-k">return</span> self.knowledge
+
+    <span class="c-k">def</span> <span class="c-f">personality</span>(<span class="c-p">self</span>):
+        <span class="c-k">return</span> <span class="c-m">1</span> / self.power()</code></pre>
+      </article>
+
+      <article class="card poem-card reveal" style="--d:.1s">
+        <p class="poem">
+          <small data-i18n="insights.poemLabel">📜 Divination Poem · 2021/07/20</small>
+          欲进又徘徊，心危事不危。<br>
+          水边人指引，名利得荣归。
+        </p>
+        <p class="poem-en">
+          I wished to move forward but hesitated. The heart sensed danger, yet all was actually well.<br>
+          Guided by one who lives by the water, fame and fortune return in honor.
+        </p>
+        <div class="seal" aria-hidden="true">禅</div>
+        <p class="poem-note" data-i18n="insights.poemNote">
+          Of the same origin as "seeing one's true nature" — a record of understanding the abstract "I".
+        </p>
+      </article>
+    </div>
+  </div>
+</section>

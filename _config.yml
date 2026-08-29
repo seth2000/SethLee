@@ -1,32 +1,27 @@
 # ════════════════════════════════════════════════════════════════════
-# Seth Li · sethfengli.com — Jekyll / GitHub Pages 站点配置（SEO）
-# 与 README.md 一起放在仓库根目录：github.com/seth2000/SethLee
-#
-# 原理：README.md 仍是主页（GitHub Pages 自动渲染），本文件提供站点级
-#       <title> / meta description / Open Graph / Twitter Card /
-#       JSON-LD Person(sameAs) / sitemap.xml 等 SEO 输出，
-#       经 jekyll-seo-tag 与 jekyll-sitemap 插件注入（均为 Pages 白名单插件）。
+# Seth (Feng) Li · sethfengli.com — Jekyll / GitHub Pages 站点配置
+# 站点结构：index.html 拼装 _includes/ 下各分区，样式在 assets/css/，
+# 交互与双语在 assets/js/main.js。README.md 仅作为 GitHub 仓库首页。
 # ════════════════════════════════════════════════════════════════════
 
 # ── 基础站点信息 ──────────────────────────────────────────────
-title: "Seth Li — Senior Software Developer · Full-Stack & Database Engineer · AI Explorer"
+title: "Seth (Feng) Li — Senior Software Developer · AI · Full-Stack & Database Engineer"
 description: >-
-  Personal homepage of Seth Li — Senior Software Developer at DASH Technology Group, Sydney.
-  Full-Stack Software Engineer & Database Developer with 30+ years of experience.
-  Generative AI, NLP, Python, PowerShell, TypeScript, Angular, SQL, Azure DevOps.
-  Zen practitioner, creator of Hui Deng Zen Temple (zen.sethfengli.com) and Feng Tech (fengtech.com.au).
+  Personal homepage of Seth (Feng) Li — Senior Software Developer at DASH Technology Group,
+  Sydney. 30+ years of full-stack & database engineering, now exploring generative AI and NLP.
+  Python · PowerShell · TypeScript · Angular · SQL · Azure DevOps. Founder of Feng Tech
+  (fengtech.com.au) and creator of Hui Deng Zen Temple (zen.sethfengli.com).
 
 url: "https://sethfengli.com"
 lang: en
 timezone: Australia/Sydney
 
-# ── 主题与插件（与当前 Pages 渲染保持一致） ───────────────────
-remote_theme: pages-themes/cayman@v0.2.0   # ← 原来是 theme: cayman
+# ── 插件（GitHub Pages 白名单）─────────────────────────────
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
 
-# ── 作者与社交（生成 JSON-LD Person / sameAs） ────────────────
+# ── 作者与社交（生成 JSON-LD Person / sameAs）───────────────
 author:
   name: Seth Li
 social:
@@ -39,9 +34,3 @@ social:
 
 # og:image（Open Graph 分享图；使用 GitHub 头像，稳定且可免费商用）
 logo: https://avatars.githubusercontent.com/u/13928333?v=4
-
-# ── 搜索引擎站长验证（可选；取得令牌后取消注释并填入） ────────
-# webmaster_verifications:
-#   google: 你的-google-site-verification-令牌
-#   bing: 你的-bing-验证码
-#   yandex: 你的-yandex-验证码
