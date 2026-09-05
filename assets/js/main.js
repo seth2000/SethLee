@@ -24,55 +24,97 @@
     'nav.about': '关于', 'nav.career': '履历', 'nav.stack': '技术', 'nav.projects': '项目',
     'nav.ventures': '旗下项目', 'nav.insights': '哲思', 'nav.contact': '联系', 'nav.github': 'GitHub ↗',
 
-    'hero.eyebrow': '~/seth-li ▸ 悉尼 · 高级软件工程师 · AI · 全栈 · 数据库',
+    'hero.eyebrow': '~/seth-li ▸ 悉尼 · 全栈与数据库工程师 · AI 探索者',
     'hero.sub': '码 × AI × 禅 —— 30 余年工程实践',
-    'hero.bio': '现任悉尼 <strong>DASH Technology Group</strong> 高级软件工程师，拥有 <strong>30 余年</strong>全栈与数据库工程经验。白天构建金融服务科技平台，夜里教机器写格律诗（生成式 AI / NLP）。<strong>Feng Tech</strong> 创始人，<strong>慧灯禅院</strong> 创建者。',
+    'hero.bio': '现任悉尼 <strong>DASH Technology Group</strong>（财富科技）全栈与数据库工程师，<strong>30 余年</strong>深耕金融科技、数字贷款与 AI。我重构核心投资组合系统，使其<strong>性能提升 4 倍、基础设施降至 1/22.5</strong>；组建 AI 研究中心，让机器学会从财报中提取数据（NLP / BERT）；夜里仍教机器写格律诗。<strong>Feng Tech</strong> 创始人，<strong>慧灯禅院</strong> 创建者。',
     'hero.ctaCompany': '🏢 Feng Tech',
     'hero.ctaZen': '🪷 慧灯禅院',
     'hero.statYears': '年工程经验', 'hero.statNetwork': 'LinkedIn 人脉',
-    'hero.statRepos': '开源仓库', 'hero.statLearn': '持续精进',
+    'hero.statPerf': '核心系统提速', 'hero.statLearn': '持续精进',
 
     'about.title': '工程价值', 'about.titleEm': '· AI · 数据 · 交付',
     'about.sub': '三十年持续交付生产级系统——专注 AI、数据与扎实工程三者交汇之处。',
     'about.aiTitle': 'AI 与生成式 AI',
-    'about.aiText': '我的 chinesepoem 项目一直在<strong>教机器写古典格律诗</strong>——NLP / 生成模型、Jupyter、提示词工程、LLM 工作流与 AI 辅助开发。AI 是工程师心智的新乘数。',
+    'about.aiText': '组建公司<strong>AI 研究中心</strong>，训练模型从非结构化 PDF 财报中提取数据（NLP / BERT），打造业内领先的<strong>PDF 表格提取器</strong>；还有我的 chinesepoem 项目——教机器写格律诗。',
     'about.aiChip1': '生成式 AI', 'about.aiChip2': 'NLP', 'about.aiChip3': 'LLM',
-    'about.aiChip4': '提示词工程', 'about.aiChip5': 'Jupyter',
+    'about.aiChip4': 'BERT', 'about.aiChip5': '提示词工程',
     'about.dbTitle': '数据库与数据',
-    'about.dbText': '30 余年 SQL、库表设计与数据驱动自动化的<strong>数据库开发</strong>经验——PowerShell 与 Python 企业级工具链：基础设施、Active Directory 与平台数据。数据可靠，决策才可靠。',
-    'about.dbChip1': 'SQL', 'about.dbChip2': '数据库设计', 'about.dbChip3': 'PowerShell',
-    'about.dbChip4': 'Python', 'about.dbChip5': '自动化',
+    'about.dbText': '30 余年 SQL、库表设计与数据挖掘的<strong>数据库开发</strong>经验——SQL Server、PostgreSQL、MongoDB、Redshift，以及 Kafka/CDC 数据管道。我打造过被多家投行与政府部门采购的大宗商品经济研究数据库。',
+    'about.dbChip1': 'SQL', 'about.dbChip2': '数据库设计', 'about.dbChip3': '数据挖掘',
+    'about.dbChip4': 'PostgreSQL', 'about.dbChip5': 'Kafka / CDC',
     'about.fsTitle': '全栈与金融科技',
-    'about.fsText': '现职 <strong>DASH Technology Group</strong> 高级软件工程师——服务澳大利亚财富与投顾行业的金融科技：TypeScript、Angular、Node.js、Azure DevOps CI/CD，为规模、合规与可维护性而工程化。',
-    'about.fsChip1': '金融科技', 'about.fsChip2': 'TypeScript', 'about.fsChip3': 'Angular',
-    'about.fsChip4': 'Node.js', 'about.fsChip5': 'CI/CD',
+    'about.fsText': '现职 <strong>DASH Technology Group</strong> 全栈工程师，历经 Simpology 与 Roar——.NET/.NET Core、C#、TypeScript、Angular/React/Vue、AWS 与 Azure。我重构核心 Holdings 与 Performance 系统，使其<strong>提速 4 倍</strong>，并主导 .NET Framework → .NET 6/8/10 现代化迁移。',
+    'about.fsChip1': '金融科技', 'about.fsChip2': '.NET Core', 'about.fsChip3': 'C#',
+    'about.fsChip4': 'Angular', 'about.fsChip5': 'AWS',
 
     'career.title': '30 余年工程履历', 'career.titleEm': '· 从第一行代码到 AI',
     'career.sub': '持续交付、自动化与学习的记录——重要里程碑一览。',
-    'career.jobTitle': '高级软件工程师 · DASH Technology Group',
-    'career.jobText': '为澳大利亚财富与投顾行业构建金融服务科技——大规模全栈工程、数据库开发与平台建设。',
-    'career.jobChip1': '金融科技', 'career.jobChip2': '全栈', 'career.jobChip3': '数据库',
+    'career.dashTitle': '全栈工程师 · DASH Technology Group',
+    'career.dashText': '重构核心 Holdings 与 Performance 系统（提速约 4 倍、基础设施降至 1/22.5）；自动化流动性检查（节省 2 个全职人力）；主导 .NET Framework 4.6.1 → .NET 6/8/10 现代化迁移。',
+    'career.dashChip1': '财富科技', 'career.dashChip2': '.NET Core', 'career.dashChip3': 'AWS',
     'career.ftTitle': '创始人兼首席工程师 · Feng Tech',
     'career.ftText': '悉尼 IT 服务公司——高效建站、快速排障与可靠支持（The tech experts）。下方「旗下项目」有实时预览。',
     'career.ftChip1': 'IT 服务', 'career.ftChip2': '网站开发', 'career.ftChip3': '技术支持',
-    'career.uniTitle': '湘潭大学',
-    'career.uniText': '工程思维在此扎根——终身学习的习惯，也是从这里开始。',
-    'career.uniChip1': '高等教育',
-    'career.expTitle': '30 余年软件与数据库工程',
-    'career.expText': '从 1993 年的第一行代码，到今天的云时代技术栈——三十年构建的是跑在生产环境里的系统，而不只是演示文稿。',
-    'career.expChip1': '1993 → 至今',
+    'career.simpTitle': '软件工程师 · Simpology Australia',
+    'career.simpText': '云原生数字贷款平台——.NET Core 与 AWS 后端服务，Angular 与 TypeScript 前端。',
+    'career.simpChip1': '数字贷款', 'career.simpChip2': '.NET Core', 'career.simpChip3': 'Angular',
+    'career.roarTitle': '软件工程师 · Roar Software',
+    'career.roarText': '基于 Azure 与 .NET Core 构建可扩展系统；集成 OAuth2 / Identity Server 4 与 DocuSign；Vue.js、Angular 与 TypeScript 前端开发。',
+    'career.roarChip1': 'Azure', 'career.roarChip2': 'OAuth2', 'career.roarChip3': 'Vue.js',
+    'career.learnTitle': '全栈工程师 · Learn It All',
+    'career.learnText': '主导基于 NopCommerce 的在线教育平台开发，覆盖课程管理、支付集成与学习体验优化。',
+    'career.learnChip1': 'NopCommerce', 'career.learnChip2': '在线教育',
+    'career.deependTitle': '全栈工程师 · Deepend',
+    'career.deependText': '使用 React 与 Redux 开发 API 与复杂前端功能，服务多个品牌客户的数字项目。',
+    'career.deependChip1': 'React', 'career.deependChip2': 'Redux',
+    'career.argentTitle': '售前技术支持工程师 · Argent Software',
+    'career.argentText': '使用 SQL Server 与 .NET 提供现场技术支持与方案演示；负责澳大利亚及周边地区的客户开发与支持。',
+    'career.argentChip1': 'SQL Server', 'career.argentChip2': '.NET',
+    'career.ameTitle': '首席技术官（CTO）· AME Group',
+    'career.ameText': '组建公司 AI 研究中心（NLP / BERT 财报抽取）；主导机器学习 GIS 数据挖掘系统；制定 IT 战略并引入 Git + Jira/Agile；打造被投行与政府机构采购的大宗商品经济研究数据库。',
+    'career.ameChip1': 'CTO', 'career.ameChip2': 'AI / NLP', 'career.ameChip3': '数据挖掘',
+    'career.bpsTitle': '软件工程师 · BPS Australia',
+    'career.bpsText': '主导 EFS 设备租赁管理系统；实现银行账务、邮局地址与信用管理数据库的自动对接，降低人力与资金风险。',
+    'career.bpsChip1': '.NET', 'career.bpsChip2': '系统集成',
+    'career.mtcTitle': '软件工程师 · MTC Australia',
+    'career.mtcText': '基于遗留 MS Access 系统开发数据库；担任 Web 应用设计师。',
+    'career.mtcChip1': 'Access', 'career.mtcChip2': '网页设计',
+    'career.austcareTitle': '数据开发 · AUSTCARE',
+    'career.austcareText': '数据库助理，负责数据库维护与数据处理，支持难民援助项目的信息系统稳定运行。',
+    'career.austcareChip1': '数据库',
+    'career.abcTitle': '运维工程师 · 中国农业银行（长沙分行）',
+    'career.abcText': '构建《银行OA管理系统》（数据挖掘 + 决策支持）与面向信用卡用户的信使平台（Email/短信对账单）。',
+    'career.abcChip1': 'VB6 / VC6', 'career.abcChip2': 'Sybase', 'career.abcChip3': 'Exchange SDK',
+    'career.jinshiTitle': '项目经理 · 长沙金石电脑公司',
+    'career.jinshiText': '创始团队核心成员——主导《商业银行国际贸易系统》（信用证、托收、汇兑），运行于南京、上海、青岛等地交通银行。',
+    'career.jinshiChip1': 'COBOL / C', 'career.jinshiChip2': 'Delphi', 'career.jinshiChip3': 'Sybase',
+    'career.edu1Title': '湘潭大学 · 硕士（人工智能与数据挖掘方向）',
+    'career.edu1Text': '计算机应用工程专业硕士（人工智能与数据挖掘方向）——全日制，全额奖学金。',
+    'career.edu1Chip1': '硕士 · 双一流',
+    'career.edu2Title': '长沙大学 · 计算机科学与技术',
+    'career.edu2Text': '计算机科学与技术专业大专——全日制，工程思维在此扎根。',
+    'career.edu2Chip1': '高等教育',
     'career.netTitle': 'LinkedIn · 职业网络',
     'career.netText': '500+ 联系人 · 576 位关注者——欢迎连接，一起构建有意义的事。',
 
     'stack.title': '技术栈', 'stack.titleEm': '· 日常共修的工具',
     'stack.sub': '选工具如选法器——趁手、可靠、可维护。',
-    'stack.g1Title': '语言', 'stack.g2Title': 'AI 与数据',
+    'stack.g1Title': '编程语言', 'stack.g2Title': 'AI 与数据',
     'stack.genAI': '生成式 AI', 'stack.llm': 'LLM', 'stack.nlp': 'NLP', 'stack.ml': '机器学习',
-    'stack.prompt': '提示词工程', 'stack.data': '数据工程',
-    'stack.g3Title': '框架', 'stack.g4Title': '云与 DevOps', 'stack.schema': '数据库设计',
+    'stack.prompt': '提示词工程', 'stack.data': '数据工程', 'stack.mining': '数据挖掘',
+    'stack.g3Title': '前端与框架', 'stack.g4Title': '云与 DevOps', 'stack.micro': '微服务',
 
-    'projects.title': '开源项目', 'projects.titleEm': '· 精选',
-    'projects.sub': '从企业效率工具到「教机器写诗」——每个仓库都是一次修行。',
+    'projects.title': '精选项目', 'projects.titleEm': '· 交付 · 开源 · 修行',
+    'projects.sub': '数十年交付的亮点——以及我持续练习的开源仓库。',
+    'projects.f1Text': '重构核心 Holdings 与 Performance 系统，处理性能提升约 10 倍，基础设施从 2,400+ vCPU×6 小时降至 16 vCPU×4 小时（仅为原来的 1/50），并支撑 4 倍用户与交易量增长。',
+    'projects.f1Meta': 'DASH Technology Group · 2024–至今 · AWS Aurora · SQS · PostgreSQL',
+    'projects.f2Text': '业内领先的 PDF 表格提取器：从复杂非结构化版面还原行列结构；采用 BERT（替代 CNN+LSTM）做 NLP 分类，并以图搜索改进表格边框识别，每年节省大量人工成本。',
+    'projects.f2Meta': 'AME Group · 2017–2019 · NLP · 深度学习',
+    'projects.f3Text': '为数千个项目自动生成现金流与估值报告；将 .NET 后端逻辑自动转换为 VBA/Excel，使分析师可直接在 Excel 中建模。',
+    'projects.f3Meta': 'AME Group · 2016–2018 · Excel · VBA',
+    'projects.f4Text': '将业内最复杂的矿业金属财务模型从 WinForms 迁移至 .NET Core + Angular，交互与桌面版同样流畅；由 6 人团队半年内交付。',
+    'projects.f4Meta': 'AME Group · 2018 · .NET Core · Angular',
+    'projects.osTitle': '开源项目',
     'projects.p1': '自动生成中国古典格律诗——NLP / 生成模型实验：教机器写诗，也从内部观察创造力。',
     'projects.p2': '灵棋经的数字实现——对传统占卜的现代化、可复现实验：结构化数据进，结构化预测出。',
     'projects.p3': '企业运维工具——从 Active Directory 查询用户登录时间，用于审计与账号治理：那种每天都会回本的自助化。',
@@ -104,16 +146,25 @@
 
     'contact.title': '结缘', 'contact.titleEm': '· 代码 · AI · 禅',
     'contact.line': '期待与有趣的你交谈——代码、AI、数据、禅，或任何「看似不可能」的想法。',
+    'contact.email': '✉️ 邮箱',
     'contact.zen': '🪷 慧灯禅院', 'contact.ft': '🏢 Feng Tech',
-    'contact.info': '📍 澳大利亚大悉尼地区 · 🏢 DASH Technology Group 与 Feng Tech · 🕉 自 1993 持续构建',
+    'contact.info': '📍 澳大利亚大悉尼地区 · ✉️ sethfengli@yahoo.com.au · 📞 +61 411 758 128 · 🕉 自 1993 持续构建',
 
-    'footer.role': '高级软件工程师 · 全栈与数据库 · AI 探索者',
+    'footer.role': '全栈与数据库工程师 · .NET / C# / AI 探索者',
     'footer.photos': '图片来源（免费可商用）：', 'footer.pexels': 'Pexels',
     'footer.fonts': '字体：', 'footer.stats': '数据卡片：', 'footer.host': '托管于 GitHub Pages',
-    'footer.keywords': '关键词：高级软件工程师 · 全栈工程师 · 数据库开发 · AI 与机器学习 · 生成式 AI · NLP · LLM · 提示词工程 · Python · PowerShell · TypeScript · Angular · SQL · Azure DevOps · 自动化 · 金融科技 · 悉尼 澳大利亚'
+    'footer.keywords': '关键词：全栈工程师 · 数据库开发 · .NET / .NET Core · C# · Python · TypeScript · Angular · React · SQL · AWS · Azure · Kubernetes · 生成式 AI · NLP · LLM · 提示词工程 · 金融科技 · 财富科技 · 数据挖掘 · 悉尼 澳大利亚'
   };
 
-  var lang = fetchStore('sl-lang') === 'zh' ? 'zh' : 'en';
+  /* 浏览器语言默认值：zh* → 中文，其余英文（本地存储优先） */
+  function detectLang() {
+    try {
+      var l = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+      return l.indexOf('zh') === 0 ? 'zh' : 'en';
+    } catch (e) { return 'en'; }
+  }
+  var lang = fetchStore('sl-lang');
+  if (lang !== 'zh' && lang !== 'en') { lang = detectLang(); }
   var i18nEls = qsa('[data-i18n]');
 
   function captureOriginals() {
@@ -146,7 +197,16 @@
   });
 
   /* ── 02 Theme (light / night) ───────────────────────────── */
-  var theme = fetchStore('sl-theme') === 'night' ? 'night' : 'light';
+  /* 主题默认值：按浏览器本地时区时间（06:00–18:00 白天 / 其余夜晚）；
+     本地存储的用户选择优先。 */
+  function detectTheme() {
+    try {
+      var h = new Date().getHours();
+      return (h >= 6 && h < 18) ? 'light' : 'night';
+    } catch (e) { return 'light'; }
+  }
+  var theme = fetchStore('sl-theme');
+  if (theme !== 'light' && theme !== 'night') { theme = detectTheme(); }
 
   function applyTheme(t) {
     theme = t === 'night' ? 'night' : 'light';
@@ -161,10 +221,10 @@
     themeBtn.addEventListener('click', function () { applyTheme(theme === 'night' ? 'light' : 'night'); });
   }
 
-  /* GitHub stats cards — ivory / night variants */
+  /* GitHub stats cards — light / night variants (indigo palette) */
   var STATS = [
-    { main: 'https://github-readme-stats.vercel.app/api?username=seth2000&show_icons=true&hide_title=true&hide_rank=true&hide=contribs&bg_color=fff9f0&title_color=22304a&text_color=4d5a72&icon_color=f59e0b&border_color=e6ddc9', langs: 'https://github-readme-stats.vercel.app/api/top-langs/?username=seth2000&layout=compact&hide_title=true&bg_color=fff9f0&title_color=22304a&text_color=4d5a72&border_color=e6ddc9&langs_count=6' },
-    { main: 'https://github-readme-stats.vercel.app/api?username=seth2000&show_icons=true&hide_title=true&hide_rank=true&hide=contribs&bg_color=1a2338&title_color=f2f6ff&text_color=c6d0e4&icon_color=ffb84d&border_color=2e3a55', langs: 'https://github-readme-stats.vercel.app/api/top-langs/?username=seth2000&layout=compact&hide_title=true&bg_color=1a2338&title_color=f2f6ff&text_color=c6d0e4&border_color=2e3a55&langs_count=6' }
+    { main: 'https://github-readme-stats.vercel.app/api?username=seth2000&show_icons=true&hide_title=true&hide_rank=true&hide=contribs&bg_color=f6f8fc&title_color=18233f&text_color=45536e&icon_color=6366f1&border_color=dde3f0', langs: 'https://github-readme-stats.vercel.app/api/top-langs/?username=seth2000&layout=compact&hide_title=true&bg_color=f6f8fc&title_color=18233f&text_color=45536e&border_color=dde3f0&langs_count=6' },
+    { main: 'https://github-readme-stats.vercel.app/api?username=seth2000&show_icons=true&hide_title=true&hide_rank=true&hide=contribs&bg_color=131c31&title_color=eef2ff&text_color=c3cde3&icon_color=818cf8&border_color=27314f', langs: 'https://github-readme-stats.vercel.app/api/top-langs/?username=seth2000&layout=compact&hide_title=true&bg_color=131c31&title_color=eef2ff&text_color=c3cde3&border_color=27314f&langs_count=6' }
   ];
   function syncStatsCards() {
     var s = STATS[theme === 'night' ? 1 : 0];
@@ -264,13 +324,15 @@
     en: [
       'Code with clarity. Build with intent.',
       '30+ years of full-stack & database engineering.',
-      'Senior Software Developer · DASH Technology Group',
+      'Full-Stack Engineer · DASH Technology Group (WealthTech)',
+      'Core systems 4× faster on 1/22.5 of the infrastructure.',
       'Generative AI · NLP · Zen — one practice.'
     ],
     zh: [
       '以码之清明，铸系统之可靠。',
       '三十余年全栈与数据库工程实践。',
-      '高级软件工程师 · DASH Technology Group',
+      '全栈工程师 · DASH Technology Group（财富科技）',
+      '核心系统提速 4 倍 · 基础设施降至 1/22.5。',
       '生成式 AI · NLP · 禅 —— 一门修行。'
     ]
   };
@@ -373,8 +435,8 @@
   var cv = doc.getElementById('stars');
   var heroSec = doc.getElementById('top');
   var PALETTES = {
-    light: ['245,158,11', '59,157,255', '23,178,106', '255,138,61'],
-    night: ['255,184,77', '108,182,255', '52,211,153', '242,246,255']
+    light: ['99,102,241', '14,165,233', '13,148,136', '139,92,246'],
+    night: ['129,140,248', '56,189,248', '45,212,191', '196,181,253']
   };
 
   function palette() { return PALETTES[theme] || PALETTES.light; }

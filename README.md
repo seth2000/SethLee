@@ -3,7 +3,7 @@
 [![Live site](https://img.shields.io/badge/live-sethfengli.com-blue?style=flat-square)](https://sethfengli.com)
 [![GitHub Pages](https://img.shields.io/badge/hosted-GitHub%20Pages-06b6d4?style=flat-square)](https://pages.github.com)
 
-> **个人主页 / Personal homepage** — Senior Software Developer · Full-Stack & Database Engineer · AI Explorer
+> **个人主页 / Personal homepage** — Full-Stack & Database Engineer · .NET / C# · AI Explorer
 > 30+ years of engineering · Sydney, Australia · 码 × AI × 禅
 
 ## 🚀 Live
@@ -14,15 +14,20 @@
 
 ## 📖 About the site (本站说明)
 
-A fast, bilingual (EN/中) **Jekyll + GitHub Pages** homepage in a warm, sunny style —
-ivory paper background, sunshine-amber & sky-blue palette, grand Sora headlines,
-soft shadows, animated sun-haze background, ember-star field, scroll reveals,
-a live "Matrix rain" code panel, live iframe previews of the two ventures
-(Feng Tech + Hui Deng Zen Temple), light/dark themes and a Chinese/English toggle.
+A fast, bilingual (EN/中) **Jekyll + GitHub Pages** homepage in a cool "aurora ocean" style —
+indigo × cyan × teal palette on an off-white paper, grand Sora headlines, soft shadows,
+animated aurora background, star field, scroll reveals, a live "Matrix rain" code panel,
+live iframe previews of the two ventures (Feng Tech + Hui Deng Zen Temple), and day/night themes.
 
-Fast, 双语（EN/中）的 **Jekyll + GitHub Pages** 个人主页：温暖阳光风格——象牙纸底色、阳光琥珀与天空蓝配色、
-Sora 大字标题、柔和阴影、太阳光晕动画背景、余烬粒子、滚动渐入、「黑客帝国」式动态代码面板、
-两个事业（Feng Tech 与慧灯禅院）的实时网页预览、明/暗主题与中英文切换。
+- **Language** defaults to the browser's language (`zh*` → 中文, otherwise English); toggle persisted in `localStorage`.
+- **Theme** defaults from the browser's local time (06:00–18:00 → light, otherwise night); the manual toggle overrides it.
+
+Fast, 双语（EN/中）的 **Jekyll + GitHub Pages** 个人主页：冷静的「极光海洋」风格——靛蓝 × 青蓝 × 松石绿配色、
+象牙白底、Sora 大字标题、柔和阴影、极光动画背景、星野粒子、滚动渐入、「黑客帝国」式动态代码面板、
+两个事业（Feng Tech 与慧灯禅院）的实时网页预览，以及明/暗主题。
+
+- **语言** 默认跟随浏览器语言（`zh*` → 中文，其余英文）；用户选择会存入 `localStorage`。
+- **主题** 默认按浏览器本地时间（06:00–18:00 白天 / 其余夜晚）；手动切换可覆盖该默认值。
 
 ## 🗂 Structure (目录结构)
 
@@ -72,6 +77,12 @@ JetBrains Mono / Noto Serif SC, SIL OFL) · [github-readme-stats](https://github
 - Code on screen — [Daniil Komov, Pexels](https://www.pexels.com/photo/c-n-c-nh-ma-l-p-trinh-tren-man-hinh-may-tinh-34804020/)
 - White lotus — [Pescha Taylor, Pexels](https://www.pexels.com/photo/elegante-weisse-lotusblume-in-einem-ruhigen-teich-37060528/)
 - Abstract blue — [Steve A Johnson, Pexels](https://www.pexels.com/photo/abstrakte-blaue-textur-mit-kunstlerischen-wirbeln-30018095/)
+
+## 🔒 Privacy — never commit documents
+
+The resume (`Seth (Feng) Li Resume CN-EN 20251110.docx`) and all Office/PDF documents are
+git-ignored via `*.docx`, `*.doc`, `*.pdf`, `*.pptx`, `*.xlsx`, `*.pages`, `*.key`. Keep them
+local only — do not `git add -f` them.
 
 ## 🔧 Local development (本地开发)
 

@@ -1,6 +1,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#fff9f0">
+<meta name="theme-color" content="#f6f8fc">
 
 {% seo %}
 
@@ -10,19 +10,35 @@
 <link rel="preconnect" href="https://github-readme-stats.vercel.app">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Sora:wght@600;700;800&family=JetBrains+Mono:wght@400;500;700;800&family=Noto+Serif+SC:wght@500;700;900&display=swap" rel="stylesheet">
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='s' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ffb840'/%3E%3Cstop offset='1' stop-color='%23ff7a3d'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23s)'/%3E%3Ctext x='32' y='43' font-family='sans-serif' font-size='32' font-weight='800' fill='white' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='s' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%236366f1'/%3E%3Cstop offset='1' stop-color='%237c3aed'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23s)'/%3E%3Ctext x='32' y='43' font-family='sans-serif' font-size='32' font-weight='800' fill='white' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
 
 <link rel="stylesheet" href="{{ '/assets/css/tokens.css?v=' | append: site.github.build_revision | relative_url }}">
 <link rel="stylesheet" href="{{ '/assets/css/main.css?v=' | append: site.github.build_revision | relative_url }}">
 
 <script>
-/* 提前应用语言与主题偏好，避免首屏闪烁（无 JS 时默认英文 + 浅色） */
+/* 提前应用语言与主题偏好，避免首屏闪烁。
+   - 语言：优先本地存储；否则按浏览器语言（zh* → 中文，其余英文）。
+   - 主题：优先本地存储；否则按浏览器本地时区时间（06:00–18:00 白天 / 其余夜晚）。
+   无 JS 时默认英文 + 浅色（:root 即浅色）。 */
 (function () {
   try {
-    var theme = localStorage.getItem('sl-theme');
-    var lang = localStorage.getItem('sl-lang');
-    if (theme !== 'night') { theme = 'light'; }
-    if (lang !== 'zh') { lang = 'en'; }
+    var get = function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } };
+    var put = function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} };
+
+    var theme = get('sl-theme');
+    if (theme !== 'light' && theme !== 'night') {
+      var h = new Date().getHours();
+      theme = (h >= 6 && h < 18) ? 'light' : 'night';
+      put('sl-theme', theme);
+    }
+
+    var lang = get('sl-lang');
+    if (lang !== 'zh' && lang !== 'en') {
+      var l = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+      lang = (l.indexOf('zh') === 0) ? 'zh' : 'en';
+      put('sl-lang', lang);
+    }
+
     document.documentElement.setAttribute('data-theme', theme);
     document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en');
     document.documentElement.classList.add('js');

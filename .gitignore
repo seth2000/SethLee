@@ -99,3 +99,14 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# ── Personal documents — never commit to GitHub ──────────────
+# Resume / CV and any Office binary documents stay local only.
+*.docx
+*.doc
+*.pdf
+*.pages
+*.key
+*.pptx
+*.xlsx
+~$*

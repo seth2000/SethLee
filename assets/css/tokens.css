@@ -1,140 +1,141 @@
 /* ════════════════════════════════════════════════════════════
-   Design tokens — "sunny & warm" palette.
-   Warm ivory paper + sunshine amber + sky blue + fresh leaf.
-   Bright by default; html[data-theme="night"] overrides.
+   Design tokens — "aurora ocean" palette (indigo × cyan × teal).
+   Cool off-white paper + indigo primary + cyan & teal accents.
+   No earth-yellow / amber. Bright by default;
+   html[data-theme="night"] overrides.
    Scope every color/effect here; keep component CSS in main.css.
    ════════════════════════════════════════════════════════════ */
 
 :root {
   color-scheme: light;
 
-  /* Surfaces — warm ivory */
-  --bg: #fff9f0;
-  --bg-2: #fef3e2;
+  /* Surfaces — cool off-white */
+  --bg: #f6f8fc;
+  --bg-2: #edf1f8;
   --surface: #ffffff;
-  --surface-2: #fdf3e3;
-  --edge: rgba(255, 184, 64, 0.55);
+  --surface-2: #eef2fa;
+  --edge: rgba(99, 102, 241, 0.5);
 
   /* Ink — deep trustworthy navy */
-  --ink: #22304a;
-  --text: #4d5a72;
-  --muted: #68758c;
-  --faint: #98a3b5;
+  --ink: #18233f;
+  --text: #45536e;
+  --muted: #5e6c88;
+  --faint: #97a3ba;
 
   /* Lines */
-  --line: rgba(34, 48, 74, 0.09);
-  --line-2: rgba(34, 48, 74, 0.17);
+  --line: rgba(24, 35, 63, 0.09);
+  --line-2: rgba(24, 35, 63, 0.16);
 
   /* Brand accents */
-  --sun: #f59e0b;          /* sunshine amber */
-  --sun-deep: #e07c00;
-  --peach: #ff7a3d;
-  --sky: #3b9dff;          /* clear sky */
-  --leaf: #17b26a;         /* fresh green */
-  --rose: #f76b8a;
+  --sun: #6366f1;          /* indigo — primary */
+  --sun-deep: #4f46e5;     /* deep indigo */
+  --peach: #8b5cf6;        /* violet — hover */
+  --sky: #0ea5e9;          /* cyan — secondary */
+  --leaf: #0d9488;         /* teal — zen */
+  --rose: #ec4899;         /* pink — rare accent */
 
-  --grad-sun: linear-gradient(135deg, #ffb840 0%, #ff9a3d 55%, #ff7a61 100%);
-  --sun-soft: rgba(245, 158, 11, 0.10);
-  --sky-soft: rgba(59, 157, 255, 0.10);
-  --leaf-soft: rgba(23, 178, 106, 0.10);
+  --grad-sun: linear-gradient(135deg, #6366f1 0%, #7c3aed 100%);
+  --sun-soft: rgba(99, 102, 241, 0.10);
+  --sky-soft: rgba(14, 165, 233, 0.10);
+  --leaf-soft: rgba(13, 148, 136, 0.10);
 
-  /* Effects — soft, warm shadows */
-  --glow: rgba(245, 158, 11, 0.30);
-  --glow-soft: rgba(255, 138, 61, 0.22);
-  --shadow-sm: 0 2px 10px rgba(34, 48, 74, 0.07);
-  --shadow-md: 0 12px 32px -12px rgba(34, 48, 74, 0.16);
-  --shadow-lg: 0 24px 60px -20px rgba(34, 48, 74, 0.24);
-  --shadow-sun: 0 12px 32px -10px rgba(245, 158, 11, 0.35);
+  /* Effects — cool, soft shadows */
+  --glow: rgba(99, 102, 241, 0.30);
+  --glow-soft: rgba(124, 58, 237, 0.22);
+  --shadow-sm: 0 2px 10px rgba(24, 35, 63, 0.07);
+  --shadow-md: 0 12px 32px -12px rgba(24, 35, 63, 0.16);
+  --shadow-lg: 0 24px 60px -20px rgba(24, 35, 63, 0.24);
+  --shadow-sun: 0 12px 32px -10px rgba(99, 102, 241, 0.32);
 
   /* Chrome */
-  --nav-bg: rgba(255, 249, 240, 0.86);
-  --menu-bg: #fffdf8;
+  --nav-bg: rgba(246, 248, 252, 0.86);
+  --menu-bg: #ffffff;
   --code-bg: #060a07;      /* always dark — matrix panel */
   --code-ink: #c9f7d9;
-  --tok-k: #8ef0b0; --tok-t: #5ce6b2; --tok-f: #ffd591;
+  --tok-k: #8ef0b0; --tok-t: #5ce6b2; --tok-f: #7dd3fc;
   --tok-s: #9ff5c8; --tok-m: #ff9db0; --tok-p: #8ba0b0;
   --matrix-head: #eafff2;
   --matrix-body: #2dd06f;
   --matrix-dim: rgba(6, 10, 7, 1);
-  --ov: rgba(255, 249, 240, 0.94);
-  --ov-mid: rgba(255, 249, 240, 0.55);
-  --footer-bg: #1b2a4a;
-  --footer-ink: #f4f0e6;
-  --footer-dim: #a9b4cd;
-  --scrim: linear-gradient(180deg, rgba(20, 30, 50, 0) 34%, rgba(20, 30, 50, 0.78) 100%);
+  --ov: rgba(246, 248, 252, 0.94);
+  --ov-mid: rgba(246, 248, 252, 0.55);
+  --footer-bg: #0e1830;
+  --footer-ink: #eef2f9;
+  --footer-dim: #94a3b8;
+  --scrim: linear-gradient(180deg, rgba(10, 16, 32, 0) 34%, rgba(10, 16, 32, 0.78) 100%);
 
-  /* Background fx — sunny haze */
-  --mesh-a: rgba(255, 184, 64, 0.20);
-  --mesh-b: rgba(59, 157, 255, 0.13);
-  --mesh-c: rgba(255, 138, 61, 0.14);
-  --dot: rgba(34, 48, 74, 0.08);
+  /* Background fx — aurora haze */
+  --mesh-a: rgba(99, 102, 241, 0.18);
+  --mesh-b: rgba(14, 165, 233, 0.16);
+  --mesh-c: rgba(13, 148, 136, 0.16);
+  --dot: rgba(24, 35, 63, 0.08);
 
-  --selection: #ffc24d;
-  --selection-ink: #22304a;
-  --ring: #f59e0b;
+  --selection: #a5b4fc;
+  --selection-ink: #1e1b4b;
+  --ring: #6366f1;
 
   /* Scrollbar */
   --scroll-track: transparent;
-  --scroll-thumb-grad: linear-gradient(180deg, #ffc046, #ff8a3d);
-  --scroll-thumb: #f59e0b;
+  --scroll-thumb-grad: linear-gradient(180deg, #818cf8, #6366f1);
+  --scroll-thumb: #6366f1;
 }
 
 html[data-theme="night"] {
   color-scheme: dark;
 
-  --bg: #121a2b;
-  --bg-2: #162036;
-  --surface: #1a2338;
-  --surface-2: #212c45;
-  --edge: rgba(255, 184, 77, 0.6);
+  --bg: #0a1120;
+  --bg-2: #0e1628;
+  --surface: #131c31;
+  --surface-2: #1a2440;
+  --edge: rgba(129, 140, 248, 0.55);
 
-  --ink: #f2f6ff;
-  --text: #c6d0e4;
-  --muted: #93a1ba;
-  --faint: #66738e;
+  --ink: #eef2ff;
+  --text: #c3cde3;
+  --muted: #93a0bd;
+  --faint: #67748f;
 
-  --line: rgba(242, 246, 255, 0.10);
-  --line-2: rgba(242, 246, 255, 0.20);
+  --line: rgba(238, 242, 255, 0.09);
+  --line-2: rgba(238, 242, 255, 0.18);
 
-  --sun: #ffb84d;
-  --sun-deep: #ff9b2f;
-  --peach: #ff8a5c;
-  --sky: #6cb6ff;
-  --leaf: #34d399;
-  --rose: #ff8fab;
+  --sun: #818cf8;
+  --sun-deep: #a5b4fc;
+  --peach: #c4b5fd;
+  --sky: #38bdf8;
+  --leaf: #2dd4bf;
+  --rose: #f472b6;
 
-  --grad-sun: linear-gradient(135deg, #ffc046 0%, #ff9b4d 55%, #ff8570 100%);
-  --sun-soft: rgba(255, 184, 77, 0.12);
-  --sky-soft: rgba(108, 182, 255, 0.12);
-  --leaf-soft: rgba(52, 211, 153, 0.12);
+  --grad-sun: linear-gradient(135deg, #818cf8 0%, #a78bfa 100%);
+  --sun-soft: rgba(129, 140, 248, 0.14);
+  --sky-soft: rgba(56, 189, 248, 0.14);
+  --leaf-soft: rgba(45, 212, 191, 0.14);
 
-  --glow: rgba(255, 184, 77, 0.35);
-  --glow-soft: rgba(255, 138, 92, 0.28);
+  --glow: rgba(129, 140, 248, 0.35);
+  --glow-soft: rgba(167, 139, 250, 0.28);
   --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.35);
   --shadow-md: 0 12px 32px -12px rgba(0, 0, 0, 0.5);
   --shadow-lg: 0 24px 60px -20px rgba(0, 0, 0, 0.55);
-  --shadow-sun: 0 12px 32px -10px rgba(255, 184, 77, 0.3);
+  --shadow-sun: 0 12px 32px -10px rgba(129, 140, 248, 0.3);
 
-  --nav-bg: rgba(18, 26, 43, 0.88);
-  --menu-bg: #1d2740;
+  --nav-bg: rgba(10, 17, 32, 0.88);
+  --menu-bg: #16213a;
 
-  --ov: rgba(18, 26, 43, 0.94);
-  --ov-mid: rgba(18, 26, 43, 0.55);
-  --footer-bg: #0c1425;
-  --footer-ink: #e9edf7;
-  --footer-dim: #8d9ab5;
+  --ov: rgba(10, 17, 32, 0.94);
+  --ov-mid: rgba(10, 17, 32, 0.55);
+  --footer-bg: #060b18;
+  --footer-ink: #e6ebf7;
+  --footer-dim: #8b98b5;
   --scrim: linear-gradient(180deg, rgba(4, 8, 16, 0) 34%, rgba(4, 8, 16, 0.8) 100%);
 
-  --mesh-a: rgba(255, 184, 77, 0.15);
-  --mesh-b: rgba(108, 182, 255, 0.10);
-  --mesh-c: rgba(255, 138, 92, 0.11);
-  --dot: rgba(242, 246, 255, 0.09);
+  --mesh-a: rgba(129, 140, 248, 0.16);
+  --mesh-b: rgba(56, 189, 248, 0.13);
+  --mesh-c: rgba(45, 212, 191, 0.12);
+  --dot: rgba(238, 242, 255, 0.09);
 
-  --selection: #ffb84d;
-  --selection-ink: #1a2338;
-  --ring: #ffb84d;
+  --selection: #818cf8;
+  --selection-ink: #0a1120;
+  --ring: #818cf8;
 
   --scroll-track: transparent;
-  --scroll-thumb-grad: linear-gradient(180deg, #ffc46a, #ff9b4d);
-  --scroll-thumb: #ffb84d;
+  --scroll-thumb-grad: linear-gradient(180deg, #a5b4fc, #818cf8);
+  --scroll-thumb: #818cf8;
 }

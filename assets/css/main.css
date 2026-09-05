@@ -1,6 +1,6 @@
 /* ════════════════════════════════════════════════════════════
-   Seth Li — homepage styles · "sunny & warm" theme
-   Design tokens live in tokens.css (ivory + night).
+   Seth Li — homepage styles · "aurora ocean" theme (indigo × cyan × teal)
+   Design tokens live in tokens.css (light + night).
    Sections: 01 base · 02 background fx · 03 scrollbar ·
    04 nav · 05 float-nav · 06 hero · 07 sections/cards ·
    08 timeline · 09 stack/projects · 10 browser frames ·
@@ -60,7 +60,7 @@ code { font-family: 'JetBrains Mono', Consolas, monospace; }
 }
 .skip-link:focus { left: 0; color: var(--selection-ink); }
 
-/* ── 02 Background fx — sunny haze ────────────────────────── */
+/* ── 02 Background fx — aurora haze ───────────────────────── */
 .bg-mesh { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
 .mesh {
   position: absolute; border-radius: 50%;
@@ -87,7 +87,7 @@ code { font-family: 'JetBrains Mono', Consolas, monospace; }
   transform: scaleX(0); transform-origin: 0 50%;
 }
 
-/* ── 03 Scrollbar — warm gradient ─────────────────────────── */
+/* ── 03 Scrollbar — indigo gradient ───────────────────────── */
 ::-webkit-scrollbar { width: 13px; height: 13px; }
 ::-webkit-scrollbar-track { background: var(--scroll-track); }
 ::-webkit-scrollbar-thumb {
@@ -383,6 +383,14 @@ html.js .reveal.in { opacity: 1; transform: none; }
 }
 .proj-star { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--sun-deep); }
 .proj-card p { margin: 0; color: var(--muted); font-size: 13.8px; flex: 1; }
+.proj-meta {
+  margin-top: 12px; font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px; color: var(--faint); letter-spacing: 0.03em; line-height: 1.7;
+}
+.proj-subhead {
+  margin: 44px 0 20px; font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sky);
+}
 .proj-link { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; }
 .proj-more { margin-top: 20px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--faint); }
 .proj-more a { color: var(--muted); }
@@ -558,7 +566,7 @@ pre.code .c-p { color: var(--tok-p); }
   box-shadow: 0 8px 20px -8px rgba(200, 68, 46, 0.7); transform: rotate(-4deg);
 }
 
-/* ── 13 Quote banner — warm poster ────────────────────────── */
+/* ── 13 Quote banner — aurora poster ──────────────────────── */
 .quote-banner {
   position: relative; z-index: 1; min-height: 56vh;
   display: flex; align-items: center; justify-content: center; text-align: center;
@@ -608,8 +616,8 @@ pre.code .c-p { color: var(--tok-p); }
   color: var(--footer-dim); letter-spacing: 0.02em; margin-top: 6px;
 }
 .foot-credits { max-width: 560px; font-size: 11.5px; line-height: 1.9; }
-.foot-credits a { color: #ffc46a; }
-.foot-credits a:hover { color: #ffdda6; }
+.foot-credits a { color: #a5b4fc; }
+.foot-credits a:hover { color: #c7d2fe; }
 .foot-keywords {
   width: 100%; margin: 16px 0 0; font-family: 'JetBrains Mono', monospace;
   font-size: 10.5px; color: var(--footer-dim); line-height: 2; text-align: center;
