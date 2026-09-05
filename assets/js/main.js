@@ -96,6 +96,7 @@
     'career.edu2Chip1': '高等教育',
     'career.netTitle': 'LinkedIn · 职业网络',
     'career.netText': '500+ 联系人 · 576 位关注者——欢迎连接，一起构建有意义的事。',
+    'career.more': '展开全部履历', 'career.less': '收起',
 
     'stack.title': '技术栈', 'stack.titleEm': '· 日常共修的工具',
     'stack.sub': '选工具如选法器——趁手、可靠、可维护。',
@@ -188,6 +189,7 @@
       b.classList.toggle('on', on);
       b.setAttribute('aria-pressed', on ? 'true' : 'false');
     });
+    updateCareerCount();
     typingInit();
     renderQuote(quoteIndex);
   }
@@ -381,6 +383,31 @@
     qsa('.reveal').forEach(function (n) { io.observe(n); });
   } else {
     qsa('.reveal').forEach(function (n) { n.classList.add('in'); });
+  }
+
+  /* ── 05b Career timeline — expand / collapse ──────────────
+     默认只显示前 5 条，点按钮展开其余条目；无 JS 时全部可见。 */
+  var careerMore = doc.getElementById('career-more');
+  var careerToggle = doc.getElementById('career-toggle');
+  var careerActions = careerToggle ? careerToggle.parentNode : null;
+  var careerCount = doc.getElementById('career-count');
+
+  function updateCareerCount() {
+    if (!careerMore || !careerCount) { return; }
+    var n = qsa('.tl-item', careerMore).length;
+    careerCount.textContent = (lang === 'zh') ? (' · 余 ' + n + ' 项') : (' · ' + n + ' more');
+  }
+
+  if (careerToggle && careerMore && careerActions) {
+    careerToggle.addEventListener('click', function () {
+      var open = careerMore.classList.toggle('open');
+      careerActions.classList.toggle('open', open);
+      careerToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (open) {
+        /* 展开区内的 reveal 立即淡入，不依赖滚动触发 */
+        qsa('.reveal', careerMore).forEach(function (n) { n.classList.add('in'); });
+      }
+    });
   }
 
   /* ── 06 Rotating quotes (bilingual, in-page data) ───────── */

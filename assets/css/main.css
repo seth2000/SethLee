@@ -365,6 +365,19 @@ html.js .reveal.in { opacity: 1; transform: none; }
 .tl-body p { margin: 0 0 12px; color: var(--muted); font-size: 14px; }
 .tl-link { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; }
 
+/* Timeline — collapse / expand (JS collapses the overflow entries;
+   without JS everything stays visible and the toggle is hidden) */
+.timeline-more { display: flex; flex-direction: column; gap: 18px; }
+.career-actions { display: none; }
+html.js .career-actions { display: flex; justify-content: center; margin-top: 28px; }
+html.js .timeline-more { display: none; }
+html.js .timeline-more.open { display: flex; }
+.career-count { font-family: 'JetBrains Mono', monospace; color: var(--faint); margin-left: 6px; }
+.career-toggle-less { display: none; }
+.career-actions.open .career-toggle-more,
+.career-actions.open .career-count { display: none; }
+.career-actions.open .career-toggle-less { display: inline; }
+
 /* ── 09 Stack / projects ──────────────────────────────────── */
 .stack-group { padding: 24px 26px; }
 .stack-group h3 {
