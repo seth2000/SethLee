@@ -930,6 +930,48 @@ html.js .timeline-more.open { display: flex; }
 }
 .char-head { color: var(--matrix-head); text-shadow: 0 0 12px rgba(200, 255, 225, 0.95), 0 0 28px rgba(31, 224, 106, 0.70); }
 
+/* 点中一个字符之后：屏幕冻结（JS 把每列的 playbackRate 缓动到 ~0），
+   流头收掉光晕，像整块屏被按住暂停。 */
+.code-rain.is-frozen .char-head {
+  color: var(--matrix-body);
+  text-shadow: 0 0 9px rgba(31, 224, 106, 0.55);
+}
+
+/* 停格期间从源码里弹出的一块 Python：近黑的荧光屏上唯一清晰的东西，
+   逐行淡入，5–10 秒后逐行崩塌。 */
+.code-block {
+  position: absolute; left: 50%; top: 50%; z-index: 5;
+  width: max-content; max-width: 88%;
+  padding: 10px 14px 12px;
+  transform: translate(-50%, -50%);
+  font-family: 'JetBrains Mono', monospace; font-size: 12.5px; line-height: 1.75;
+  white-space: pre; overflow: hidden; text-align: left;
+  color: var(--matrix-head);
+  background: rgba(3, 12, 7, 0.82);
+  border: 1px solid rgba(31, 224, 106, 0.34);
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.70), 0 0 30px rgba(31, 224, 106, 0.20);
+  text-shadow: 0 0 9px rgba(31, 224, 106, 0.45);
+}
+.cb-head {
+  display: block; margin-bottom: 6px; padding-bottom: 5px;
+  font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--matrix-body); border-bottom: 1px solid rgba(31, 224, 106, 0.22);
+}
+.cb-line { display: block; }
+
+/* 提示：屏幕可以点 */
+.code-hint {
+  margin: 14px 2px 0;
+  font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--faint);
+}
+.code-hint::before {
+  content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 8px;
+  border-radius: 50%; background: var(--matrix-body);
+  box-shadow: 0 0 8px var(--matrix-glow); opacity: 0.75;
+}
+
 /* 静态代码（无 JS / 关闭动画时的兜底）：同一块屏幕上的终端 */
 pre.code {
   position: relative; z-index: 2;
@@ -1309,8 +1351,10 @@ html:not([lang^="zh"]) .poem-cn { display: none; }
   .grid-overlay-2, .hero-grid, .hero-scan, .nav-scan, .hud__dot { animation: none !important; }
   /* 矩阵屏：屏幕的闪烁 / 回扫亮带 / 光标停住，但雨照下 ——
      JS 只把下落与换字放慢（calm / tick）。这块屏是本节的主角，
-     把它换成一张不动的静态代码，比缓慢下落的字符更让人意外。 */
+     把它换成一张不动的静态代码，比缓慢下落的字符更让人意外。
+     点击后弹出/崩塌的函数块同理：留在原位，只是不再逐行动。 */
   .crt, .crt::before, .code-caret { animation-play-state: paused !important; }
+  .char-head { transition: none !important; }
   /* 双燕：停在半空，不循环飞行 */
   .pa-flock, .pa-bird-b, .pa-trail { animation-play-state: paused !important; }
   .card, .btn, .stat, .quote-overlay, #quote, #quote-author, .contact-card,

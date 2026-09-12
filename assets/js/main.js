@@ -153,6 +153,7 @@
     'insights.c3Eng': 'More the knowledge, lesser the ego',
     'insights.poemLabel': '📜 定场诗',
     'insights.poemEn': '双燕归南国，<br>来寻王谢家。<br>画堂春昼静，<br>于此托生涯。<br>气回天地运，<br>财聚八方华。<br>人途新起色，<br>福泽满云霞。',
+    'insights.codeHint': '点中任意一个下落的字符 —— 屏幕冻结，我的一个 Python 函数浮出来，随后崩塌。',
     'contact.title': '结缘', 'contact.titleEm': '· 代码 · AI · 禅',
     'contact.kicker': '联系',
     'contact.line': '期待与有趣的你交谈——代码、AI、数据、禅，或任何「看似不可能」的想法。',
@@ -596,7 +597,10 @@
      距离”算好 —— 流头近白、其后磷光绿、再往上渐隐。因此没有
      逐字动画与逐帧重绘，成本只有几十个合成层。
      字符取自源码 + 半角片假名 / 数字，并由定时器随机换字
-     （mutation，Matrix 的灵魂）。
+     （mutation，Matrix 的灵魂）；片假名刻意压到一成，屏幕上主要是
+     自己的 Python 代码。
+     点中任意一个字符 → 雨几乎停住，等 5–10 秒后从源码里随机弹出一个
+     函数块，块停留 5–10 秒后逐行崩塌，随后雨恢复原速。
      下落关键帧写在 JS 里（Web Animations API），不放进 @keyframes：
      ① 绕开 WebKit「@keyframes 里的 var() 不生效」的老问题；
      ② 就算 CSS / JS 缓存版本错配，雨也不会被冻住。
@@ -624,12 +628,13 @@
       var rgb = /(\d+)\D+(\d+)\D+(\d+)/.exec(v);
       return rgb ? (rgb[1] + ', ' + rgb[2] + ', ' + rgb[3]) : '31, 224, 106';
     })();
-    /* 字库：源码字符约四成，其余是 Matrix 的经典字符集 */
+    /* 字库：源码字符约七成半，日文半角片假名只占一成（留一点 Matrix 味即可），
+       其余是数字与符号 */
     function glyph() {
       var r = Math.random();
-      if (r < 0.40) { return KATA.charAt(rnd(KATA.length)); }
-      if (r < 0.54) { return NUM.charAt(rnd(NUM.length)); }
-      if (r < 0.62) { return SYM.charAt(rnd(SYM.length)); }
+      if (r < 0.10) { return KATA.charAt(rnd(KATA.length)); }
+      if (r < 0.25) { return NUM.charAt(rnd(NUM.length)); }
+      if (r < 0.375) { return SYM.charAt(rnd(SYM.length)); }
       return SRC.charAt(rnd(SRC.length));
     }
 
@@ -641,7 +646,203 @@
     var canAnimate = typeof Element !== 'undefined' &&
       typeof Element.prototype.animate === 'function';
 
+    /* 静止 / 恢复的滑行时长：播放速率线性过渡，雨是“刹住”而不是“卡住” */
+    var GLIDE = 900;
+    var busy = false, seq = 0, seqTimer = null, glideTimers = [], activeTweens = [];
+
+    /* 源码按行切好，供随机“弹出”一块函数用 */
+    var srcLines = [];
+    (function () {
+      var raw = codeSrc.textContent.replace(/\r/g, '').split('\n');
+      for (var i = 0; i < raw.length; i++) {
+        if (raw[i].trim()) { srcLines.push(raw[i].replace(/\s+$/, '')); }
+        else if (srcLines.length) { srcLines.push(''); }
+      }
+      while (srcLines.length && !srcLines[srcLines.length - 1]) { srcLines.pop(); }
+    })();
+
+    /* 清掉所有在跑的定时器与缓动（重建 / 出错时用） */
+    function clearSeq() {
+      seq++;
+      busy = false;
+      if (seqTimer) { clearTimeout(seqTimer); seqTimer = null; }
+      for (var g = 0; g < glideTimers.length; g++) { clearTimeout(glideTimers[g]); }
+      glideTimers = [];
+      for (var i = 0; i < activeTweens.length; i++) { cancelAnimationFrame(activeTweens[i]); }
+      activeTweens = [];
+      if (rain) { rain.classList.remove('is-frozen'); }
+      var stale = card.querySelectorAll ? card.querySelectorAll('.code-block') : [];
+      for (var k = 0; k < stale.length; k++) {
+        try { card.removeChild(stale[k]); } catch (e) { /* 已经被摘掉了 */ }
+      }
+    }
+
+    /* 每个动画对象单独缓动到某个播放速率（点中字符时刹住，之后恢复）。
+       缓动按时间走；再挂一个 1.6×GLIDE 的保险定时器，保证帧被丢光时
+       也一定落在目标值上，雨不会永远卡在“正在减速”的中间态。 */
+    var clockMs = (typeof performance !== 'undefined' && performance.now)
+      ? function () { return performance.now(); }
+      : function () { return Date.now(); };
+    function glide(anim, to) {
+      if (!anim || typeof anim.playbackRate !== 'number') { return; }
+      var from = anim.playbackRate;
+      if (Math.abs(from - to) < 0.01) { anim.playbackRate = to; return; }
+      var t0 = clockMs();
+      var done = false;
+      var step = function () {
+        if (done) { return; }
+        if (anim.playbackRate === to) { done = true; return; }
+        var p = Math.min(1, (clockMs() - t0) / GLIDE);
+        anim.playbackRate = from + (to - from) * (p < 0.5 ? 2 * p * p : 1 - 2 * (1 - p) * (1 - p));
+        if (p < 1) { activeTweens.push(requestAnimationFrame(step)); }
+        else { done = true; }
+      };
+      activeTweens.push(requestAnimationFrame(step));
+      glideTimers.push(setTimeout(function () {          /* 兜底：直接落到位 */
+        if (anim.playbackRate !== to) { anim.playbackRate = to; }
+      }, GLIDE * 1.6));
+    }
+
+    /* 屏幕中央弹出一块随机源码。源码里每个方法都只有一两行，所以先随机挑
+       几行的窗口（2–6 行），再在窗口内收边：退回到窗口内最后一个空行，
+       保证不把两个不相关的块拼在一起。 */
+    function randomChunk() {
+      if (!srcLines.length) { return { head: 'python', lines: ['# (no source)'] }; }
+      var heads = [];
+      for (var i = 0; i < srcLines.length; i++) {
+        if (/^(\s*)(def|class)\s/.test(srcLines[i])) { heads.push(i); }
+      }
+      var s = heads.length ? heads[rnd(heads.length)] : rnd(Math.max(1, srcLines.length - 4));
+      if (s > 0 && /^\s*@/.test(srcLines[s - 1])) { s--; }            /* 带上装饰器 */
+      var e = s + 2 + rnd(5);
+      if (e > srcLines.length) { e = srcLines.length; }
+      for (var k = e - 1; k > s + 1; k--) {                          /* 退到块内最后一个空行之后 */
+        if (srcLines[k].replace(/\s+$/, '') === '') { e = k; break; }
+      }
+      var name = /^\s*(?:def|class)\s+([A-Za-z_][\w]*)/.exec(srcLines[s]);
+      return { head: name ? (name[1] === '__init__' ? 'Supreme_Wisdom.__init__' : name[1]) : 'python',
+        lines: srcLines.slice(s, e) };
+    }
+
+    function buildBlock() {
+      var chunk = randomChunk();
+      var box = doc.createElement('div');
+      box.className = 'code-block';
+      /* 窄屏上最长的源码行会顶出屏幕：按行长把字号缩到装得下为止
+         （单宽字体约 0.62em/字符），既不改动代码也不让它被裁掉 */
+      var longest = chunk.head.length;
+      for (var n = 0; n < chunk.lines.length; n++) {
+        if (chunk.lines[n].length > longest) { longest = chunk.lines[n].length; }
+      }
+      var room = Math.max(180, (card.clientWidth || 620) * 0.86);
+      var fs = Math.min(12.5, Math.floor(room / Math.max(1, longest) / 0.62));
+      box.style.fontSize = Math.max(8, fs) + 'px';
+      var head = doc.createElement('span');
+      head.className = 'cb-head';
+      head.textContent = chunk.head + '()';
+      box.appendChild(head);
+      for (var i = 0; i < chunk.lines.length; i++) {
+        var ln = doc.createElement('span');
+        ln.className = 'cb-line';
+        ln.textContent = chunk.lines[i] === '' ? '\u00a0' : chunk.lines[i];
+        box.appendChild(ln);
+      }
+      var osd = card.querySelector ? card.querySelector('.code-osd') : null;
+      card.insertBefore(box, osd || null);
+      if (canAnimate) {
+        box.animate([
+          { opacity: 0, transform: 'translate(-50%, -50%) scale(0.94)' },
+          { opacity: 1, transform: 'translate(-50%, -50%) scale(1)' }
+        ], { duration: reduce ? 1 : 460, easing: 'cubic-bezier(0.2, 0.9, 0.25, 1)', fill: 'both' });
+        var lines = box.children || [];
+        for (var k = 1; k < lines.length; k++) {
+          if (typeof lines[k].animate === 'function') {
+            lines[k].animate([{ opacity: 0 }, { opacity: 1 }],
+              { duration: reduce ? 1 : 320, delay: k * 135, fill: 'both' });
+          }
+        }
+      }
+      return box;
+    }
+
+    function dropBlock(box, done) {
+      if (!box) { done(); return; }
+      if (canAnimate && typeof box.animate === 'function') {
+        var lines = box.children || [];
+        for (var i = 1; i < lines.length; i++) {
+          if (typeof lines[i].animate === 'function') {
+            lines[i].animate([{ opacity: 1 }, { opacity: 0 }], { duration: 200, delay: i * 60, fill: 'both' });
+          }
+        }
+        box.animate([
+          { opacity: 1, transform: 'translate(-50%, -50%) scale(1)' },
+          { opacity: 0, transform: 'translate(-50%, -50%) scale(0.97)' }
+        ], { duration: 420, delay: 260, fill: 'both' });
+      }
+      seqTimer = setTimeout(function () {
+        /* 用 card 直接摘，别问 box.parentNode —— 节点是刚 createElement 出来的，
+           某些环境下它不会在插入后回填 */
+        try { card.removeChild(box); } catch (e) { /* 已经被摘掉了 */ }
+        done();
+      }, canAnimate ? 760 : 60);
+    }
+
+    /* 点中一个字符 → 雨近乎停住（换字也停） → 5–10 秒后弹出函数块 →
+       块自身停留 5–10 秒后崩塌 → 雨恢复原速 */
+    function collapseCycle() {
+      if (busy) { return; }                       /* 一轮没走完，再点不叠加 */
+      busy = true;
+      var me = ++seq;
+      if (rain) { rain.classList.add('is-frozen'); }
+
+      for (var i = 0; i < anims.length; i++) { glide(anims[i], 0.04); }
+      if (timer) { clearInterval(timer); timer = null; }
+
+      var box = null;
+      seqTimer = setTimeout(function () {          /* 1.8–4.2 秒的“停格” */
+        if (me !== seq) { return; }
+        try { box = buildBlock(); } catch (e) { box = null; }
+        var hold = 5000 + rnd(5000);               /* 2. 块停留 5–10 秒 */
+        seqTimer = setTimeout(function () {
+          if (me !== seq) { return; }
+          dropBlock(box, function () {             /* 3. 逐行崩塌 */
+            if (me !== seq) { return; }
+            if (rain) { rain.classList.remove('is-frozen'); }
+            for (var k = 0; k < anims.length; k++) { glide(anims[k], 1); }
+            activeTweens.push(requestAnimationFrame(function () {
+              if (me !== seq) { return; }
+              busy = false;
+              run(onScreen);                       /* 4. 回到开始的掉落 */
+            }));
+          });
+        }, hold);
+      }, reduce ? 1200 : (1800 + rnd(2400)));
+    }
+
+    function bindTap(el) {
+      if (!el || typeof el.addEventListener !== 'function') { return; }
+      var x0 = 0, y0 = 0, moved = false;
+      el.addEventListener('pointerdown', function (e) {
+        x0 = e.clientX; y0 = e.clientY; moved = false;
+      });
+      el.addEventListener('pointermove', function (e) {
+        if (Math.abs(e.clientX - x0) > 8 || Math.abs(e.clientY - y0) > 8) { moved = true; }
+      });
+      el.addEventListener('pointerup', function (e) {
+        if (moved) { return; }                     /* 是滚动，不是点击 */
+        if (!reduce) { el.textContent = glyph(); } /* 点中的那个字符先换一下 */
+        collapseCycle();
+      });
+      el.addEventListener('click', function (e) {  /* 老浏览器 / 键盘 */
+        if (e && e.preventDefault) { e.preventDefault(); }
+        if (busy) { return; }
+        collapseCycle();
+      });
+      el.style.cursor = 'pointer';
+    }
+
     function stopAnims() {
+      clearSeq();
       for (var i = 0; i < anims.length; i++) { anims[i].cancel(); }
       anims = [];
     }
@@ -714,6 +915,7 @@
             }
             cells.push(s);
             col.appendChild(s);
+            if (k === 0) { bindTap(s); }              /* 点中流头即触发崩塌一轮 */
           }
           rain.appendChild(col);
         }
