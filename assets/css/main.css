@@ -1005,38 +1005,36 @@ html[lang^="zh"] .poem-art { display: none; }
 }
 @keyframes swallow-trail { to { stroke-dashoffset: -14; } }
 
-/* 联句：此处是新诗与旧卡唯一的结构差异 —— 上下两段。
-   上段「归南国 · 托生涯」写燕子安居，下段「转乾坤 · 满天涯」写运与福；
-   用一段渐隐的竖线把两段系在一起，而不是把八句平铺成一坨。 */
-.poem {
-  margin: 0 auto; max-width: 420px;
-  /* 竖线在两段之间渐隐渐显：上段收尾，下段另起 */
-  --poem-rule: linear-gradient(180deg, transparent, var(--line-2) 40%, var(--line-2) 60%, transparent);
-}
+/* 五言八句：一句一行；联内两行挨紧、联间留一口气。
+   两种语言互斥显示 —— 中文写在标记里、英文由 JS 注入，永远只出现一种。 */
+.poem { margin: 0 auto; max-width: 420px; text-align: center; }
 .poem-cn {
-  margin: 0; padding-left: 18px;
-  border-left: 1px solid var(--line-2);
-  border-image: var(--poem-rule) 1;
+  margin: 0; padding: 0;
   font-family: 'Noto Serif SC', 'Songti SC', SimSun, serif;
-  font-size: clamp(1.05rem, 2.1vw, 1.2rem);
-  line-height: 2.05; color: var(--ink); letter-spacing: 0.14em;
+  font-size: clamp(1.06rem, 2.1vw, 1.22rem);
+  line-height: 1.72; color: var(--ink); letter-spacing: 0.02em;
 }
-.poem-cn + .poem-cn { margin-top: 12px; }
-.poem-cn span { display: block; text-indent: 0.02em; }
+/* 每联两行靠紧，联与联之间留一口气。中文：3/5/7 行另起一联。
+   英文：整段由 JS 注入，以 <br> 切行，靠行高区分即可。 */
+.pc-line { display: block; width: fit-content; margin: 0 auto; }
+.pc-line:nth-child(odd):not(:first-child) { margin-top: 0.6em; }
 
-/* 英译：中文由 JS 注入（.poem-en 有 data-i18n），此处只给英文一套衬线小字 */
 .poem-en {
-  margin: 14px auto 0; max-width: 44ch;
+  margin: 0 auto; max-width: 44ch;
   font-family: 'Iowan Old Style', 'Palatino Linotype', 'Noto Serif SC', Georgia, serif;
-  font-size: 12.4px; line-height: 1.9; color: var(--muted); text-align: center;
+  font-size: 13.4px; line-height: 1.95; color: var(--muted);
+  font-style: italic; letter-spacing: 0.01em;
 }
-:lang(zh) .poem-en { font-size: 12.8px; line-height: 1.95; }
 
-/* 落款：朱印 + 一句注 */
+/* 语言互斥：根元素 lang 由 main.js 切换。中文写在标记里（无 JS 也读得见），
+   英文在 ZH 字典里；同一时刻只有一种语言的八行在页面上。 */
+:lang(zh) .poem-en { display: none; }
+html:not([lang^="zh"]) .poem-cn { display: none; }
+
+/* 落款：朱印一句压角，与诗行留出气口 */
 .poem-sign {
   display: flex; flex-direction: column; align-items: center;
-  margin-top: auto; padding-top: 18px;
-  border-top: 1px dashed var(--line-2);
+  margin-top: auto; padding-top: 22px;
 }
 .seal {
   display: inline-grid; place-items: center; width: 44px; height: 44px;
@@ -1049,11 +1047,6 @@ html[lang^="zh"] .poem-art { display: none; }
 }
 .poem-card:hover .seal { transform: rotate(3deg) scale(1.05); }
 :lang(zh) .seal { font-size: 24px; }
-.poem-note {
-  margin: 12px auto 0; max-width: 26ch;
-  font-size: 12px; line-height: 1.85; color: var(--faint); text-align: center;
-}
-:lang(zh) .poem-note { max-width: 21ch; font-size: 12.4px; letter-spacing: 0.06em; }
 
 /* ── 13 Quote banner — aurora poster ──────────────────────── */
 .quote-banner {
@@ -1314,9 +1307,10 @@ html[lang^="zh"] .poem-art { display: none; }
   html.js .reveal { opacity: 1; transform: none; transition: none; }
   .mesh, .caret, .scroll-hint, .code-tag::before,
   .grid-overlay-2, .hero-grid, .hero-scan, .nav-scan, .hud__dot { animation: none !important; }
-  /* 矩阵屏：不改写动画本身，只按停在原地（reduce 下 JS 根本不会造雨，
-     这里兜住运行中改写偏好的情况，冻结的雨面比空白屏幕更好看）。 */
-  .crt, .crt::before, .code-caret, .rain-col { animation-play-state: paused !important; }
+  /* 矩阵屏：屏幕的闪烁 / 回扫亮带 / 光标停住，但雨照下 ——
+     JS 只把下落与换字放慢（calm / tick）。这块屏是本节的主角，
+     把它换成一张不动的静态代码，比缓慢下落的字符更让人意外。 */
+  .crt, .crt::before, .code-caret { animation-play-state: paused !important; }
   /* 双燕：停在半空，不循环飞行 */
   .pa-flock, .pa-bird-b, .pa-trail { animation-play-state: paused !important; }
   .card, .btn, .stat, .quote-overlay, #quote, #quote-author, .contact-card,

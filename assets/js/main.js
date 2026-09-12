@@ -152,8 +152,7 @@
     'insights.c3Text': '「知识越多，我执越少；知识越少，我执越多。」以及提醒：「当心别把理智奉若神明——它虽肌肉强健，却没有个性。」',
     'insights.c3Eng': 'More the knowledge, lesser the ego',
     'insights.poemLabel': '📜 定场诗',
-    'insights.poemEn': '一双燕子飞回南国，<br>来寻访当年王谢的旧家。<br>画堂之上，春昼正静——<br>就在这里安下此生。<br>气数转动着乾坤的运，<br>财路畅通八方车马。<br>人生刚刚有了起色——<br>福泽已铺满天涯。',
-    'insights.poemNote': '燕归画堂——找到自己的位置，安顿此心，让福泽自寻门路。',
+    'insights.poemEn': '双燕归南国，<br>来寻王谢家。<br>画堂春昼静，<br>于此托生涯。<br>气回天地运，<br>财聚八方华。<br>人途新起色，<br>福泽满云霞。',
     'contact.title': '结缘', 'contact.titleEm': '· 代码 · AI · 禅',
     'contact.kicker': '联系',
     'contact.line': '期待与有趣的你交谈——代码、AI、数据、禅，或任何「看似不可能」的想法。',
@@ -598,9 +597,15 @@
      逐字动画与逐帧重绘，成本只有几十个合成层。
      字符取自源码 + 半角片假名 / 数字，并由定时器随机换字
      （mutation，Matrix 的灵魂）。
-     关闭动画偏好时不生成雨，保留可读的静态代码。            */
+     下落关键帧写在 JS 里（Web Animations API），不放进 @keyframes：
+     ① 绕开 WebKit「@keyframes 里的 var() 不生效」的老问题；
+     ② 就算 CSS / JS 缓存版本错配，雨也不会被冻住。
+     不支持 WAAPI 的老浏览器回落到 §12 里那套 CSS 动画。
+     ⚠ 雨不随 prefers-reduced-motion 关闭 —— 这块屏是本节的主角，
+     老版本也一直在动；该偏好只把雨和换字放慢（见 calm / tick）。
+     只有关闭 JS 时才退回到可读的静态代码。                    */
   var codeSrc = doc.getElementById('code-source');
-  if (codeSrc && codeSrc.textContent && !reduce) {
+  if (codeSrc && codeSrc.textContent) {
     var KATA = 'ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ';
     var NUM = '0123456789';
     var SYM = ':=+-*/<>[]{}()_$#';
@@ -628,7 +633,18 @@
       return SRC.charAt(rnd(SRC.length));
     }
 
-    var rain = null, cells = [], builtH = 0;
+    var rain = null, cells = [], anims = [], builtH = 0;
+    var timer = null, onScreen = true;
+    /* 偏好减少动态的访客：雨照下，但慢下来、换字也慢下来 */
+    var calm = reduce ? 0.7 : 1;
+    var tick = reduce ? 220 : 110;
+    var canAnimate = typeof Element !== 'undefined' &&
+      typeof Element.prototype.animate === 'function';
+
+    function stopAnims() {
+      for (var i = 0; i < anims.length; i++) { anims[i].cancel(); }
+      anims = [];
+    }
 
     function buildRain() {
       /* 先收起静态代码，再量屏 —— 量到的是屏幕的最终高度 */
@@ -640,6 +656,7 @@
       }
       if (rain && Math.abs(H - builtH) < 24) { return; }    /* 高度没变，不重排 */
       if (rain && rain.parentNode) { rain.parentNode.removeChild(rain); }
+      stopAnims();
 
       try {
         var fw = 16, fh = 19;                              /* 格宽 / 行高 */
@@ -656,7 +673,7 @@
           var alpha = far
             ? (0.34 + Math.random() * 0.20).toFixed(2)
             : (0.80 + Math.random() * 0.20).toFixed(2);
-          var speed = (far ? 58 : 96) + Math.random() * 74;  /* px/秒 */
+          var speed = ((far ? 58 : 96) + Math.random() * 74) * calm;  /* px/秒 */
           /* 相位按黄金比错开（而非纯随机）：任何一刻屏幕上的雨都分布均匀 */
           var phase = (c * 0.6180339887 + Math.random() * 0.08) % 1;
           var tail = (far ? 3 : 4) + rnd(5);               /* 尾迹 3–8 行：一小段彗尾 */
@@ -668,10 +685,22 @@
           col.style.left = left + 'px';
           col.style.height = L + 'px';
           col.style.opacity = alpha;
-          col.style.setProperty('--y0', -L + 'px');
-          col.style.setProperty('--y1', H + 'px');
-          col.style.animationDuration = dur.toFixed(2) + 's';
-          col.style.animationDelay = (-phase * dur).toFixed(2) + 's';
+
+          if (canAnimate) {
+            /* 关键帧由 JS 提供，CSS 里的 col-fall 只作老浏览器兜底 */
+            col.style.animation = 'none';
+            anims.push(col.animate(
+              [{ transform: 'translate3d(0,' + (-L) + 'px,0)' },
+               { transform: 'translate3d(0,' + H + 'px,0)' }],
+              { duration: dur * 1000, delay: -phase * dur * 1000,
+                iterations: Infinity, easing: 'linear' }
+            ));
+          } else {
+            col.style.setProperty('--y0', -L + 'px');
+            col.style.setProperty('--y1', H + 'px');
+            col.style.animationDuration = dur.toFixed(2) + 's';
+            col.style.animationDelay = (-phase * dur).toFixed(2) + 's';
+          }
 
           for (var k = 0; k < tail; k++) {                 /* k = 0 是最前的流头 */
             var s = doc.createElement('span');
@@ -691,8 +720,10 @@
 
         card.insertBefore(rain, card.firstChild);
         builtH = H;
+        run(onScreen);                                     /* 离屏就先停住 */
       } catch (e) {
         /* 兜底：出任何差错都退回可读的静态代码，别留一块黑屏 */
+        stopAnims();
         if (rain && rain.parentNode) { rain.parentNode.removeChild(rain); }
         rain = null; cells = [];
         codeSrc.style.display = '';
@@ -710,16 +741,18 @@
     });
     window.addEventListener('load', function () { setTimeout(buildRain, 60); });
 
-    /* 随机换字：每 ~110ms 换掉约 1.2% 的字符。
+    /* 随机换字：每 ~110ms（reduce 下 220ms）换掉约 1.2% 的字符。
        面板离开视口或标签页隐藏时暂停，别浪费电。 */
-    var timer = null, onScreen = true;
     function mutate() {
       if (!cells.length) { return; }
       var n = Math.max(1, Math.round(cells.length * 0.012));
       for (var i = 0; i < n; i++) { cells[rnd(cells.length)].textContent = glyph(); }
     }
     function run(on) {
-      if (on && !timer && !doc.hidden) { timer = setInterval(mutate, 110); }
+      for (var i = 0; i < anims.length; i++) {
+        if (on) { anims[i].play(); } else { anims[i].pause(); }
+      }
+      if (on && !timer && !doc.hidden) { timer = setInterval(mutate, tick); }
       else if (!on && timer) { clearInterval(timer); timer = null; }
     }
     if ('IntersectionObserver' in window) {
