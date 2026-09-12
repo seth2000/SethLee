@@ -61,13 +61,15 @@
   /* Chrome */
   --nav-bg: rgba(239, 243, 250, 0.78);
   --menu-bg: #ffffff;
-  --code-bg: #060a07;      /* always dark — matrix panel */
-  --code-ink: #c9f7d9;
-  --tok-k: #8ef0b0; --tok-t: #5ce6b2; --tok-f: #7dd3fc;
-  --tok-s: #9ff5c8; --tok-m: #ff9db0; --tok-p: #8ba0b0;
-  --matrix-head: #eafff2;
-  --matrix-body: #2dd06f;
-  --matrix-dim: rgba(6, 10, 7, 1);
+  /* Matrix / CRT screen — always dark, phosphor green (never themed) */
+  --code-bg: #040b06;
+  --code-ink: #cdf7db;
+  --tok-k: #8ef0b0; --tok-t: #6ff0b4; --tok-f: #86d9ff;
+  --tok-s: #b6f7cf; --tok-m: #ff9db0; --tok-p: #8ba0b0;
+  --matrix-head: #e8fff1;  /* stream head — near-white flash */
+  --matrix-body: #1fe06a;  /* phosphor green — the rain itself */
+  --matrix-glow: rgba(31, 224, 106, 0.55);
+  --matrix-dim: rgba(4, 11, 6, 1);
   --ov: rgba(239, 243, 250, 0.94);
   --ov-mid: rgba(239, 243, 250, 0.55);
   --footer-bg: #070d1c;

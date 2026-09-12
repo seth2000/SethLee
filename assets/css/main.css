@@ -6,7 +6,7 @@
    04 nav (HUD bar + overflow tray) · 05 float-nav (retired) ·
    06 hero + HUD readout · 07 sections/cards ·
    08 timeline · 09 stack/projects · 10 browser frames ·
-   11 insights/poem · 12 matrix panel · 13 quote banner ·
+   11 insights/poem · 12 matrix panel (digital rain) · 13 quote banner ·
    14 contact/footer · 15 responsive · 16 reduced motion
    ════════════════════════════════════════════════════════════ */
 
@@ -826,36 +826,67 @@ html.js .timeline-more.open { display: flex; }
 
 .code-row { display: grid; grid-template-columns: 1.2fr 1fr; gap: 22px; margin-top: 22px; }
 
-/* ── 12 CRT monitor (code-rain panel) ─────────────────────── */
+/* ── 12 Matrix panel — phosphor CRT + digital rain ──────────
+   一块“屏幕”：近黑玻璃、绿色磷光、内凹暗角（显像管弧度）。
+   雨见下方 .rain-col —— 每列是一条拖着尾迹的彗星：
+   流头近白，尾迹渐隐成暗绿，落出屏底后换列重来。          */
 .code-card {
-  background: radial-gradient(ellipse at 50% 42%, #0d2412 0%, #071009 62%, #040905 100%);
-  border-color: rgba(62, 242, 143, 0.30);
+  --crt-inset:
+    inset 0 0 0 1px rgba(0, 0, 0, 0.90),
+    inset 0 0 24px rgba(0, 0, 0, 0.80),
+    inset 0 0 90px rgba(0, 0, 0, 0.72),
+    inset 0 30px 70px -40px rgba(140, 255, 190, 0.22);
+  background:
+    radial-gradient(ellipse 62% 52% at 50% 46%, rgba(16, 76, 40, 0.40), rgba(6, 26, 13, 0.22) 55%, transparent 78%),
+    radial-gradient(ellipse 130% 110% at 50% 45%, #06140b 0%, #030a05 58%, #010402 100%);
+  border-color: rgba(31, 224, 106, 0.30);
   min-height: 480px;
+  box-shadow: var(--crt-inset), 0 0 0 1px rgba(0, 0, 0, 0.55), 0 20px 46px -26px rgba(0, 44, 16, 0.90);
 }
-.code-card::before { background: linear-gradient(90deg, transparent, rgba(62, 242, 143, 0.6), transparent); }
+.code-card::before {
+  left: 0; right: 0; height: 1px; opacity: 0.6;
+  background: linear-gradient(90deg, transparent, rgba(31, 224, 106, 0.80), transparent);
+}
+.code-card:hover {
+  border-color: rgba(31, 224, 106, 0.50);
+  box-shadow: var(--crt-inset), 0 0 0 1px rgba(31, 224, 106, 0.32), 0 24px 54px -26px rgba(0, 60, 22, 0.95);
+}
 
-/* 老式显示器：扫描线 + 玻璃高光 + 轻微闪烁 */
+/* 老式显示器：扫描线 + 荫罩彩纹 + 玻璃高光 + 下滚回扫亮带 */
 .crt {
   position: absolute; inset: 0; z-index: 3; pointer-events: none;
   background:
-    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.26) 0 1px, transparent 1px 3px),
-    radial-gradient(ellipse at 50% 30%, rgba(62, 242, 143, 0.10), transparent 60%);
-  animation: crt-flicker 0.9s ease-in-out infinite;
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.34) 0 1px, rgba(0, 0, 0, 0) 1px 3px),
+    repeating-linear-gradient(90deg, rgba(255, 40, 90, 0.035) 0 1px, rgba(40, 255, 140, 0.030) 1px 2px, rgba(40, 120, 255, 0.035) 2px 3px),
+    radial-gradient(ellipse 58% 46% at 50% 38%, rgba(90, 255, 160, 0.10), transparent 68%);
+  animation: crt-flicker 3.6s ease-in-out infinite;
+}
+.crt::before {
+  content: ""; position: absolute; left: -5%; right: -5%; top: 0; height: 24%;
+  background: linear-gradient(180deg, transparent, rgba(150, 255, 195, 0.050) 45%, rgba(215, 255, 235, 0.085) 50%, transparent);
+  animation: crt-roll 7s linear infinite;
 }
 .crt::after {
   content: ""; position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.05) 48%, rgba(255, 255, 255, 0.07) 52%, transparent 100%);
+  background: linear-gradient(118deg, rgba(255, 255, 255, 0.080) 0%, rgba(255, 255, 255, 0.022) 20%, transparent 42%);
   mix-blend-mode: screen;
 }
 @keyframes crt-flicker {
-  0%, 100% { opacity: 0.94; }
-  50%      { opacity: 1; }
+  0%, 100% { opacity: 0.97; }
+  38%      { opacity: 1; }
+  52%      { opacity: 0.93; }
+  68%      { opacity: 1; }
+}
+@keyframes crt-roll {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(417%); }
 }
 
 .code-tag {
   position: absolute; top: 12px; right: 16px; z-index: 4;
   font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em;
   text-transform: uppercase; color: var(--matrix-body);
+  text-shadow: 0 0 10px var(--matrix-glow);
 }
 .code-tag::before {
   content: ""; display: inline-block; width: 8px; height: 8px; margin-right: 7px;
@@ -863,32 +894,49 @@ html.js .timeline-more.open { display: flex; }
   box-shadow: 0 0 8px var(--matrix-body);
   animation: blink 1.2s steps(1) infinite;
 }
+/* 屏幕左下角的读数：与旁边的诗卡相呼应的一句话 */
+.code-osd {
+  position: absolute; left: 18px; bottom: 13px; z-index: 4; margin: 0;
+  font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.06em;
+  color: rgba(31, 224, 106, 0.70);
+  text-shadow: 0 0 10px rgba(31, 224, 106, 0.45);
+}
+.code-osd b { color: var(--matrix-head); font-weight: 700; }
+.code-caret {
+  display: inline-block; width: 7px; height: 12px; margin-left: 7px; vertical-align: -1px;
+  background: var(--matrix-body); box-shadow: 0 0 10px var(--matrix-glow);
+  animation: blink 1.1s steps(1) infinite;
+}
 
-/* 代码字符雨：由 JS 从现有代码字符生成，纯 CSS 动画驱动（不依赖 canvas/IO） */
-.code-rain { --ch: 480px; position: absolute; inset: 0; z-index: 1; overflow: hidden; }
-.rain-col { position: absolute; top: 0; width: 16px; height: 100%; }
+/* 数字雨：JS 只铺一次网格（列 = 一条拖着尾迹的彗星），
+   位移由单个 transform 动画驱动，字符亮度在生成时算好，
+   因此没有逐字动画 / 逐帧重绘，开销只有几十个合成层。 */
+.code-rain { position: absolute; inset: 0; z-index: 1; overflow: hidden; }
+
+.rain-col {
+  position: absolute; top: 0; width: 16px; will-change: transform;
+  animation: col-fall linear infinite;
+}
+@keyframes col-fall {
+  from { transform: translate3d(0, var(--y0, -100px), 0); }
+  to   { transform: translate3d(0, var(--y1, 480px), 0); }
+}
 .char {
-  position: absolute; top: 0; left: 0;
-  font-family: 'JetBrains Mono', monospace; font-size: 15px; line-height: 1;
+  position: absolute; left: 0;
+  font-family: 'JetBrains Mono', 'MS Gothic', 'Yu Gothic', Consolas, monospace;
+  font-size: 15px; line-height: 1; font-style: normal;
   color: var(--matrix-body);
-  text-shadow: 0 0 7px rgba(62, 242, 143, 0.75);
-  transform: translateY(-24px);
-  animation: code-rain linear infinite;
+  text-shadow: 0 0 7px rgba(31, 224, 106, 0.35);
 }
-@keyframes code-rain {
-  0%   { transform: translateY(-24px); opacity: 0; }
-  7%   { opacity: 1; }
-  92%  { opacity: 1; }
-  100% { transform: translateY(var(--ch)); opacity: 0; }
-}
+.char-head { color: var(--matrix-head); text-shadow: 0 0 12px rgba(200, 255, 225, 0.95), 0 0 28px rgba(31, 224, 106, 0.70); }
 
-/* 静态代码（无 JS 时的兜底显示） */
+/* 静态代码（无 JS / 关闭动画时的兜底）：同一块屏幕上的终端 */
 pre.code {
   position: relative; z-index: 2;
-  margin: 0; padding: 30px 30px; overflow-x: auto;
+  margin: 0; padding: 30px 30px 48px; overflow-x: auto;
   font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.8;
   color: var(--code-ink); background: transparent;
-  text-shadow: 0 0 10px rgba(62, 242, 143, 0.45);
+  text-shadow: 0 0 10px var(--matrix-glow);
 }
 pre.code::-webkit-scrollbar { height: 8px; }
 pre.code::-webkit-scrollbar-thumb { background: var(--matrix-body); }
@@ -899,37 +947,113 @@ pre.code .c-s { color: var(--tok-s); }
 pre.code .c-m { color: var(--tok-m); }
 pre.code .c-p { color: var(--tok-p); }
 
+/* 定场诗 —— 双燕归画堂：诗仍是主角，UI 只做「屏上的诗笺」，
+   所以沿用全站的 blueprint 网格 / HUD 角标，另加一抹燕羽的春色。 */
 .poem-card {
-  padding: 32px 32px 28px; display: flex; flex-direction: column;
+  --swallow-a: var(--sky);
+  --swallow-b: var(--leaf);
+  position: relative;
+  padding: 30px 32px 28px;
+  display: flex; flex-direction: column;
+  border-color: color-mix(in srgb, var(--swallow-b) 26%, var(--line-2));
+  box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  background-color: var(--surface);
   background-image:
+    radial-gradient(120% 84% at 50% -6%, color-mix(in srgb, var(--swallow-b) 11%, transparent), transparent 62%),
     linear-gradient(var(--grid-line) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: 40px 40px, 40px 40px;
+  background-size: 100% 100%, 40px 40px, 40px 40px;
+  background-position: center, center, center;
 }
+.poem-card:hover { border-color: color-mix(in srgb, var(--swallow-b) 55%, var(--line-glow)); }
+/* 夜底：白描高光换成一层幽微的羽色反光 */
+html[data-theme="night"] .poem-card {
+  box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(234, 242, 255, 0.06);
+}
+
+/* 诗题：终端提示符 + 汉字，兼作 lang="zh" 的锚点（中文时点亮） */
+.poem-head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; margin: 0 0 20px;
+}
+.poem-label {
+  margin: 0; font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--faint);
+}
+:lang(zh) .poem-label { color: var(--sun-deep); letter-spacing: 0.2em; }
+
+/* 双燕：同一首诗的插图，中文时收起，让汉字自己站住 */
+.poem-art { flex: 0 0 auto; width: 104px; height: auto; overflow: visible; }
+html[lang^="zh"] .poem-art { display: none; }
+.poem-art .pa-body, .poem-art .pa-tail { fill: var(--swallow-a); }
+.poem-art .pa-wing { fill: var(--swallow-b); }
+.poem-art .pa-flock { animation: swallow-glide 11s ease-in-out infinite; }
+.poem-art .pa-bird-b { animation: swallow-lag 2.6s ease-in-out infinite; }
+.poem-art .pa-trail {
+  fill: none; stroke: var(--swallow-b); stroke-width: 1.3; stroke-linecap: round;
+  stroke-dasharray: 2 5.5; opacity: 0.45;
+  animation: swallow-trail 5.2s linear infinite;
+}
+@keyframes swallow-glide {
+  0%, 100% { transform: translate(0, 0) rotate(0.8deg); }
+  50%      { transform: translate(2.5px, -3px) rotate(-0.9deg); }
+}
+@keyframes swallow-lag {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(-1.2px, -1.6px); }
+}
+@keyframes swallow-trail { to { stroke-dashoffset: -14; } }
+
+/* 联句：此处是新诗与旧卡唯一的结构差异 —— 上下两段。
+   上段「归南国 · 托生涯」写燕子安居，下段「转乾坤 · 满天涯」写运与福；
+   用一段渐隐的竖线把两段系在一起，而不是把八句平铺成一坨。 */
 .poem {
-  margin: 0; font-family: 'Noto Serif SC', 'Songti SC', SimSun, serif;
-  font-size: 1.18rem; line-height: 2.1; color: var(--ink);
-  text-align: center; letter-spacing: 0.08em;
+  margin: 0 auto; max-width: 420px;
+  /* 竖线在两段之间渐隐渐显：上段收尾，下段另起 */
+  --poem-rule: linear-gradient(180deg, transparent, var(--line-2) 40%, var(--line-2) 60%, transparent);
 }
-.poem small {
-  display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px;
-  color: var(--sun-deep); letter-spacing: 0.16em; margin-bottom: 12px;
+.poem-cn {
+  margin: 0; padding-left: 18px;
+  border-left: 1px solid var(--line-2);
+  border-image: var(--poem-rule) 1;
+  font-family: 'Noto Serif SC', 'Songti SC', SimSun, serif;
+  font-size: clamp(1.05rem, 2.1vw, 1.2rem);
+  line-height: 2.05; color: var(--ink); letter-spacing: 0.14em;
 }
+.poem-cn + .poem-cn { margin-top: 12px; }
+.poem-cn span { display: block; text-indent: 0.02em; }
+
+/* 英译：中文由 JS 注入（.poem-en 有 data-i18n），此处只给英文一套衬线小字 */
 .poem-en {
-  margin: 14px 0 0; font-size: 12.5px; color: var(--muted); text-align: center;
-  font-style: italic; line-height: 1.9;
+  margin: 14px auto 0; max-width: 44ch;
+  font-family: 'Iowan Old Style', 'Palatino Linotype', 'Noto Serif SC', Georgia, serif;
+  font-size: 12.4px; line-height: 1.9; color: var(--muted); text-align: center;
 }
-.poem-note {
-  margin-top: auto; padding-top: 18px; font-size: 12px; color: var(--faint);
-  text-align: center; border-top: 1px dashed var(--line-2);
+:lang(zh) .poem-en { font-size: 12.8px; line-height: 1.95; }
+
+/* 落款：朱印 + 一句注 */
+.poem-sign {
+  display: flex; flex-direction: column; align-items: center;
+  margin-top: auto; padding-top: 18px;
+  border-top: 1px dashed var(--line-2);
 }
 .seal {
   display: inline-grid; place-items: center; width: 44px; height: 44px;
-  margin: 16px auto 0; border-radius: 12px;
+  border-radius: 11px;
   background: linear-gradient(150deg, #e9684f, #c8442e); color: #fff;
   font-family: 'Noto Serif SC', serif; font-size: 22px; font-weight: 900;
-  box-shadow: 0 8px 20px -8px rgba(200, 68, 46, 0.7); transform: rotate(-4deg);
+  box-shadow: 0 8px 20px -8px rgba(200, 68, 46, 0.7);
+  transform: rotate(-4deg);
+  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
+.poem-card:hover .seal { transform: rotate(3deg) scale(1.05); }
+:lang(zh) .seal { font-size: 24px; }
+.poem-note {
+  margin: 12px auto 0; max-width: 26ch;
+  font-size: 12px; line-height: 1.85; color: var(--faint); text-align: center;
+}
+:lang(zh) .poem-note { max-width: 21ch; font-size: 12.4px; letter-spacing: 0.06em; }
 
 /* ── 13 Quote banner — aurora poster ──────────────────────── */
 .quote-banner {
@@ -1136,6 +1260,9 @@ pre.code .c-p { color: var(--tok-p); }
   .hero-frame { display: none; }
   .tl-item { grid-template-columns: 1fr; gap: 8px; }
   .code-card { min-height: 400px; }
+  /* 诗卡独占一行后不再需要撑高，插图也收回数据卡的比例 */
+  .poem-card { min-height: 0; padding: 26px 22px 24px; }
+  .poem-art { width: 88px; }
   .contact-panel__row { grid-template-columns: 1fr; gap: 2px; }
 }
 
@@ -1187,8 +1314,14 @@ pre.code .c-p { color: var(--tok-p); }
   html.js .reveal { opacity: 1; transform: none; transition: none; }
   .mesh, .caret, .scroll-hint, .code-tag::before,
   .grid-overlay-2, .hero-grid, .hero-scan, .nav-scan, .hud__dot { animation: none !important; }
+  /* 矩阵屏：不改写动画本身，只按停在原地（reduce 下 JS 根本不会造雨，
+     这里兜住运行中改写偏好的情况，冻结的雨面比空白屏幕更好看）。 */
+  .crt, .crt::before, .code-caret, .rain-col { animation-play-state: paused !important; }
+  /* 双燕：停在半空，不循环飞行 */
+  .pa-flock, .pa-bird-b, .pa-trail { animation-play-state: paused !important; }
   .card, .btn, .stat, .quote-overlay, #quote, #quote-author, .contact-card,
-  .nav, .nav-brand, .browser-frame, .browser-stage { transition: none !important; }
+  .nav, .nav-brand, .browser-frame, .browser-stage, .seal { transition: none !important; }
   .card:hover, .stat:hover, .btn:hover, .contact-card:hover { transform: none; }
+  .poem-card:hover .seal { transform: rotate(-4deg); }
 }
 

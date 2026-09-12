@@ -3,7 +3,7 @@
    01 i18n (EN default in DOM, ZH dictionary) · 02 theme ·
    03 nav (progress, scrollspy, burger, float-nav) · 04 typing ·
    05 reveal · 06 quotes · 07 device preview · 08 starfield ·
-   09 CRT code-rain · 10 misc
+   09 matrix rain · 10 misc
    ════════════════════════════════════════════════════════════ */
 (function () {
   'use strict';
@@ -151,9 +151,9 @@
     'insights.c3Title': '知识越多，我执越少 · Ego = 1 / Knowledge',
     'insights.c3Text': '「知识越多，我执越少；知识越少，我执越多。」以及提醒：「当心别把理智奉若神明——它虽肌肉强健，却没有个性。」',
     'insights.c3Eng': 'More the knowledge, lesser the ego',
-    'insights.poemLabel': '📜 预测回收签诗 · 2021/07/20',
-    'insights.poemNote': '与「明心见性」同源——记录对抽象之「我」的理解。',
-
+    'insights.poemLabel': '📜 定场诗',
+    'insights.poemEn': '一双燕子飞回南国，<br>来寻访当年王谢的旧家。<br>画堂之上，春昼正静——<br>就在这里安下此生。<br>气数转动着乾坤的运，<br>财路畅通八方车马。<br>人生刚刚有了起色——<br>福泽已铺满天涯。',
+    'insights.poemNote': '燕归画堂——找到自己的位置，安顿此心，让福泽自寻门路。',
     'contact.title': '结缘', 'contact.titleEm': '· 代码 · AI · 禅',
     'contact.kicker': '联系',
     'contact.line': '期待与有趣的你交谈——代码、AI、数据、禅，或任何「看似不可能」的想法。',
@@ -591,49 +591,144 @@
     })();
   }
 
-  /* ── 09 CRT code-rain ──────────────────────────────────────
-     用「现有代码」的字符生成雨点，纯 CSS 动画驱动：
-     不依赖 canvas / IntersectionObserver / rAF，稳定可靠。
-     每列随机时长与相位；字符取自 code-source 的非空白字符。 */
+  /* ── 09 Matrix panel — digital rain ────────────────────────
+     每列是一条拖着尾迹的彗星：列整体匀速下落（一个 transform
+     动画，合成层里跑），列内字符的亮度在生成时就按“到流头的
+     距离”算好 —— 流头近白、其后磷光绿、再往上渐隐。因此没有
+     逐字动画与逐帧重绘，成本只有几十个合成层。
+     字符取自源码 + 半角片假名 / 数字，并由定时器随机换字
+     （mutation，Matrix 的灵魂）。
+     关闭动画偏好时不生成雨，保留可读的静态代码。            */
   var codeSrc = doc.getElementById('code-source');
-  if (codeSrc && codeSrc.textContent) {
-    try {
-      var glyphs = codeSrc.textContent.replace(/\s+/g, '').split('');
-      if (glyphs.length) {
-        var card = codeSrc.closest ? codeSrc.closest('.code-card') : null;
-        if (!card) { card = codeSrc.parentNode; }
-        var W = Math.max(card.clientWidth, 320);
-        var H = Math.max(card.clientHeight, 320);
-        var fw = 16, fh = 19;
-        var cols = Math.max(6, Math.floor(W / fw));
-        var rows = Math.ceil(H / fh) + 1;
+  if (codeSrc && codeSrc.textContent && !reduce) {
+    var KATA = 'ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ';
+    var NUM = '0123456789';
+    var SYM = ':=+-*/<>[]{}()_$#';
+    var SRC = codeSrc.textContent.replace(/\s+/g, '');
+    var card = codeSrc.closest ? codeSrc.closest('.code-card') : codeSrc.parentNode;
 
-        var rain = doc.createElement('div');
+    function rnd(n) { return Math.floor(Math.random() * n); }
+    /* 磷光绿的 RGB 分量取自 tokens.css 的 --matrix-body，颜色只有一处定义 */
+    var GREEN = (function () {
+      var v = window.getComputedStyle(card).getPropertyValue('--matrix-body').trim();
+      var hex = /^#?([0-9a-f]{6})$/i.exec(v);
+      if (hex) {
+        var n = parseInt(hex[1], 16);
+        return ((n >> 16) & 255) + ', ' + ((n >> 8) & 255) + ', ' + (n & 255);
+      }
+      var rgb = /(\d+)\D+(\d+)\D+(\d+)/.exec(v);
+      return rgb ? (rgb[1] + ', ' + rgb[2] + ', ' + rgb[3]) : '31, 224, 106';
+    })();
+    /* 字库：源码字符约四成，其余是 Matrix 的经典字符集 */
+    function glyph() {
+      var r = Math.random();
+      if (r < 0.40) { return KATA.charAt(rnd(KATA.length)); }
+      if (r < 0.54) { return NUM.charAt(rnd(NUM.length)); }
+      if (r < 0.62) { return SYM.charAt(rnd(SYM.length)); }
+      return SRC.charAt(rnd(SRC.length));
+    }
+
+    var rain = null, cells = [], builtH = 0;
+
+    function buildRain() {
+      /* 先收起静态代码，再量屏 —— 量到的是屏幕的最终高度 */
+      codeSrc.style.display = 'none';
+      var W = card.clientWidth, H = card.clientHeight;
+      if (!W || !H) {                                    /* 还没排完版 */
+        if (!rain) { codeSrc.style.display = ''; }
+        return;
+      }
+      if (rain && Math.abs(H - builtH) < 24) { return; }    /* 高度没变，不重排 */
+      if (rain && rain.parentNode) { rain.parentNode.removeChild(rain); }
+
+      try {
+        var fw = 16, fh = 19;                              /* 格宽 / 行高 */
+        var cols = Math.max(4, Math.floor(W / fw));
+
+        rain = doc.createElement('div');
         rain.className = 'code-rain';
         rain.setAttribute('aria-hidden', 'true');
-        rain.style.setProperty('--ch', H + 'px');
+        cells = [];
 
         for (var c = 0; c < cols; c++) {
+          var far = Math.random() < 0.30;                  /* 远景列：更暗更慢 */
+          var left = c * fw + rnd(5);
+          var alpha = far
+            ? (0.34 + Math.random() * 0.20).toFixed(2)
+            : (0.80 + Math.random() * 0.20).toFixed(2);
+          var speed = (far ? 58 : 96) + Math.random() * 74;  /* px/秒 */
+          /* 相位按黄金比错开（而非纯随机）：任何一刻屏幕上的雨都分布均匀 */
+          var phase = (c * 0.6180339887 + Math.random() * 0.08) % 1;
+          var tail = (far ? 3 : 4) + rnd(5);               /* 尾迹 3–8 行：一小段彗尾 */
+          var L = tail * fh;
+          var dur = (H + L) / speed;
+
           var col = doc.createElement('span');
           col.className = 'rain-col';
-          col.style.left = (c * fw) + 'px';
-          var dur = 4 + Math.random() * 5;               /* 4–9 秒一列 */
-          var phase = Math.random() * dur;               /* 随机相位 */
-          var step = (fh / H) * dur;                     /* 相邻字符时间差 */
-          for (var r = 0; r < rows; r++) {
+          col.style.left = left + 'px';
+          col.style.height = L + 'px';
+          col.style.opacity = alpha;
+          col.style.setProperty('--y0', -L + 'px');
+          col.style.setProperty('--y1', H + 'px');
+          col.style.animationDuration = dur.toFixed(2) + 's';
+          col.style.animationDelay = (-phase * dur).toFixed(2) + 's';
+
+          for (var k = 0; k < tail; k++) {                 /* k = 0 是最前的流头 */
             var s = doc.createElement('span');
-            s.className = 'char';
-            s.textContent = glyphs[Math.floor(Math.random() * glyphs.length)];
-            s.style.animationDuration = dur + 's';
-            s.style.animationDelay = (-phase - r * step) + 's';
+            s.className = k === 0 ? 'char char-head' : 'char';
+            s.textContent = glyph();
+            s.style.top = (L - fh - k * fh) + 'px';
+            if (k > 0) {
+              var a = Math.pow(1 - k / tail, 2);           /* 尾迹：几行内跌进黑暗 */
+              s.style.color = 'rgba(' + GREEN + ', ' + (0.04 + 0.96 * a).toFixed(3) + ')';
+              if (k < 3) { s.style.textShadow = '0 0 10px rgba(' + GREEN + ', ' + (0.60 * a).toFixed(2) + ')'; }
+            }
+            cells.push(s);
             col.appendChild(s);
           }
           rain.appendChild(col);
         }
+
         card.insertBefore(rain, card.firstChild);
-        codeSrc.style.display = 'none';                  /* 隐藏静态代码，雨已接管 */
+        builtH = H;
+      } catch (e) {
+        /* 兜底：出任何差错都退回可读的静态代码，别留一块黑屏 */
+        if (rain && rain.parentNode) { rain.parentNode.removeChild(rain); }
+        rain = null; cells = [];
+        codeSrc.style.display = '';
+        run(false);
       }
-    } catch (e) { /* 失败则保留静态代码兜底 */ }
+    }
+
+    buildRain();
+
+    /* 字体 / 图片加载完成或窗口尺寸变化后，屏幕高度可能变了 */
+    var rebuild = null;
+    window.addEventListener('resize', function () {
+      if (rebuild) { clearTimeout(rebuild); }
+      rebuild = setTimeout(buildRain, 220);
+    });
+    window.addEventListener('load', function () { setTimeout(buildRain, 60); });
+
+    /* 随机换字：每 ~110ms 换掉约 1.2% 的字符。
+       面板离开视口或标签页隐藏时暂停，别浪费电。 */
+    var timer = null, onScreen = true;
+    function mutate() {
+      if (!cells.length) { return; }
+      var n = Math.max(1, Math.round(cells.length * 0.012));
+      for (var i = 0; i < n; i++) { cells[rnd(cells.length)].textContent = glyph(); }
+    }
+    function run(on) {
+      if (on && !timer && !doc.hidden) { timer = setInterval(mutate, 110); }
+      else if (!on && timer) { clearInterval(timer); timer = null; }
+    }
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        for (var i = 0; i < entries.length; i++) { onScreen = entries[i].isIntersecting; }
+        run(onScreen);
+      }, { threshold: 0.05 }).observe(card);
+    } else { run(true); }
+    doc.addEventListener('visibilitychange', function () { run(onScreen); }, false);
   }
 
   /* ── 10 Misc ─────────────────────────────────────────────── */
