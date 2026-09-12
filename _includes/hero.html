@@ -1,15 +1,42 @@
 <section class="hero" id="top">
   <canvas id="stars" aria-hidden="true"></canvas>
+  <span class="hero-grid" aria-hidden="true"></span>
+  <span class="hero-scan" aria-hidden="true"></span>
+  <span class="hero-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
 
   <div class="hero-inner">
+    <!-- HUD status readout -->
+    <div class="hud" role="status" aria-label="Live status">
+      <span class="hud__item">
+        <i class="hud__dot" aria-hidden="true"></i>
+        <b data-i18n="hero.hudStatus">ONLINE</b>
+      </span>
+      <span class="hud__sep" aria-hidden="true"></span>
+      <span class="hud__item">
+        <em data-i18n="hero.hudLocation">SYDNEY · AU</em>
+        <b id="hud-clock">--:--:--</b>
+      </span>
+      <span class="hud__sep" aria-hidden="true"></span>
+      <span class="hud__item">
+        <em data-i18n="hero.hudStackLabel">STACK</em>
+        <b>.NET · C# · SQL · AI</b>
+      </span>
+      <span class="hud__sep" aria-hidden="true"></span>
+      <span class="hud__item">
+        <em data-i18n="hero.hudSinceLabel">SINCE</em>
+        <b id="hud-uptime">1993</b>
+      </span>
+    </div>
+
     <p class="eyebrow" data-i18n="hero.eyebrow">~/seth-li ▸ sydney · full-stack &amp; database engineer · ai explorer</p>
 
     <h1 class="hero-title">
-      Seth (Feng) Li
+      <span class="hero-title__glow" aria-hidden="true">Seth (Feng) Li</span>
+      <span class="hero-title__text">Seth (Feng) Li</span>
       <span class="hero-sub" data-i18n="hero.sub">Code × AI × Zen — 30+ Years of Engineering</span>
     </h1>
 
-    <p class="hero-type"><span id="typing">Code with clarity. Build with intent.</span><span class="caret" aria-hidden="true">▍</span></p>
+    <p class="hero-type"><span class="hero-type__prompt" aria-hidden="true">▸</span><span id="typing">Code with clarity. Build with intent.</span><span class="caret" aria-hidden="true">▍</span></p>
 
     <p class="hero-bio" data-i18n="hero.bio">
       Full-stack engineer &amp; database developer at <strong>DASH Technology Group</strong> (WealthTech), Sydney —

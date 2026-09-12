@@ -1,54 +1,65 @@
 /* ════════════════════════════════════════════════════════════
-   Design tokens — "aurora ocean" palette (indigo × cyan × teal).
-   Cool off-white paper + indigo primary + cyan & teal accents.
-   No earth-yellow / amber. Bright by default;
-   html[data-theme="night"] overrides.
-   Scope every color/effect here; keep component CSS in main.css.
+   Design tokens — "deep space HUD" palette (indigo × cyan × teal).
+   A cooler, higher-contrast interface series: crisp cool paper in
+   light mode, deep-void panels in night mode, with luminous borders,
+   scanline overlays and grid backdrops layered on top.
+
+   Every colour / effect lives here; component CSS stays in main.css.
+   Sections: 01 light series · 02 dark (night) series.
    ════════════════════════════════════════════════════════════ */
 
+/* ── 01 Light series (default) ─────────────────────────────── */
 :root {
   color-scheme: light;
 
-  /* Surfaces — cool off-white */
-  --bg: #f6f8fc;
-  --bg-2: #edf1f8;
+  /* Surfaces — crisp cool paper, layered panels */
+  --bg: #eff3fa;
+  --bg-2: #e6ecf7;
   --surface: #ffffff;
-  --surface-2: #eef2fa;
-  --edge: rgba(99, 102, 241, 0.5);
+  --surface-2: #f2f6fd;
+  --surface-3: #e8eefb;
+  --edge: rgba(37, 99, 235, 0.55);
 
-  /* Ink — deep trustworthy navy */
-  --ink: #18233f;
-  --text: #45536e;
-  --muted: #5e6c88;
-  --faint: #97a3ba;
+  /* Ink — deep space navy */
+  --ink: #0d1730;
+  --text: #3c4a68;
+  --muted: #5a6885;
+  --faint: #8d9ab4;
 
-  /* Lines */
-  --line: rgba(24, 35, 63, 0.09);
-  --line-2: rgba(24, 35, 63, 0.16);
+  /* Lines + luminous borders */
+  --line: rgba(13, 23, 48, 0.10);
+  --line-2: rgba(13, 23, 48, 0.18);
+  --line-glow: rgba(56, 189, 248, 0.42);
+  --hair: rgba(13, 23, 48, 0.07);
 
-  /* Brand accents */
-  --sun: #6366f1;          /* indigo — primary */
-  --sun-deep: #4f46e5;     /* deep indigo */
-  --peach: #8b5cf6;        /* violet — hover */
-  --sky: #0ea5e9;          /* cyan — secondary */
+  /* Brand accents — indigo primary, cyan secondary, teal zen */
+  --sun: #2563eb;          /* electric blue — primary */
+  --sun-deep: #1d4ed8;     /* deep blue */
+  --peach: #7c3aed;        /* violet — hover */
+  --sky: #0891b2;          /* cyan — data / HUD */
   --leaf: #0d9488;         /* teal — zen */
-  --rose: #ec4899;         /* pink — rare accent */
+  --rose: #e11d8f;         /* magenta — rare accent */
+  --neon: #22d3ee;         /* neon cyan — glows and markers */
 
-  --grad-sun: linear-gradient(135deg, #6366f1 0%, #7c3aed 100%);
-  --sun-soft: rgba(99, 102, 241, 0.10);
-  --sky-soft: rgba(14, 165, 233, 0.10);
+  --grad-sun: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  --grad-tech: linear-gradient(120deg, #22d3ee 0%, #2563eb 52%, #7c3aed 100%);
+  --grad-hair: linear-gradient(90deg, transparent, var(--neon), var(--peach), transparent);
+  --sun-soft: rgba(37, 99, 235, 0.10);
+  --sky-soft: rgba(8, 145, 178, 0.10);
   --leaf-soft: rgba(13, 148, 136, 0.10);
 
-  /* Effects — cool, soft shadows */
-  --glow: rgba(99, 102, 241, 0.30);
-  --glow-soft: rgba(124, 58, 237, 0.22);
-  --shadow-sm: 0 2px 10px rgba(24, 35, 63, 0.07);
-  --shadow-md: 0 12px 32px -12px rgba(24, 35, 63, 0.16);
-  --shadow-lg: 0 24px 60px -20px rgba(24, 35, 63, 0.24);
-  --shadow-sun: 0 12px 32px -10px rgba(99, 102, 241, 0.32);
+  /* Effects — crisp, luminous, screen-like */
+  --glow: rgba(37, 99, 235, 0.32);
+  --glow-soft: rgba(124, 58, 237, 0.20);
+  --glow-neon: rgba(34, 211, 238, 0.45);
+  --shadow-sm: 0 1px 2px rgba(13, 23, 48, 0.07), 0 2px 10px rgba(13, 23, 48, 0.06);
+  --shadow-md: 0 10px 30px -12px rgba(13, 23, 48, 0.20), 0 2px 8px rgba(13, 23, 48, 0.06);
+  --shadow-lg: 0 28px 70px -24px rgba(13, 23, 48, 0.30), 0 6px 18px -8px rgba(13, 23, 48, 0.12);
+  --shadow-sun: 0 12px 32px -10px rgba(37, 99, 235, 0.38);
+  --shadow-neon: 0 0 0 1px rgba(34, 211, 238, 0.35), 0 10px 34px -14px rgba(34, 211, 238, 0.45);
 
   /* Chrome */
-  --nav-bg: rgba(246, 248, 252, 0.86);
+  --nav-bg: rgba(239, 243, 250, 0.78);
   --menu-bg: #ffffff;
   --code-bg: #060a07;      /* always dark — matrix panel */
   --code-ink: #c9f7d9;
@@ -57,85 +68,100 @@
   --matrix-head: #eafff2;
   --matrix-body: #2dd06f;
   --matrix-dim: rgba(6, 10, 7, 1);
-  --ov: rgba(246, 248, 252, 0.94);
-  --ov-mid: rgba(246, 248, 252, 0.55);
-  --footer-bg: #0e1830;
+  --ov: rgba(239, 243, 250, 0.94);
+  --ov-mid: rgba(239, 243, 250, 0.55);
+  --footer-bg: #070d1c;
   --footer-ink: #eef2f9;
-  --footer-dim: #94a3b8;
-  --scrim: linear-gradient(180deg, rgba(10, 16, 32, 0) 34%, rgba(10, 16, 32, 0.78) 100%);
+  --footer-dim: #8fa0bf;
+  --scrim: linear-gradient(180deg, rgba(6, 11, 24, 0) 32%, rgba(6, 11, 24, 0.82) 100%);
 
-  /* Background fx — aurora haze */
-  --mesh-a: rgba(99, 102, 241, 0.18);
-  --mesh-b: rgba(14, 165, 233, 0.16);
-  --mesh-c: rgba(13, 148, 136, 0.16);
-  --dot: rgba(24, 35, 63, 0.08);
+  /* Background fx — aurora haze + tech grid */
+  --mesh-a: rgba(37, 99, 235, 0.20);
+  --mesh-b: rgba(34, 211, 238, 0.16);
+  --mesh-c: rgba(124, 58, 237, 0.16);
+  --dot: rgba(13, 23, 48, 0.09);
+  --grid-line: rgba(37, 99, 235, 0.07);
+  --grid-line-strong: rgba(37, 99, 235, 0.13);
+  --scanline: rgba(37, 99, 235, 0.055);
 
-  --selection: #a5b4fc;
-  --selection-ink: #1e1b4b;
-  --ring: #6366f1;
+  --selection: #93c5fd;
+  --selection-ink: #0b1533;
+  --ring: #2563eb;
 
   /* Scrollbar */
   --scroll-track: transparent;
-  --scroll-thumb-grad: linear-gradient(180deg, #818cf8, #6366f1);
-  --scroll-thumb: #6366f1;
+  --scroll-thumb-grad: linear-gradient(180deg, #38bdf8, #2563eb 60%, #7c3aed);
+  --scroll-thumb: #2563eb;
 }
 
+/* ── 02 Dark series — deep space (night) ───────────────────── */
 html[data-theme="night"] {
   color-scheme: dark;
 
-  --bg: #0a1120;
-  --bg-2: #0e1628;
-  --surface: #131c31;
-  --surface-2: #1a2440;
-  --edge: rgba(129, 140, 248, 0.55);
+  --bg: #050a16;
+  --bg-2: #08111f;
+  --surface: #0d1729;
+  --surface-2: #132038;
+  --surface-3: #182a48;
+  --edge: rgba(56, 189, 248, 0.60);
 
-  --ink: #eef2ff;
-  --text: #c3cde3;
-  --muted: #93a0bd;
-  --faint: #67748f;
+  --ink: #eaf2ff;
+  --text: #b8c7e2;
+  --muted: #8a9dc0;
+  --faint: #5f7396;
 
-  --line: rgba(238, 242, 255, 0.09);
-  --line-2: rgba(238, 242, 255, 0.18);
+  --line: rgba(234, 242, 255, 0.10);
+  --line-2: rgba(234, 242, 255, 0.20);
+  --line-glow: rgba(56, 189, 248, 0.55);
+  --hair: rgba(234, 242, 255, 0.08);
 
-  --sun: #818cf8;
-  --sun-deep: #a5b4fc;
+  --sun: #60a5fa;
+  --sun-deep: #93c5fd;
   --peach: #c4b5fd;
   --sky: #38bdf8;
   --leaf: #2dd4bf;
   --rose: #f472b6;
+  --neon: #22d3ee;
 
-  --grad-sun: linear-gradient(135deg, #818cf8 0%, #a78bfa 100%);
-  --sun-soft: rgba(129, 140, 248, 0.14);
+  --grad-sun: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  --grad-tech: linear-gradient(120deg, #22d3ee 0%, #3b82f6 52%, #a78bfa 100%);
+  --grad-hair: linear-gradient(90deg, transparent, var(--neon), var(--peach), transparent);
+  --sun-soft: rgba(96, 165, 250, 0.14);
   --sky-soft: rgba(56, 189, 248, 0.14);
   --leaf-soft: rgba(45, 212, 191, 0.14);
 
-  --glow: rgba(129, 140, 248, 0.35);
-  --glow-soft: rgba(167, 139, 250, 0.28);
-  --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.35);
-  --shadow-md: 0 12px 32px -12px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 24px 60px -20px rgba(0, 0, 0, 0.55);
-  --shadow-sun: 0 12px 32px -10px rgba(129, 140, 248, 0.3);
+  --glow: rgba(59, 130, 246, 0.40);
+  --glow-soft: rgba(167, 139, 250, 0.30);
+  --glow-neon: rgba(34, 211, 238, 0.50);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.45), 0 2px 10px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 10px 30px -12px rgba(0, 0, 0, 0.60), 0 2px 8px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 28px 70px -24px rgba(0, 0, 0, 0.70), 0 8px 24px -10px rgba(0, 0, 0, 0.50);
+  --shadow-sun: 0 12px 32px -10px rgba(59, 130, 246, 0.40);
+  --shadow-neon: 0 0 0 1px rgba(34, 211, 238, 0.40), 0 10px 34px -14px rgba(34, 211, 238, 0.50);
 
-  --nav-bg: rgba(10, 17, 32, 0.88);
-  --menu-bg: #16213a;
+  --nav-bg: rgba(5, 10, 22, 0.80);
+  --menu-bg: #101d33;
 
-  --ov: rgba(10, 17, 32, 0.94);
-  --ov-mid: rgba(10, 17, 32, 0.55);
-  --footer-bg: #060b18;
+  --ov: rgba(5, 10, 22, 0.94);
+  --ov-mid: rgba(5, 10, 22, 0.55);
+  --footer-bg: #030711;
   --footer-ink: #e6ebf7;
-  --footer-dim: #8b98b5;
-  --scrim: linear-gradient(180deg, rgba(4, 8, 16, 0) 34%, rgba(4, 8, 16, 0.8) 100%);
+  --footer-dim: #8496b5;
+  --scrim: linear-gradient(180deg, rgba(2, 5, 12, 0) 32%, rgba(2, 5, 12, 0.85) 100%);
 
-  --mesh-a: rgba(129, 140, 248, 0.16);
-  --mesh-b: rgba(56, 189, 248, 0.13);
-  --mesh-c: rgba(45, 212, 191, 0.12);
-  --dot: rgba(238, 242, 255, 0.09);
+  --mesh-a: rgba(59, 130, 246, 0.20);
+  --mesh-b: rgba(34, 211, 238, 0.14);
+  --mesh-c: rgba(139, 92, 246, 0.16);
+  --dot: rgba(234, 242, 255, 0.10);
+  --grid-line: rgba(56, 189, 248, 0.07);
+  --grid-line-strong: rgba(56, 189, 248, 0.14);
+  --scanline: rgba(56, 189, 248, 0.05);
 
-  --selection: #818cf8;
-  --selection-ink: #0a1120;
-  --ring: #818cf8;
+  --selection: #3b82f6;
+  --selection-ink: #050a16;
+  --ring: #60a5fa;
 
   --scroll-track: transparent;
-  --scroll-thumb-grad: linear-gradient(180deg, #a5b4fc, #818cf8);
-  --scroll-thumb: #818cf8;
+  --scroll-thumb-grad: linear-gradient(180deg, #22d3ee, #3b82f6 60%, #8b5cf6);
+  --scroll-thumb: #3b82f6;
 }

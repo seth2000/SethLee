@@ -23,8 +23,11 @@
   var ZH = {
     'nav.about': '关于', 'nav.career': '履历', 'nav.stack': '技术', 'nav.projects': '项目',
     'nav.ventures': '旗下项目', 'nav.insights': '哲思', 'nav.contact': '联系', 'nav.github': 'GitHub ↗',
+    'nav.brandName': 'Seth Li', 'nav.brandRole': '全栈 · AI · 数据', 'nav.moreLabel': '更多',
 
     'hero.eyebrow': '~/seth-li ▸ 悉尼 · 全栈与数据库工程师 · AI 探索者',
+    'hero.hudStatus': '在线', 'hero.hudLocation': '悉尼 · 澳洲',
+    'hero.hudStackLabel': '技术栈', 'hero.hudSinceLabel': '始于',
     'hero.sub': '码 × AI × 禅 —— 30 余年工程实践',
     'hero.bio': '现任悉尼 <strong>DASH Technology Group</strong>（财富科技）全栈与数据库工程师，<strong>30 余年</strong>深耕金融科技、数字贷款与 AI。我重构核心投资组合系统，使其<strong>性能提升 4 倍、基础设施降至 1/22.5</strong>；组建 AI 研究中心，让机器学会从财报中提取数据（NLP / BERT）；夜里仍教机器写格律诗。<strong>Feng Tech</strong> 创始人，<strong>慧灯禅院</strong> 创建者。',
     'hero.ctaCompany': '🏢 Feng Tech',
@@ -33,6 +36,7 @@
     'hero.statPerf': '核心系统提速', 'hero.statLearn': '持续精进',
 
     'about.title': '工程价值', 'about.titleEm': '· AI · 数据 · 交付',
+    'about.kicker': '为何选我',
     'about.sub': '三十年持续交付生产级系统——专注 AI、数据与扎实工程三者交汇之处。',
     'about.aiTitle': 'AI 与生成式 AI',
     'about.aiText': '组建公司<strong>AI 研究中心</strong>，训练模型从非结构化 PDF 财报中提取数据（NLP / BERT），打造业内领先的<strong>PDF 表格提取器</strong>；还有我的 chinesepoem 项目——教机器写格律诗。',
@@ -48,6 +52,7 @@
     'about.fsChip4': 'Angular', 'about.fsChip5': 'AWS',
 
     'career.title': '30 余年工程履历', 'career.titleEm': '· 从第一行代码到 AI',
+    'career.kicker': '履历',
     'career.sub': '持续交付、自动化与学习的记录——重要里程碑一览。',
     'career.dashTitle': '全栈工程师 · DASH Technology Group',
     'career.dashText': '重构核心 Holdings 与 Performance 系统（提速约 4 倍、基础设施降至 1/22.5）；自动化流动性检查（节省 2 个全职人力）；主导 .NET Framework 4.6.1 → .NET 6/8/10 现代化迁移。',
@@ -99,6 +104,7 @@
     'career.more': '展开全部履历', 'career.less': '收起',
 
     'stack.title': '技术栈', 'stack.titleEm': '· 日常共修的工具',
+    'stack.kicker': '技术栈',
     'stack.sub': '选工具如选法器——趁手、可靠、可维护。',
     'stack.g1Title': '编程语言', 'stack.g2Title': 'AI 与数据',
     'stack.genAI': '生成式 AI', 'stack.llm': 'LLM', 'stack.nlp': 'NLP', 'stack.ml': '机器学习',
@@ -106,6 +112,7 @@
     'stack.g3Title': '前端与框架', 'stack.g4Title': '云与 DevOps', 'stack.micro': '微服务',
 
     'projects.title': '精选项目', 'projects.titleEm': '· 交付 · 开源 · 修行',
+    'projects.kicker': '项目',
     'projects.sub': '数十年交付的亮点——以及我持续练习的开源仓库。',
     'projects.f1Text': '重构核心 Holdings 与 Performance 系统，处理性能提升约 10 倍，基础设施从 2,400+ vCPU×6 小时降至 16 vCPU×4 小时（仅为原来的 1/50），并支撑 4 倍用户与交易量增长。',
     'projects.f1Meta': 'DASH Technology Group · 2024–至今 · AWS Aurora · SQS · PostgreSQL',
@@ -123,6 +130,7 @@
     'projects.more': '更多仓库：', 'projects.moreLink': '在 GitHub 查看全部 ↗',
 
     'ventures.title': '本职工作之外', 'ventures.titleEm': '· 两个事业，一门修行',
+    'ventures.kicker': '旗下项目',
     'ventures.sub': '我拥有的两个产品的实时预览——IT 服务公司与数字禅院。用预览上方的按钮切换设备宽度。',
     'ventures.ftTag': '· 悉尼 IT 服务公司',
     'ventures.ftSlogan': 'The tech experts',
@@ -132,6 +140,7 @@
     'frame.desktop': '桌面', 'frame.tablet': '平板', 'frame.mobile': '手机', 'frame.open': '全屏打开 ↗',
 
     'insights.title': '禅是世界观，', 'insights.titleEm': '代码是方法论',
+    'insights.kicker': '哲思',
     'insights.sub': '以程序员的语言重新诠释佛学经典——同一种修行的另一面。',
     'insights.c1Title': '「空」是抽象类 · 空即是色',
     'insights.c1Text': '空（Emptiness）是 abstract class，色（Form）是 concrete class，相（Appearance）是 instance。你看见一只猫：眼前这只具体的猫是实例，「猫」是抽象类，「黑猫」是具体类——心智从具体走向抽象，一条可验证的认知路径。',
@@ -146,10 +155,23 @@
     'insights.poemNote': '与「明心见性」同源——记录对抽象之「我」的理解。',
 
     'contact.title': '结缘', 'contact.titleEm': '· 代码 · AI · 禅',
+    'contact.kicker': '联系',
     'contact.line': '期待与有趣的你交谈——代码、AI、数据、禅，或任何「看似不可能」的想法。',
     'contact.email': '✉️ 邮箱',
     'contact.zen': '🪷 慧灯禅院', 'contact.ft': '🏢 Feng Tech',
     'contact.info': '📍 澳大利亚大悉尼地区 · ✉️ sethfengli@yahoo.com.au · 📞 +61 411 758 128 · 🕉 自 1993 持续构建',
+    'contact.cardEmailLabel': '邮件主通道', 'contact.cardEmailNote': '最快的联系渠道——通常当天回复。',
+    'contact.cardPhoneLabel': '语音线路', 'contact.cardPhoneNote': '悉尼时间 · 紧急问题优先。',
+    'contact.cardLiLabel': '职业网络', 'contact.cardLiNote': '500+ 联系人 · 576 位关注者。',
+    'contact.cardGhLabel': '源代码', 'contact.cardGhNote': '开源仓库、实验与档案。',
+    'contact.cardFtLabel': '业务线路', 'contact.cardFtCity': '悉尼 IT 服务',
+    'contact.cardFtNote': '网站、AI 自动化、数据库与技术支持。',
+    'contact.cardZenLabel': '修行', 'contact.cardZenNote': '佛学文章、法音、在线祈福与观音灵签。',
+    'contact.panelStatus': '信号畅通',
+    'contact.panelOrgLabel': '组织', 'contact.panelFocusLabel': '方向', 'contact.panelModeLabel': '方式',
+    'contact.panelHoursLabel': '时间', 'contact.panelSinceLabel': '构建',
+    'contact.panelMode': '远程服务全球 · 悉尼地区可上门',
+    'contact.panelSince': '自 1993 年持续交付软件，未曾中断',
 
     'footer.role': '全栈与数据库工程师 · .NET / C# / AI 探索者',
     'footer.photos': '图片来源（免费可商用）：', 'footer.pexels': 'Pexels',
@@ -241,9 +263,11 @@
   var bar = doc.getElementById('progress');
   var nav = doc.getElementById('nav');
   var spyLinks = qsa('.menu a[data-scroll], .float-menu a[data-scroll]');
-  var spyTargets = spyLinks
+  var navSpyLinks = qsa('.menu a[data-scroll]:not([data-nav-dup])');
+  var spyTargets = navSpyLinks
     .map(function (a) { return doc.querySelector(a.getAttribute('data-scroll')); })
     .filter(Boolean);
+  var navCount = doc.getElementById('nav-count');
   var scrollLinks = qsa('a[data-scroll]');
 
   function onScroll() {
@@ -260,7 +284,15 @@
     for (var i = 0; i < spyTargets.length; i++) {
       if (spyTargets[i].getBoundingClientRect().top + window.scrollY <= y) { current = i; }
     }
-    spyLinks.forEach(function (a, idx) { a.classList.toggle('active', idx === current); });
+    spyLinks.forEach(function (a) {
+      var t = doc.querySelector(a.getAttribute('data-scroll'));
+      a.classList.toggle('active', current >= 0 && t === spyTargets[current]);
+    });
+    if (navCount) {
+      /* Section 01 is the hero, then each nav target follows in order. */
+      var n = current >= 0 ? current + 2 : 1;
+      navCount.textContent = (n < 10 ? '0' : '') + n;
+    }
   }
 
   window.addEventListener('scroll', onScroll, { passive: true });
@@ -290,6 +322,35 @@
       }
     });
   }
+
+  /* Narrow-bar overflow tray — every link the wide row can't fit. */
+  var moreBtn = doc.getElementById('nav-more-btn');
+  var moreMenu = doc.getElementById('nav-more-menu');
+  function closeMore() {
+    if (!moreMenu) { return; }
+    moreMenu.classList.remove('open');
+    moreBtn.setAttribute('aria-expanded', 'false');
+  }
+  if (moreBtn && moreMenu) {
+    moreBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var open = moreMenu.classList.toggle('open');
+      moreBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    moreMenu.addEventListener('click', function (e) {
+      if (e.target.closest && e.target.closest('a[data-scroll]')) { closeMore(); }
+    });
+    doc.addEventListener('click', function (e) {
+      if (!moreMenu.classList.contains('open')) { return; }
+      if (e.target && e.target.closest && e.target.closest('.nav-more')) { return; }
+      closeMore();
+    });
+    doc.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && moreMenu.classList.contains('open')) { closeMore(); }
+    });
+    window.addEventListener('resize', closeMore);
+  }
+
 
   /* Float-nav (top-left quick menu) */
   var floatBrand = doc.getElementById('float-brand');
@@ -578,6 +639,24 @@
   /* ── 10 Misc ─────────────────────────────────────────────── */
   var yr = doc.getElementById('year');
   if (yr) { yr.textContent = String(new Date().getFullYear()); }
+
+  /* HUD clocks — Sydney wall time (AEST, UTC+10). */
+  var hudClock = doc.getElementById('hud-clock');
+  var contactClock = doc.getElementById('contact-clock');
+  function two(n) { return (n < 10 ? '0' : '') + n; }
+  function sydneyNow() {
+    var d = new Date();
+    return new Date(d.getTime() + (d.getTimezoneOffset() + 600) * 60000);
+  }
+  function tickClock() {
+    var t = sydneyNow();
+    if (hudClock) { hudClock.textContent = two(t.getHours()) + ':' + two(t.getMinutes()) + ':' + two(t.getSeconds()); }
+    if (contactClock) { contactClock.textContent = 'AEST UTC+10 · ' + two(t.getHours()) + ':' + two(t.getMinutes()); }
+  }
+  if (hudClock || contactClock) {
+    tickClock();
+    setInterval(tickClock, 1000);
+  }
 
   /* Boot */
   captureOriginals();

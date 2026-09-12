@@ -1,9 +1,22 @@
 <header class="nav" id="nav">
+  <!-- HUD chrome: corner brackets + hairline sweep -->
+  <span class="nav-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+  <span class="nav-scan" aria-hidden="true"></span>
+
   <div class="nav-inner">
-    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="menu">
-      <span></span><span></span><span></span>
-    </button>
+    <a class="nav-brand" href="#top" data-scroll="#top" aria-label="Seth (Feng) Li — top of page">
+      <span class="nav-brand__mark" aria-hidden="true">SL</span>
+      <span class="nav-brand__text">
+        <b data-i18n="nav.brandName">Seth Li</b>
+        <em data-i18n="nav.brandRole">FULL-STACK · AI · DATA</em>
+      </span>
+    </a>
+
     <nav class="menu" id="menu" aria-label="Main navigation">
+      <span class="nav-index" id="nav-index" aria-hidden="true">
+        <i id="nav-count">01</i><u>/08</u>
+      </span>
+
       <a href="#about" data-scroll="#about" data-i18n="nav.about">About</a>
       <a href="#career" data-scroll="#career" data-i18n="nav.career">Career</a>
       <a href="#stack" data-scroll="#stack" data-i18n="nav.stack">Stack</a>
@@ -28,7 +41,29 @@
         </svg>
       </button>
 
+      <!-- Overflow tray: every link the wide bar drops. Populated by CSS
+           at the widths where the row would otherwise clip. -->
+      <div class="nav-more">
+        <button type="button" class="nav-more__btn" id="nav-more-btn" aria-expanded="false" aria-controls="nav-more-menu">
+          <span data-i18n="nav.moreLabel">More</span>
+          <em class="nav-more__caret" aria-hidden="true">▾</em>
+        </button>
+        <div class="nav-more__menu" id="nav-more-menu">
+          <a href="#about" data-scroll="#about" data-nav-dup data-i18n="nav.about">About</a>
+          <a href="#career" data-scroll="#career" data-nav-dup data-i18n="nav.career">Career</a>
+          <a href="#stack" data-scroll="#stack" data-nav-dup data-i18n="nav.stack">Stack</a>
+          <a href="#projects" data-scroll="#projects" data-nav-dup data-i18n="nav.projects">Projects</a>
+          <a href="#ventures" data-scroll="#ventures" data-nav-dup data-i18n="nav.ventures">Ventures</a>
+          <a href="#insights" data-scroll="#insights" data-nav-dup data-i18n="nav.insights">Insights</a>
+          <a href="#contact" data-scroll="#contact" data-nav-dup data-i18n="nav.contact">Contact</a>
+        </div>
+      </div>
+
       <a class="nav-cta" href="https://github.com/seth2000" target="_blank" rel="noopener" data-i18n="nav.github">GitHub ↗</a>
     </nav>
+
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
