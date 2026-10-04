@@ -784,6 +784,10 @@ html.js .timeline-more.open { display: flex; }
   font-style: normal; font-family: 'JetBrains Mono', monospace;
   font-size: 10.5px; color: var(--faint); max-width: 40ch;
 }
+/* The wrapper is script-created; the <iframe> inside carries its own pixel
+   width/height inline, because a replaced element has no other sizing source
+   and would otherwise fall back to the 300×150 default (the 2026-10 live bug:
+   the inner site rendered as a sliver in the top-left corner). */
 .frame-embed { display: block; width: 100%; height: 620px; border: 0; }
 
 .frame-note {

@@ -575,6 +575,14 @@
     var url = stage.getAttribute('data-frame-url');
     if (!url) { return; }
     stage.setAttribute('data-loaded', '1');
+
+    /* 这段尺寸必须写死在 iframe 上。iframe 是替换元素，没有显式宽高时
+       浏览器按 300×150 渲染，父容器的 width:100% 传不下去 —— 线上就表现
+       成「内页缩在左上角一小条」。stage 量不到宽度时（如脚本/无布局环境）
+       退回桌面尺寸，宁可大一点也不要退化成 300px。 */
+    var w = stage.clientWidth || 0;
+    var h = stage.clientHeight || 0;
+
     var box = doc.createElement('div');
     box.className = 'frame-embed';
     var iframe = doc.createElement('iframe');
@@ -583,11 +591,32 @@
     iframe.setAttribute('loading', force ? 'eager' : 'lazy');
     iframe.setAttribute('allowfullscreen', '');
     iframe.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
+    iframe.style.display = 'block';
+    iframe.style.width = (w > 0 ? w : 960) + 'px';
+    iframe.style.height = (h > 0 ? h : 620) + 'px';
+    iframe.style.maxWidth = '100%';
+    iframe.style.border = '0';
     box.appendChild(iframe);
     var old = stage.querySelector ? stage.querySelector('.frame-load') : null;
     stage.appendChild(box);
     if (old && old.parentNode === stage) { stage.removeChild(old); }
     stage.classList.add('is-loaded');
+
+    /* 设备切换会把 stage 收窄，iframe 的像素宽度要跟着走 —— 样式表管不到
+       一个由脚本创建的节点，所以在这里补一次。 */
+    if (typeof ResizeObserver === 'function') {
+      new ResizeObserver(function () {
+        var nw = stage.clientWidth || 0;
+        if (nw > 0 && Math.abs(nw - parseFloat(iframe.style.width || '0')) > 1) {
+          iframe.style.width = nw + 'px';
+        }
+      }).observe(stage);
+    } else {
+      window.addEventListener('resize', function () {
+        var nw = stage.clientWidth || 0;
+        if (nw > 0) { iframe.style.width = nw + 'px'; }
+      });
+    }
   }
 
   var frameStages = qsa('.browser-stage[data-frame-url]');
