@@ -3,85 +3,95 @@
     <div class="sec-head reveal">
       <p class="eyebrow"><i aria-hidden="true">07</i><span data-i18n="ai.kicker">ai direction</span></p>
       <h2><span data-i18n="ai.title">Where I Think AI Is Going</span> <em data-i18n="ai.titleEm">· And Where I Fit</em></h2>
-      <p class="sub" data-i18n="ai.sub">A working position, not a forecast: four shifts I am building against — and the part of each one that thirty years of data and delivery work actually makes easier.</p>
+      <p class="sub" data-i18n="ai.sub">Four things I believe about AI, in plain language — and why thirty years of unglamorous data work turns out to be the right preparation for them.</p>
     </div>
 
     <div class="grid-2">
       <article class="card ai-card reveal">
         <div class="ai-top">
           <span class="ai-num" aria-hidden="true">01</span>
-          <h3 data-i18n="ai.d1Title">The harness becomes the product</h3>
-          <span class="ai-tag" data-i18n="ai.d1Tag">agents</span>
+          <h3 data-i18n="ai.d1Title">A demo takes a weekend. Something you can trust takes a year.</h3>
+          <span class="ai-tag" data-i18n="ai.d1Tag">reliability</span>
         </div>
         <p data-i18n="ai.d1Text">
-          The 2026 conversation has moved past the prompt. What production teams argue about now is
-          the <strong>harness</strong> around the model — tool contracts, retries, budgets, permissions, the
-          trace you replay after a bad run. Once you see it that way it is an unglamorous distributed-systems
-          problem: idempotency, back-pressure, exactly-once, audit. That is the work I have been doing since
-          Sybase and MQ-era banking systems.
+          Anyone can make an AI assistant look impressive for five minutes. The hard part is the other
+          99% of the time.
+        </p>
+        <p data-i18n="ai.d1Text2">
+          What happens when a step fails halfway through? When two tasks touch the same record at once?
+          When the model is confidently wrong? When a customer asks <em>why</em> the system decided what
+          it decided? None of that is a model problem — it is the plumbing around the model, and it is the
+          same plumbing I have been building in banking systems for thirty years.
         </p>
         <ul class="ai-list">
-          <li data-i18n="ai.d1L1">Tool / MCP contracts designed like APIs, not scripts</li>
-          <li data-i18n="ai.d1L2">Failure semantics: retry, compensate, escalate to a human</li>
-          <li data-i18n="ai.d1L3">Cost and latency budgets treated as SLOs</li>
+          <li data-i18n="ai.d1L1">Every step can be retried safely, or undone cleanly</li>
+          <li data-i18n="ai.d1L2">When it is unsure, it stops and asks a person — it does not guess</li>
+          <li data-i18n="ai.d1L3">Every decision is written down, with its cost, so it can be explained later</li>
         </ul>
       </article>
 
       <article class="card ai-card reveal" style="--d:.08s">
         <div class="ai-top">
           <span class="ai-num" aria-hidden="true">02</span>
-          <h3 data-i18n="ai.d2Title">Context beats cleverness</h3>
-          <span class="ai-tag" data-i18n="ai.d2Tag">retrieval</span>
+          <h3 data-i18n="ai.d2Title">The hardest part is not the thinking — it is finding the right facts</h3>
+          <span class="ai-tag" data-i18n="ai.d2Tag">data</span>
         </div>
         <p data-i18n="ai.d2Text">
-          Most disappointing AI features are not model failures, they are <strong>retrieval</strong> failures.
-          The durable differentiator is the boring middle: clean schemas, lineage, chunking that respects
-          document structure, permissions enforced at query time, and knowing what to leave out.
-          My PDF Table Extractor already had to reconstruct a table's <em>structure</em> from an
-          unstructured page — the same instinct, one architecture later.
+          Ask an AI a question about your own business and it will answer confidently whether or not it
+          found the right information. Almost every disappointing AI feature I have seen failed at
+          <strong>looking things up</strong>, not at reasoning.
+        </p>
+        <p data-i18n="ai.d2Text2">
+          The fix is unfinished work most teams would rather skip: clean up the data, keep it current,
+          split documents so the meaning survives, and respect who is allowed to see what. My PDF Table
+          Extractor had to rebuild a table's structure from a messy scanned page — the same instinct, one
+          generation of technology later.
         </p>
         <ul class="ai-list">
-          <li data-i18n="ai.d2L1">Semantic + lexical + structured hybrid retrieval</li>
-          <li data-i18n="ai.d2L2">Row-level security carried into the vector store</li>
-          <li data-i18n="ai.d2L3">Freshness and provenance on every retrieved fact</li>
+          <li data-i18n="ai.d2L1">Search by meaning and by keyword, then let the data filter the result</li>
+          <li data-i18n="ai.d2L2">The same access rules an employee already has, applied to the AI</li>
+          <li data-i18n="ai.d2L3">Every answer can be traced to the document and the date it came from</li>
         </ul>
       </article>
 
       <article class="card ai-card reveal">
         <div class="ai-top">
           <span class="ai-num" aria-hidden="true">03</span>
-          <h3 data-i18n="ai.d3Title">Evaluation is the new regression suite</h3>
-          <span class="ai-tag" data-i18n="ai.d3Tag">evals</span>
+          <h3 data-i18n="ai.d3Title">You cannot improve what you never measure</h3>
+          <span class="ai-tag" data-i18n="ai.d3Tag">testing</span>
         </div>
         <p data-i18n="ai.d3Text">
-          You cannot ship what you cannot measure. The teams getting value out of agents are the ones who
-          built a <strong>dataset, a grader and a gate</strong> before they built the demo — golden cases in CI,
-          scored on every change, with a human in the loop only where judgement is genuinely required.
-          This is the part most teams skip, and it is where database discipline pays for itself.
+          If nobody writes down how the AI behaved last week, nobody can tell whether this week's change
+          made it better or worse. The teams getting real value keep a set of test questions with known
+          good answers, run them automatically on every change, and keep a record of every failure and
+          every correction. It sounds dull. It is also the difference between a tool people quietly stop
+          using and one they trust with actual work.
         </p>
         <ul class="ai-list">
-          <li data-i18n="ai.d3L1">Versioned eval sets that fail the build, not the user</li>
-          <li data-i18n="ai.d3L2">Traces and feedback loops as first-class data</li>
-          <li data-i18n="ai.d3L3">Cost, latency and quality measured together</li>
+          <li data-i18n="ai.d3L1">A fixed set of test cases, re-run automatically after every change</li>
+          <li data-i18n="ai.d3L2">Failures and corrections recorded, not forgotten</li>
+          <li data-i18n="ai.d3L3">Quality, speed and running cost judged together — not one at a time</li>
         </ul>
       </article>
 
       <article class="card ai-card reveal" style="--d:.08s">
         <div class="ai-top">
           <span class="ai-num" aria-hidden="true">04</span>
-          <h3 data-i18n="ai.d4Title">Regulated verticals are the open field</h3>
+          <h3 data-i18n="ai.d4Title">The biggest opportunity is in the industries everyone finds boring</h3>
           <span class="ai-tag" data-i18n="ai.d4Tag">opportunity</span>
         </div>
         <p data-i18n="ai.d4Text">
-          Agent tooling is crowded; <strong>wealth, lending, insurance and health</strong> are not — and they
-          are exactly where an agent has to be auditable, explainable and boring. Twenty years inside
-          WealthTech and digital lending is not a disadvantage in that market, it is the entry ticket.
-          The value is not a smarter model; it is a defensible process the regulator accepts.
+          There are hundreds of AI tools for writing marketing copy. There are very few for banking,
+          lending, insurance and healthcare — precisely because those are the places where being right
+          matters most and mistakes are expensive. A 95% accurate assistant is a fun toy in a chat window
+          and unacceptable in a loan decision. The value there is not a cleverer model; it is a process
+          your risk team and your regulator will accept. Twenty years inside WealthTech and digital
+          lending is not a disadvantage in that market — it is the entry ticket.
         </p>
         <ul class="ai-list">
-          <li data-i18n="ai.d4L1">Human-in-the-loop where advice is regulated</li>
-          <li data-i18n="ai.d4L2">Deterministic audit trail for every automated decision</li>
-          <li data-i18n="ai.d4L3">Small, owned models where data cannot leave the building</li>
+          <li data-i18n="ai.d4L1">A person stays in the loop wherever the advice is regulated</li>
+          <li data-i18n="ai.d4L2">Every automated decision leaves evidence that can be audited</li>
+          <li data-i18n="ai.d4L3">Where data cannot leave the building, small models run inside it</li>
         </ul>
       </article>
     </div>
@@ -100,29 +110,29 @@
         <div class="now-col">
           <p class="now-label" data-i18n="now.learningLabel">learning now</p>
           <ul class="now-list">
-            <li data-i18n="now.learning1">Agent frameworks on .NET — Microsoft Agent Framework / Semantic Kernel lineage, and when a graph beats a loop</li>
-            <li data-i18n="now.learning2">Evaluation harnesses: graders, golden sets and the CI gate that keeps an agent honest</li>
-            <li data-i18n="now.learning3">Hybrid retrieval over enterprise SQL and document stores, with permissions intact</li>
+            <li data-i18n="now.learning1">Building AI assistants with .NET and Microsoft's agent tools — and when a simple loop beats an elaborate design</li>
+            <li data-i18n="now.learning2">The testing habit that keeps an AI honest: fixed test cases, automatic scoring, a check before every release</li>
+            <li data-i18n="now.learning3">Helping an AI find the right answer inside a company's own databases and documents, without breaking permissions</li>
           </ul>
         </div>
         <div class="now-col">
           <p class="now-label" data-i18n="now.nextLabel">next 90 days</p>
           <ul class="now-list">
-            <li data-i18n="now.next1">Ship an open-source reference: a measurable agent over a real schema, evals included</li>
-            <li data-i18n="now.next2">Publish the retrieval and evaluation patterns I keep re-explaining to teams</li>
-            <li data-i18n="now.next3">Take one WealthTech workflow from manual review to assisted, with the audit trail</li>
+            <li data-i18n="now.next1">Publish a working example, openly: an AI assistant over a real database, with its tests included</li>
+            <li data-i18n="now.next2">Write down the data and testing patterns I keep explaining to teams, so they can be reused</li>
+            <li data-i18n="now.next3">Take one real wealth-management task from all-manual to AI-assisted, with the evidence trail</li>
           </ul>
         </div>
         <div class="now-col">
           <p class="now-label" data-i18n="now.changedLabel">what changed here</p>
           <ul class="now-list">
-            <li data-i18n="now.changed1">This page now records its own direction and revision, not just its history</li>
-            <li data-i18n="now.changed2">Performance claims reconciled to one source of truth (see Projects)</li>
-            <li data-i18n="now.changed3">Venture previews load on demand — the page opens without them</li>
+            <li data-i18n="now.changed1">This page now states its own direction and revision, not only its history</li>
+            <li data-i18n="now.changed2">AI section rewritten in plain language, without the industry jargon</li>
+            <li data-i18n="now.changed3">Performance figures reconciled to one source (see Projects); venture previews now load on demand</li>
           </ul>
         </div>
       </div>
-      <p class="now-foot" data-i18n="now.foot">This section is expected to age. When it does, the revision above goes up and the item moves to what changed — a self-introduction should be a living document, not a plaque.</p>
+      <p class="now-foot" data-i18n="now.foot">I revisit this page every quarter, and the revision date above changes when I do. If a claim here has aged badly, that is a fair thing to ask me about — it is the reason the page is dated.</p>
     </article>
   </div>
 </section>

@@ -77,7 +77,7 @@ Ruby/Jekyll is not required to check a change — the tooling assembles the page
 `main.js` against a DOM shim.
 
 ```powershell
-node tools/site-verify.mjs        # 15 checks — must exit 0 before you push
+node tools/site-verify.mjs        # 17 checks — must exit 0 before you push
 node tools/site-verify.mjs --json # machine-readable
 node tools/negative-test.mjs      # proves the content-drift checks still catch a regression
 node tools/check-links.mjs        # every outbound URL, with sources for each failure
@@ -92,13 +92,36 @@ repo root over HTTP to open them. What it protects, beyond structure and CSS:
 | `i18n-coverage` / `i18n-dict-parse` | a `data-i18n` key with no Chinese string |
 | `i18n-figures` | English and Chinese citing **different numbers** for the same claim |
 | `content-stale` | a superseded number or product name surviving a content refresh |
+| `plain-language` | insider jargon creeping back into prose (see below) |
+| `revision-sync` | the revision stamps disagreeing, or JSON-LD / footer year falling behind |
 | `css-lang-display` | both languages rendering at once, or neither |
 | `matrix-rain` / `matrix-tap-collapse` / `matrix-glyph-mix` | the CRT panel going static, the tap cycle breaking, the glyph mix drifting |
 | `verse-linefit` | a 定场诗 line too wide for its column (it would wrap mid-couplet) |
 
+### Writing rules the tooling enforces (写作规则)
+
+The page is read by hiring managers, clients and peers — not by specialists. In 2026-10 the AI
+section was rewritten because a general reader could not follow it. These rules keep it that way:
+
+1. **No jargon without an explanation.** `plain-language` fails the build on a deny list in
+   `tools/lib/i18n-integrity.mjs` (`harness`, `idempotency`, 承载层, 幂等, 向量库 …). If a term
+   really is needed, explain it with an example instead of using the term.
+2. **Chinese is written, not translated.** 信达雅: exact meaning first, then idiomatic, then
+   graceful. Read the Chinese aloud — if an engineer would not say it, rewrite it.
+3. **Both languages carry the same numbers**, as Arabic numerals in Chinese (`i18n-figures`).
+4. **Concrete beats superlative.** No "industry-leading" without the evidence in the same sentence.
+5. **Short sentences.** `readability-sentences` reports anything over 32 words (EN) / 55
+   characters (ZH). It is advisory, never a failure — a long sentence usually means an unfinished
+   thought, except in quoted material and the keyword list, where it is expected.
+
 ## 🔄 Keeping it alive (持续演进)
 
-This page is meant to be revised, not framed. The convention:
+This page is meant to be revised, not framed. **It is reviewed once a quarter** — the review
+prompt lives outside the published site, in `../prompts/quarterly-self-review.md` (English and
+中文). Start the session with it; it tells the agent to read before writing, judge the copy as an
+editor, ask what actually happened, and then edit under these rules.
+
+The mechanics of a content change:
 
 1. Change the content in the include (English) **and** the matching `ZH` key in `main.js`.
 2. Bump the revision: `hero.hudRev`, `now.rev`, `now.updated` in `ai.html`, and `footer.rev`.
@@ -106,9 +129,10 @@ This page is meant to be revised, not framed. The convention:
 4. Update `dateModified` in the JSON-LD block in `_includes/head.html`.
 5. Run `node tools/site-verify.mjs` **and** `node tools/check-links.mjs`. Fix what they report.
 
-Rule of thumb: a claim with a number belongs in exactly one place (currently the Projects
-section), and every other mention should agree with it. `content-stale` and `i18n-figures`
-exist because that rule was broken twice.
+Rules of thumb: a claim with a number belongs in exactly one place (currently the Projects
+section) and every other mention must agree with it; and anything a general reader would have to
+look up belongs in an explanation, not in the prose. `content-stale`, `i18n-figures` and
+`plain-language` exist because each of those rules was broken at least once.
 
 ## 🛠 Stack (技术栈)
 
