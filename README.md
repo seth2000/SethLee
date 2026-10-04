@@ -39,24 +39,25 @@ SethLee/                              # ← Jekyll source root (the .git directo
 ├── _config.yml                # Jekyll config + SEO (jekyll-seo-tag, jekyll-sitemap)
 ├── _layouts/default.html      # HTML skeleton (head, nav, footer, script)
 ├── _includes/                 # One file per page section — easy to maintain
-│   ├── head.html              #   meta, JSON-LD, hreflang, fonts, pre-paint boot script
-│   ├── nav.html               #   sticky nav + overflow tray + language/theme toggles
+│   ├── head.html              #   meta, JSON-LD, llms.txt link, fonts, pre-paint boot script
+│   ├── nav.html               #   sticky nav + overflow tray + search + language/theme toggles
 │   ├── hero.html              #   hero: HUD readout, name, typing line, stats
-│   ├── about.html             #   why me: AI / Database / Full-Stack cards (+ "now" line)
-│   ├── career.html            #   timeline (DASH → Feng Tech → education → 1993)
+│   ├── about.html             #   what I do: AI / Database / Full-Stack cards (+ "now" line)
+│   ├── career.html            #   glance strip + timeline (DASH → earlier roles → education)
 │   ├── stack.html             #   tech stack groups
 │   ├── projects.html          #   selected work + open source + GitHub stats
-│   ├── ventures.html          #   Feng Tech + Zen Temple (lazy live previews)
+│   ├── ventures.html          #   Feng Tech + Zen Temple (lazy sandboxed live previews)
 │   ├── ai.html                #   AI direction + "Now & Next" (this file ages on purpose)
 │   ├── browser-frame.html     #   reusable browser-mockup partial (loads its iframe on demand)
 │   ├── insights.html          #   Zen × Code reflections + 定场诗 / Matrix panel
-│   ├── contact.html           #   quote banner + contact
-│   └── footer.html            #   credits, keywords, copyright + rev
+│   ├── contact.html           #   quote banner + contact + copy/print actions
+│   ├── overlays.html          #   search-and-jump palette + back-to-top button
+│   └── footer.html            #   credits, copyright + rev
 ├── assets/
-│   ├── css/tokens.css         # Design tokens (light + night themes)
+│   ├── css/tokens.css         # Design tokens (light + night; contrast-checked)
 │   ├── css/main.css           # Layout + components (numbered sections)
-│   └── js/main.js             # i18n (ZH dictionary), theme, nav, typing, frames, rain
-├── robots.txt                 # crawl rules + sitemap pointer
+│   └── js/main.js             # i18n (ZH dictionary), theme, nav, palette, typing, frames, rain
+├── robots.txt                 # crawl rules + sitemap pointer + llms.txt pointer
 ├── llms.txt                   # machine-readable summary for AI agents
 ├── CNAME                      # sethfengli.com
 ├── .gitattributes             # LF normalisation; .well-known tokens kept byte-exact
@@ -77,40 +78,60 @@ Ruby/Jekyll is not required to check a change — the tooling assembles the page
 `main.js` against a DOM shim.
 
 ```powershell
-node tools/site-verify.mjs        # 17 checks — must exit 0 before you push
+node tools/site-verify.mjs        # 25 checks — must exit 0 before you push
 node tools/site-verify.mjs --json # machine-readable
-node tools/negative-test.mjs      # proves the content-drift checks still catch a regression
+node tools/negative-test.mjs      # proves 11 of those checks still catch a regression
 node tools/check-links.mjs        # every outbound URL, with sources for each failure
+node tools/serve.mjs              # browse the assembled previews at 127.0.0.1:8791
 node tools/inspect-preview.mjs preview-zh-CN-light.html   # eyeball an assembled preview
 ```
 
-`site-verify.mjs` writes four previews to `.preview/` (`{en,zh-CN} × {light,night}`); serve the
-repo root over HTTP to open them. What it protects, beyond structure and CSS:
+`site-verify.mjs` writes four pages to `.preview/` (`{en,zh-CN} × {light,night}`). They are
+real styled pages — serve the repository root (`serve.mjs` does) rather than opening them as
+`file://` URLs, because their asset paths are root-relative. What it protects, beyond structure
+and CSS:
 
 | Check | Catches |
 | --- | --- |
-| `i18n-coverage` / `i18n-dict-parse` | a `data-i18n` key with no Chinese string |
+| `i18n-coverage` / `i18n-dict-parse` | a `data-i18n` or `data-i18n-placeholder` key with no Chinese string |
 | `i18n-figures` | English and Chinese citing **different numbers** for the same claim |
 | `content-stale` | a superseded number or product name surviving a content refresh |
 | `plain-language` | insider jargon creeping back into prose (see below) |
 | `revision-sync` | the revision stamps disagreeing, or JSON-LD / footer year falling behind |
 | `css-lang-display` | both languages rendering at once, or neither |
+| `section-numbers` | two sections claiming the same number, or a nav readout that disagrees |
+| `heading-order`, `aria-targets`, `dom-ids` | a skipped heading level, an `aria-*` pointing at a renamed id, two elements sharing an id |
+| `contrast-tokens` | a text token below 4.5:1 on any surface it is painted on, in either theme |
+| `external-frame-safety` | a third-party iframe with no `sandbox`, or a referrer policy that leaks the URL |
+| `copy-buttons` | a copy button with no value, no feedback label, or nested inside `<a>` |
 | `matrix-rain` / `matrix-tap-collapse` / `matrix-glyph-mix` | the CRT panel going static, the tap cycle breaking, the glyph mix drifting |
 | `verse-linefit` | a 定场诗 line too wide for its column (it would wrap mid-couplet) |
+
+The toolkit lives in `../tools/`, **outside this git repository**, so it is not backed up by
+GitHub and not published. See `../tools/README.md`.
 
 ### Writing rules the tooling enforces (写作规则)
 
 The page is read by hiring managers, clients and peers — not by specialists. In 2026-10 the AI
-section was rewritten because a general reader could not follow it. These rules keep it that way:
+section was rewritten because a general reader could not follow it, and in the second pass that
+month the whole page was rewritten for the same reason. These rules keep it that way:
 
 1. **No jargon without an explanation.** `plain-language` fails the build on a deny list in
    `tools/lib/i18n-integrity.mjs` (`harness`, `idempotency`, 承载层, 幂等, 向量库 …). If a term
-   really is needed, explain it with an example instead of using the term.
+   really is needed, explain it with an example instead of using the term — "a language model
+   called BERT" rather than "NLP / BERT".
 2. **Chinese is written, not translated.** 信达雅: exact meaning first, then idiomatic, then
-   graceful. Read the Chinese aloud — if an engineer would not say it, rewrite it.
+   graceful. Read the Chinese aloud — if an engineer would not say it, rewrite it. "信使平台" and
+   "法器" were both machine-shaped Chinese that a native speaker would not write.
 3. **Both languages carry the same numbers**, as Arabic numerals in Chinese (`i18n-figures`).
 4. **Concrete beats superlative.** No "industry-leading" without the evidence in the same sentence.
-5. **Short sentences.** `readability-sentences` reports anything over 32 words (EN) / 55
+5. **One figure, one place.** A performance claim belongs in Projects; every other mention must
+   agree with it. `content-stale` exists because `1/50 of the compute` was published beside the
+   raw pair `2,400 vCPU×6h → 16 vCPU×4h`, which those two do not produce (they produce 1/225).
+6. **Nothing is claimed that the page cannot show.** No visible keyword list, no follower count
+   dressed up as reach, no visual that asserts a state the code cannot verify (the availability
+   line shows nothing when JavaScript is off, rather than claiming "at my desk").
+7. **Short sentences.** `readability-sentences` reports anything over 32 words (EN) / 55
    characters (ZH). It is advisory, never a failure — a long sentence usually means an unfinished
    thought, except in quoted material and the keyword list, where it is expected.
 
@@ -124,10 +145,15 @@ editor, ask what actually happened, and then edit under these rules.
 The mechanics of a content change:
 
 1. Change the content in the include (English) **and** the matching `ZH` key in `main.js`.
-2. Bump the revision: `hero.hudRev`, `now.rev`, `now.updated` in `ai.html`, and `footer.rev`.
-3. Move a line into **what changed here** in `ai.html` — it is the changelog visitors can read.
-4. Update `dateModified` in the JSON-LD block in `_includes/head.html`.
+2. Bump the revision: `hero.hudRev`, `now.rev`, `footer.rev` in the markup, and the review date
+   `now.updated` (written as a full `YYYY-MM-DD` date — it is deliberately *not* a rev stamp, so
+   two passes in the same month are both visible).
+3. Move a line into **what changed here** in `ai.html` — it is the changelog visitors can read,
+   so write it for them, not as a note to yourself.
+4. Update `dateModified` in the JSON-LD block in `_includes/head.html` (it must start with the
+   rev's `YYYY-MM`; `revision-sync` compares them).
 5. Run `node tools/site-verify.mjs` **and** `node tools/check-links.mjs`. Fix what they report.
+   Run `node tools/negative-test.mjs` if you touched either tool or added a check.
 
 Rules of thumb: a claim with a number belongs in exactly one place (currently the Projects
 section) and every other mention must agree with it; and anything a general reader would have to
@@ -139,6 +165,10 @@ look up belongs in an explanation, not in the prose. `content-stale`, `i18n-figu
 Jekyll · Liquid · Vanilla JS (no framework) · CSS custom properties · Google Fonts (Sora / Manrope /
 JetBrains Mono / Noto Serif SC, SIL OFL) · [github-readme-stats](https://github.com/anuraghazra/github-readme-stats) ·
 GitHub Pages plugins: `jekyll-seo-tag`, `jekyll-sitemap`
+
+Only those two plugins. `jekyll-feed` was considered in 2026-10 and rejected: this site has no
+`_posts`, so it would publish an Atom feed that can never have an entry — an empty address is
+worse than no address. Add it if and when there is something to syndicate.
 
 ## 📸 Image credits (图片来源 — 免费可商用)
 

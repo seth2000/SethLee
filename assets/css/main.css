@@ -2,19 +2,23 @@
    Seth Li — homepage styles · "deep space HUD" theme
    (indigo × cyan × violet on a cool, high-contrast interface)
    Design tokens live in tokens.css (light + night).
-   Sections: 01 base · 02 background fx · 03 scrollbar ·
-   04 nav (HUD bar + overflow tray) · 05 hero + HUD readout ·
-   06 sections/cards · 07 timeline · 08 stack/projects ·
-   09 browser frames · 10 insights/poem ·
+
+   Sections — this list is the file's own table of contents and used to
+   disagree with it (it claimed a §14/§15 that were §15/§16, and skipped §06):
+   01 base · 02 background fx · 03 scrollbar · 04 nav ·
+   05 hero + HUD readout · 06 sections/cards · 07 timeline ·
+   08 stack/projects · 09 browser frames · 10 insights/poem ·
    11 matrix panel (digital rain) · 12 quote banner ·
-   13 contact/footer · 14 responsive · 15 reduced motion ·
-   16 currency cues ("now" lines) · 17 AI direction + Now/Next
+   13 contact/footer · 14 currency cues · 15 AI direction + Now/Next ·
+   16 overlays (palette, back-to-top, copy buttons) · 17 responsive ·
+   18 print · 19 reduced motion
    ════════════════════════════════════════════════════════════ */
 
-/* Layout constants shared by the HUD components */
+/* Layout constants shared by the HUD components. The radii and the spacing
+   scale live in tokens.css (--r-*/--s*); only the bar height is local. */
 :root {
-  --hud-radius: 16px;
-  --hud-radius-sm: 11px;
+  --hud-radius: var(--r-md);
+  --hud-radius-sm: var(--r-sm);
   --hud-bar-h: 62px;
 }
 
@@ -64,23 +68,30 @@ code { font-family: 'JetBrains Mono', Consolas, monospace; }
 
 .skip-link {
   position: absolute; left: -9999px; top: 0; z-index: 100;
-  padding: 10px 18px; background: var(--grad-sun); color: #fff;
+  padding: 10px 18px; background: var(--grad-accent); color: var(--on-accent);
   font-weight: 700; font-size: 14px;
   border-radius: 0 0 14px 0;
 }
-.skip-link:focus { left: 0; color: #fff; }
+.skip-link:focus { left: 0; color: var(--on-accent); }
 
-/* ── 02 Background fx — aurora haze + tech grid ───────────── */
+/* ── 02 Background fx — aurora haze + tech grid ─────────────
+   The haze used to be three 38–46vw layers under filter: blur(95px),
+   drifting on a 28s loop — the most expensive thing on the page, and it
+   re-rasterised three huge blurred layers every frame. A large radial
+   gradient is already soft, so the blur bought nothing: the gradients are
+   now static and there is no filter and no animation. */
 .bg-mesh { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
-.mesh {
-  position: absolute; border-radius: 50%;
-  filter: blur(95px);
-  animation: mesh-drift 28s ease-in-out infinite alternate;
+.mesh { position: absolute; border-radius: 50%; }
+.mesh-a { width: 52vw; height: 52vw; left: -16vw; top: -16vw; background: radial-gradient(circle, var(--mesh-a), transparent 68%); }
+.mesh-b { width: 46vw; height: 46vw; right: -16vw; top: 12vh; background: radial-gradient(circle, var(--mesh-b), transparent 68%); }
+.mesh-c { width: 44vw; height: 44vw; left: 28vw; bottom: -20vw; background: radial-gradient(circle, var(--mesh-c), transparent 68%); }
+
+/* Film grain over the whole page — static, no animation, no request. */
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: 39; pointer-events: none;
+  background-image: var(--noise);
+  opacity: 0.035;
 }
-.mesh-a { width: 46vw; height: 46vw; left: -14vw; top: -14vw; background: radial-gradient(circle, var(--mesh-a), transparent 66%); }
-.mesh-b { width: 40vw; height: 40vw; right: -14vw; top: 14vh; background: radial-gradient(circle, var(--mesh-b), transparent 66%); animation-delay: -10s; }
-.mesh-c { width: 38vw; height: 38vw; left: 30vw; bottom: -18vw; background: radial-gradient(circle, var(--mesh-c), transparent 66%); animation-delay: -19s; }
-@keyframes mesh-drift { to { transform: translate(5vw, 6vh) scale(1.12); } }
 
 .grid-overlay {
   position: absolute; inset: 0;
@@ -90,44 +101,42 @@ code { font-family: 'JetBrains Mono', Consolas, monospace; }
   mask-image: radial-gradient(ellipse at 50% 14%, #000 0%, transparent 72%);
 }
 
-/* Technical blueprint grid — two scales, slowly drifting apart */
+/* Technical blueprint grid — two scales. The drift is gone: animating
+   background-position is a paint, not a composite, so it burned CPU while
+   off-screen for a movement nobody could see. */
 .grid-overlay-2 {
-  background-image:
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: 84px 84px, 84px 84px;
+  background-image: var(--grid-image);
+  background-size: 84px 84px;
   -webkit-mask-image: radial-gradient(ellipse 92% 78% at 50% 42%, #000 0%, transparent 88%);
   mask-image: radial-gradient(ellipse 92% 78% at 50% 42%, #000 0%, transparent 88%);
-  animation: grid-drift 24s linear infinite;
 }
 .grid-overlay-2::after {
   content: ""; position: absolute; inset: 0;
   background-image:
     linear-gradient(var(--grid-line-strong) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-line-strong) 1px, transparent 1px);
-  background-size: 21px 21px, 21px 21px;
+  background-size: 21px 21px;
   -webkit-mask-image: radial-gradient(ellipse 60% 46% at 50% 8%, #000 0%, transparent 78%);
   mask-image: radial-gradient(ellipse 60% 46% at 50% 8%, #000 0%, transparent 78%);
 }
-@keyframes grid-drift { to { background-position: 84px 84px, 84px 84px; } }
 
-/* Horizon glow that anchors the grid */
+/* Horizon glow that anchors the grid (soft by way of its stops, not a blur) */
 .grid-glow {
   position: absolute; left: 50%; top: -18vh; transform: translateX(-50%);
   width: 120vw; height: 46vh;
-  background: radial-gradient(ellipse at 50% 100%, var(--glow-neon), transparent 68%);
-  opacity: 0.5;
-  filter: blur(30px);
+  background: radial-gradient(ellipse at 50% 100%, var(--glow-neon), transparent 70%);
+  opacity: 0.45;
 }
 
-/* CRT scanlines over the whole viewport (very low opacity) */
+/* CRT scanlines over the whole viewport (very low opacity).
+   A full-viewport mix-blend-mode forces the compositor to re-blend the page
+   on every scroll frame; a plain low-opacity gradient looks the same. */
 .scanlines {
   position: fixed; inset: 0; z-index: 40; pointer-events: none;
   background: repeating-linear-gradient(0deg, var(--scanline) 0 1px, transparent 1px 4px);
-  mix-blend-mode: multiply;
-  opacity: 0.7;
+  opacity: 0.75;
 }
-html[data-theme="night"] .scanlines { mix-blend-mode: screen; opacity: 0.55; }
+html[data-theme="night"] .scanlines { opacity: 0.6; }
 
 /* Corner-bracket ornament used by nav / hero / cards */
 .hud-corners, .nav-frame, .hero-frame {
@@ -214,11 +223,11 @@ html[data-theme="night"] .scanlines { mix-blend-mode: screen; opacity: 0.55; }
 .nav-brand { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; }
 .nav-brand__mark {
   width: 34px; height: 34px; border-radius: 11px;
-  background: var(--grad-tech); color: #fff;
+  background: var(--grad-accent); color: var(--on-accent);
   display: grid; place-items: center;
   font-family: 'JetBrains Mono', monospace; font-size: 12.5px; font-weight: 800;
   letter-spacing: 0.04em;
-  box-shadow: var(--shadow-neon);
+  box-shadow: var(--shadow-sm);
 }
 .nav-brand__text { display: grid; line-height: 1.15; }
 .nav-brand__text b {
@@ -267,13 +276,15 @@ html[data-theme="night"] .scanlines { mix-blend-mode: screen; opacity: 0.55; }
   transition: transform 0.28s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 .menu > a:hover { color: var(--ink); background: var(--surface-2); }
-.menu > a:hover::after { transform: scaleX(0.6); }
+/* The indicator runs the full width now: a 60%-scaled underline was a 2019
+   signature, and it made the active state and the hover state look alike. */
+.menu > a:hover::after { transform: scaleX(1); }
 .menu > a.active {
   color: var(--sun-deep); background: var(--sun-soft);
 }
 .menu > a.active::after { transform: scaleX(1); }
 
-/* Live section readout — 01 … 08 */
+/* Live section readout — 01 … 09 */
 .nav-index {
   display: inline-flex; align-items: baseline; gap: 1px; margin-right: 6px;
   font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700;
@@ -297,7 +308,24 @@ html[data-theme="night"] .scanlines { mix-blend-mode: screen; opacity: 0.55; }
   font-weight: 700;
   transition: background-color 0.2s, color 0.2s;
 }
-.lang-sw button.on { background: var(--grad-tech); color: #fff; }
+.lang-sw button.on { background: var(--grad-accent); color: var(--on-accent); }
+
+/* Search-and-jump trigger. Its own control rather than a menu item, because
+   it opens a dialog and works from a keyboard shortcut anywhere on the page. */
+.palette-btn {
+  display: inline-flex; align-items: center; gap: 6px; flex: 0 0 auto;
+  margin-left: 2px; padding: 7px 10px; border-radius: 9px;
+  border: 1px solid var(--line-2); background: var(--surface);
+  color: var(--muted); font-family: 'Manrope', sans-serif;
+  font-size: 13px; font-weight: 600; cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background-color 0.2s;
+}
+.palette-btn:hover { color: var(--sun-deep); border-color: var(--neon); background: var(--surface-2); }
+.palette-btn kbd {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px; line-height: 1;
+  padding: 3px 5px; border-radius: 5px;
+  border: 1px solid var(--line-2); background: var(--surface-2); color: var(--faint);
+}
 
 .theme-btn {
   width: 34px; height: 34px; border-radius: 9px; margin-left: 2px;
@@ -306,20 +334,20 @@ html[data-theme="night"] .scanlines { mix-blend-mode: screen; opacity: 0.55; }
   flex: 0 0 auto;
   transition: color 0.2s, border-color 0.2s, transform 0.2s, box-shadow 0.2s;
 }
-.theme-btn:hover { color: var(--sky); border-color: var(--neon); transform: rotate(12deg); box-shadow: var(--shadow-neon); }
+.theme-btn:hover { color: var(--sky); border-color: var(--neon); transform: rotate(12deg); box-shadow: var(--shadow-sm); }
 .theme-btn .i-sun { display: none; }
 html[data-theme="night"] .theme-btn .i-sun { display: block; }
 html[data-theme="night"] .theme-btn .i-moon { display: none; }
 
 .nav-cta {
   margin-left: 6px; padding: 8px 14px; border-radius: 9px;
-  background: var(--grad-tech); color: #fff !important;
+  background: var(--grad-accent); color: var(--on-accent) !important;
   font-family: 'JetBrains Mono', monospace; font-size: 11.5px !important; font-weight: 700;
   box-shadow: var(--shadow-sun);
   white-space: nowrap; flex: 0 0 auto;
   position: relative; overflow: hidden;
 }
-.nav-cta:hover { color: #fff !important; filter: brightness(1.08); }
+.nav-cta:hover { color: var(--on-accent) !important; filter: brightness(1.08); }
 
 /* Overflow tray — hidden until the wide row is too tight to fit */
 .nav-more { position: relative; display: none; flex: 0 0 auto; }
@@ -447,24 +475,29 @@ html[data-theme="night"] .theme-btn .i-moon { display: none; }
 }
 .sec-head.center .eyebrow::after { display: none; }
 
+/* Inline SVG replaces the emoji the UI used to carry (🏢 🪷 ✉️ 📞 …): emoji
+   render in the system's own style and break the mono/HUD voice. */
+.ico { flex: 0 0 auto; }
+
 .hero-title {
   position: relative;
   margin: 22px 0 4px;
   font-size: clamp(2.9rem, 8vw, 5.4rem); font-weight: 800; letter-spacing: -0.03em;
   color: var(--ink);
 }
-.hero-title__glow {
-  position: absolute; inset: 0; z-index: -1;
-  color: transparent;
-  background: var(--grad-tech);
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: blur(22px); opacity: 0.55;
-}
 .hero-title__text {
   background: linear-gradient(180deg, var(--ink) 30%, color-mix(in srgb, var(--ink) 72%, var(--sky)) 100%);
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+/* A halo behind the headline instead of the old duplicated-and-blurred copy of
+   it: that re-rendered a 5.4rem text layer at filter: blur(22px) on every
+   paint and read as ghosting rather than glow. */
+.hero-inner::before {
+  content: ""; position: absolute; z-index: -1; left: 50%; top: 4%;
+  transform: translateX(-50%);
+  width: min(760px, 94vw); height: 340px; pointer-events: none;
+  background: radial-gradient(ellipse at 50% 44%, color-mix(in srgb, var(--neon) 15%, transparent), transparent 70%);
 }
 .hero-sub {
   display: block; margin-top: 18px;
@@ -500,14 +533,22 @@ html[data-theme="night"] .theme-btn .i-moon { display: none; }
 .btn:hover { transform: translateY(-2px); }
 .btn-sm { padding: 8px 14px; font-size: 12px; }
 
-.btn-primary { background: var(--grad-tech); color: #fff; box-shadow: var(--shadow-sun); }
-.btn-primary:hover { color: #fff; filter: brightness(1.08); box-shadow: 0 16px 40px -10px var(--glow-soft); }
+.btn-primary { background: var(--grad-accent); color: var(--on-accent); box-shadow: var(--shadow-sun); }
+.btn-primary:hover { color: var(--on-accent); filter: brightness(1.08); box-shadow: 0 16px 40px -10px var(--glow-soft); }
 
 .btn-ghost {
   background: var(--surface); color: var(--ink);
   border-color: var(--line-2); box-shadow: var(--shadow-sm);
 }
-.btn-ghost:hover { color: var(--sun-deep); border-color: var(--neon); box-shadow: var(--shadow-neon); }
+.btn-ghost:hover { color: var(--sun-deep); border-color: var(--line-glow); box-shadow: var(--shadow-md); }
+/* Copy buttons swap their label rather than opening a toast. */
+.copy-btn__done { display: none; }
+.copy-btn.is-done { color: var(--leaf); border-color: color-mix(in srgb, var(--leaf) 45%, transparent); }
+.copy-btn.is-done .copy-btn__idle { display: none; }
+.copy-btn.is-done .copy-btn__done { display: inline; }
+/* Printing needs a real button; without JS it could not do anything, so it
+   only appears once the boot script has marked the document. */
+html:not(.js) .print-btn { display: none; }
 
 .hero-stats { margin-top: 58px; display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
 .stat {
@@ -521,8 +562,8 @@ html[data-theme="night"] .theme-btn .i-moon { display: none; }
   content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
   background: var(--grad-hair); opacity: 0; transition: opacity 0.25s ease;
 }
-.stat:hover { transform: translateY(-4px); border-color: var(--neon); box-shadow: var(--shadow-neon); }
-.stat:hover::before { opacity: 1; }
+.stat:hover, .stat:focus-within { transform: translateY(-4px); border-color: var(--line-glow); box-shadow: var(--shadow-md); }
+.stat:hover::before, .stat:focus-within::before { opacity: 1; }
 .stat b {
   display: block; font-family: 'Sora', sans-serif; font-size: 1.75rem; font-weight: 800;
   background: var(--grad-tech); -webkit-background-clip: text; background-clip: text;
@@ -550,10 +591,8 @@ html[data-theme="night"] .theme-btn .i-moon { display: none; }
 /* Faint blueprint grid inside alternating sections */
 .sec-alt::before {
   content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-  background-image:
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: 64px 64px, 64px 64px;
+  background-image: var(--grid-image);
+  background-size: 64px 64px;
   -webkit-mask-image: linear-gradient(180deg, transparent, #000 18%, #000 82%, transparent);
   mask-image: linear-gradient(180deg, transparent, #000 18%, #000 82%, transparent);
 }
@@ -589,27 +628,35 @@ html.js .reveal.in { opacity: 1; transform: none; }
   opacity: 0; transition: opacity 0.3s ease;
   pointer-events: none;
 }
-/* Blueprint texture that fades in on hover */
+/* Blueprint texture replaced by a pointer spotlight: --mx/--my are set by one
+   delegated pointermove listener in main.js, so the card lights up under the
+   cursor instead of fading in a static 32px wash everywhere at once. */
 .card::after {
   content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
-  background-image:
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: 32px 32px, 32px 32px;
+  background: radial-gradient(
+    260px circle at var(--mx, 50%) var(--my, 0%),
+    color-mix(in srgb, var(--neon) 13%, transparent),
+    transparent 70%);
   opacity: 0; transition: opacity 0.35s ease;
 }
 .card > * { position: relative; z-index: 1; }
 .card > .tl-when, .card > .card-img { position: static; }
-.card:hover {
+.card:hover, .card:focus-within {
   transform: translateY(-5px);
   border-color: var(--line-glow);
   box-shadow: var(--shadow-lg), 0 0 0 1px var(--line-glow);
 }
-.card:hover::before,
-.card:hover::after { opacity: 1; }
+.card:hover::before, .card:focus-within::before,
+.card:hover::after, .card:focus-within::after { opacity: 1; }
 
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+
+/* Bento asymmetry for the AI section only: 4 + 2 / 2 + 4 rather than four
+   identical boxes. The other .grid-2 uses (projects, ventures) stay even. */
+#ai .grid-2 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+#ai .ai-card:nth-child(1), #ai .ai-card:nth-child(4) { grid-column: span 4; }
+#ai .ai-card:nth-child(2), #ai .ai-card:nth-child(3) { grid-column: span 2; }
 
 .card-img { position: relative; aspect-ratio: 16 / 9; overflow: hidden; }
 .card-img img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.02); transition: transform 0.6s ease; }
@@ -640,7 +687,28 @@ html.js .reveal.in { opacity: 1; transform: none; }
 .chip.hot { color: var(--sun-deep); border-color: var(--line-glow); background: var(--sun-soft); }
 
 
-/* ── 08 Timeline ──────────────────────────────────────────── */
+/* ── 07 Timeline ──────────────────────────────────────────── */
+/* The glance strip: three lines a hiring manager can read without expanding
+   anything, and the reason the CTO role is no longer buried in the tray. */
+.glance {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px;
+  margin: 0 0 26px;
+}
+.glance__item {
+  padding: 16px 18px; border-radius: var(--hud-radius-sm);
+  border: 1px solid var(--line); background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+.glance__k {
+  display: block; margin-bottom: 6px;
+  font-family: 'JetBrains Mono', monospace; font-size: 9.5px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--sky);
+}
+.glance__item b {
+  font-family: 'Manrope', sans-serif; font-size: 13.5px; font-weight: 600;
+  color: var(--text); line-height: 1.6;
+}
+
 .timeline { display: flex; flex-direction: column; gap: 18px; position: relative; }
 /* Luminous rail running behind the cards */
 .timeline::before {
@@ -673,6 +741,19 @@ html.js .reveal.in { opacity: 1; transform: none; }
 /* Timeline — collapse / expand (JS collapses the overflow entries;
    without JS everything stays visible and the toggle is hidden) */
 .timeline-more { display: flex; flex-direction: column; gap: 18px; }
+/* Group divider inside the tray. "Work" and "Education" overlap in time, so
+   the two are labelled rather than interleaved into one reverse chronology
+   that reads as a sorting mistake. */
+.tl-group {
+  display: flex; align-items: center; gap: 12px;
+  margin: 12px 0 0; font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--faint);
+}
+.tl-group::after {
+  content: ""; flex: 1; height: 1px;
+  background: linear-gradient(90deg, var(--line-2), transparent);
+}
 .career-actions { display: none; }
 html.js .career-actions { display: flex; justify-content: center; margin-top: 28px; }
 html.js .timeline-more { display: none; }
@@ -683,8 +764,7 @@ html.js .timeline-more.open { display: flex; }
 .career-actions.open .career-count { display: none; }
 .career-actions.open .career-toggle-less { display: inline; }
 
-/* ── 09 Stack / projects ──────────────────────────────────── */
-.stack-group { padding: 24px 26px; }
+/* ── 09 Stack / projects ──────────────────────────────────── */.stack-group { padding: 24px 26px; }
 .stack-group h3 {
   margin: 0 0 14px; font-family: 'JetBrains Mono', monospace; font-size: 11px;
   letter-spacing: 0.18em; text-transform: uppercase; color: var(--sky);
@@ -719,6 +799,9 @@ html.js .timeline-more.open { display: flex; }
 .proj-more a { color: var(--muted); }
 
 .stats-row { margin-top: 30px; display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+/* github-readme-stats returns an unpredictable height; reserving the space on
+   the link stops the row from shoving the page down when the cards land. */
+.stats-row a { display: flex; align-items: center; min-height: 195px; }
 .stats-row img { border-radius: 14px; border: 1px solid var(--line-2); box-shadow: var(--shadow-md); }
 
 /* ── 10 Browser frames (venture previews) ─────────────────── */
@@ -756,7 +839,7 @@ html.js .timeline-more.open { display: flex; }
 .browser-tools button.on { color: var(--sun-deep); border-color: var(--sun); background: var(--sun-soft); }
 .browser-tools .btn { border-color: var(--line-2); box-shadow: none; color: var(--ink); font-weight: 700; }
 
-.browser-stage { max-width: 100%; margin: 0 auto; background: var(--bg-2); transition: max-width 0.45s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.browser-stage { position: relative; max-width: 100%; margin: 0 auto; background: var(--bg-2); transition: max-width 0.45s cubic-bezier(0.2, 0.7, 0.2, 1); }
 .browser-frame[data-device="tablet"] .browser-stage { max-width: 768px; }
 .browser-frame[data-device="mobile"] .browser-stage { max-width: 400px; }
 
@@ -774,8 +857,8 @@ html.js .timeline-more.open { display: flex; }
 .frame-load:hover { color: var(--ink); }
 .frame-load__play {
   width: 52px; height: 52px; border-radius: 999px; display: grid; place-items: center;
-  background: var(--grad-tech); color: #fff; font-size: 15px; padding-left: 3px;
-  box-shadow: var(--shadow-neon); margin-bottom: 6px;
+  background: var(--grad-accent); color: var(--on-accent); font-size: 15px; padding-left: 3px;
+  box-shadow: var(--shadow-sm); margin-bottom: 6px;
   transition: transform 0.25s ease;
 }
 .frame-load:hover .frame-load__play { transform: scale(1.07); }
@@ -783,6 +866,25 @@ html.js .timeline-more.open { display: flex; }
 .frame-load em {
   font-style: normal; font-family: 'JetBrains Mono', monospace;
   font-size: 10.5px; color: var(--faint); max-width: 40ch;
+}
+/* Once a frame is loaded the placeholder goes away but a way back stays:
+   without it a blocked or slow third party left a permanent empty box, since
+   the load button was removed and data-loaded was already "1". */
+.browser-stage .frame-reload { display: none; }
+.browser-stage.is-loaded .frame-load { display: none; }
+.browser-stage.is-loaded .frame-reload {
+  display: inline-flex; align-items: center; gap: 7px;
+  position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); z-index: 2;
+  padding: 7px 14px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--line-2); background: var(--surface); color: var(--muted);
+  font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em;
+  text-transform: uppercase; box-shadow: var(--shadow-sm);
+}
+.browser-stage.is-loaded .frame-reload:hover { color: var(--sun-deep); border-color: var(--line-glow); }
+/* Say plainly that the frame is a sandboxed third party. */
+.frame-privacy {
+  margin: 18px 0 0; text-align: center;
+  font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--faint);
 }
 /* The wrapper is script-created; the <iframe> inside carries its own pixel
    width/height inline, because a replaced element has no other sizing source
@@ -906,19 +1008,22 @@ html.js .timeline-more.open { display: flex; }
 .code-rain { position: absolute; inset: 0; z-index: 1; overflow: hidden; }
 
 .rain-col {
-  position: absolute; top: 0; width: 16px; will-change: transform;
+  position: absolute; top: 0; width: 16px;
   animation: col-fall linear infinite;
 }
 @keyframes col-fall {
   from { transform: translate3d(0, var(--y0, -100px), 0); }
   to   { transform: translate3d(0, var(--y1, 480px), 0); }
 }
+/* One glyph is one span; there are several hundred of them, so the tail
+   carries no text-shadow (the alpha is pre-computed per glyph in main.js)
+   and only the ~38 stream heads glow. */
 .char {
   position: absolute; left: 0;
   font-family: 'JetBrains Mono', 'MS Gothic', 'Yu Gothic', Consolas, monospace;
   font-size: 15px; line-height: 1; font-style: normal;
   color: var(--matrix-body);
-  text-shadow: 0 0 7px rgba(31, 224, 106, 0.35);
+  text-shadow: none;
 }
 .char-head { color: var(--matrix-head); text-shadow: 0 0 12px rgba(200, 255, 225, 0.95), 0 0 28px rgba(31, 224, 106, 0.70); }
 
@@ -952,7 +1057,7 @@ html.js .timeline-more.open { display: flex; }
 }
 .cb-line { display: block; }
 
-/* 提示：屏幕可以点 */
+/* 提示：屏幕可以点；键盘与触摸走同一轮的按钮在右上角 */
 .code-hint {
   margin: 14px 2px 0;
   font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em;
@@ -963,6 +1068,19 @@ html.js .timeline-more.open { display: flex; }
   border-radius: 50%; background: var(--matrix-body);
   box-shadow: 0 0 8px var(--matrix-glow); opacity: 0.75;
 }
+/* The rain itself is aria-hidden, so the interaction needs a real control:
+   this is the keyboard/touch equivalent of tapping a stream head. */
+.code-tap {
+  position: absolute; top: 12px; left: 16px; z-index: 4;
+  display: inline-flex; align-items: center; gap: 7px; cursor: pointer;
+  padding: 5px 11px; border-radius: 999px;
+  border: 1px solid rgba(31, 224, 106, 0.38);
+  background: rgba(3, 12, 7, 0.72); color: var(--matrix-body);
+  font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  transition: border-color 0.25s ease, color 0.25s ease;
+}
+.code-tap:hover { color: var(--matrix-head); border-color: rgba(31, 224, 106, 0.75); }
 
 /* 静态代码（无 JS / 关闭动画时的兜底）：同一块屏幕上的终端 */
 pre.code {
@@ -1138,17 +1256,19 @@ html:not([lang^="zh"]) .poem-cn { display: none; }
   transform: scaleX(0); transform-origin: 0 50%;
   transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
-.contact-card:hover {
+.contact-card:hover, .contact-card:focus-within {
   transform: translateY(-5px);
   border-color: var(--line-glow);
   box-shadow: var(--shadow-lg), 0 0 0 1px var(--line-glow);
 }
-.contact-card:hover::before { transform: scaleX(1); }
+.contact-card:hover::before, .contact-card:focus-within::before { transform: scaleX(1); }
 .contact-card__icon {
-  width: 42px; height: 42px; display: grid; place-items: center; font-size: 20px;
+  width: 42px; height: 42px; display: grid; place-items: center; color: var(--sky);
   border-radius: 12px; background: var(--surface-2); border: 1px solid var(--line-2);
   margin-bottom: 8px;
+  transition: color 0.25s ease, border-color 0.25s ease;
 }
+.contact-card:hover .contact-card__icon { color: var(--sun-deep); border-color: var(--line-glow); }
 .contact-card__label {
   font-family: 'JetBrains Mono', monospace; font-size: 9.5px; font-weight: 700;
   letter-spacing: 0.18em; text-transform: uppercase; color: var(--sky);
@@ -1188,6 +1308,13 @@ html:not([lang^="zh"]) .poem-cn { display: none; }
   color: var(--leaf); font-size: 10px; font-weight: 700;
   letter-spacing: 0.16em; text-transform: uppercase;
 }
+/* Which of the two availability lines shows is decided by the real Sydney
+   hour (main.js §07d). With no JS neither shows, rather than claiming
+   something about the time that may be untrue. */
+.contact-panel__sig .avail-on,
+.contact-panel__sig .avail-off { display: none; }
+html.js #avail.is-on .avail-on { display: inline; }
+html.js #avail.is-off .avail-off { display: inline; }
 .contact-panel__body { padding: 6px 18px 16px; }
 .contact-panel__row {
   display: grid; grid-template-columns: 86px 1fr; gap: 14px; align-items: baseline;
@@ -1216,28 +1343,24 @@ html:not([lang^="zh"]) .poem-cn { display: none; }
 .footer::after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
   background-image:
-    linear-gradient(rgba(148, 163, 184, 0.09) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(148, 163, 184, 0.09) 1px, transparent 1px);
-  background-size: 56px 56px, 56px 56px;
+    linear-gradient(var(--footer-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--footer-grid) 1px, transparent 1px);
+  background-size: 56px 56px;
   -webkit-mask-image: linear-gradient(180deg, #000, transparent 70%);
   mask-image: linear-gradient(180deg, #000, transparent 70%);
 }
 .footer > * { position: relative; z-index: 1; }
 .foot-grid { display: flex; justify-content: space-between; gap: 26px; flex-wrap: wrap; }
-.foot-brand { font-family: 'Sora', sans-serif; font-size: 1.05rem; font-weight: 800; letter-spacing: 0.02em; color: var(--sky); }
+.foot-brand { font-family: 'Sora', sans-serif; font-size: 1.05rem; font-weight: 800; letter-spacing: 0.02em; color: var(--footer-brand); }
 .foot-brand small {
   display: block; font-family: 'Manrope', sans-serif; font-size: 11.5px; font-weight: 500;
   color: var(--footer-dim); letter-spacing: 0.02em; margin-top: 6px;
 }
-.foot-credits { max-width: 560px; font-size: 11.5px; line-height: 1.9; }
-.foot-credits a { color: #7dd3fc; }
-.foot-credits a:hover { color: #bae6fd; }
-.foot-keywords {
-  width: 100%; margin: 16px 0 0; font-family: 'JetBrains Mono', monospace;
-  font-size: 10.5px; color: var(--footer-dim); line-height: 2; text-align: center;
-}
+.foot-credits { max-width: 620px; font-size: 11.5px; line-height: 1.9; }
+.foot-credits a { color: var(--footer-link); }
+.foot-credits a:hover { color: var(--footer-link-hover); }
 .foot-copy {
-  width: 100%; margin-top: 16px; padding-top: 16px; border-top: 1px dashed rgba(148, 163, 184, 0.28);
+  width: 100%; margin-top: 16px; padding-top: 16px; border-top: 1px dashed var(--footer-rule);
   font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--footer-dim);
   display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
 }
@@ -1321,7 +1444,90 @@ html:not([lang^="zh"]) .poem-cn { display: none; }
   font-family: 'JetBrains Mono', monospace; font-size: 10.5px; line-height: 1.85; color: var(--faint);
 }
 
-/* ── 15 Responsive ────────────────────────────────────────── */
+/* ── 16 Overlays — search palette + back to top ─────────────
+   The palette contains two things: commands and section links, which are
+   static markup so they translate with the rest of the page, and hits built
+   from the page's own text by main.js. Search never leaves the browser, and
+   the footer of the box says so. */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+.palette {
+  position: fixed; inset: 0; z-index: 90; display: none;
+  align-items: flex-start; justify-content: center;
+  padding: 11vh 16px 24px;
+}
+.palette.open { display: flex; }
+.palette__scrim {
+  position: absolute; inset: 0;
+  background: color-mix(in srgb, var(--ink) 45%, transparent);
+}
+.palette__box {
+  position: relative; width: min(620px, 100%); max-height: 74vh;
+  display: flex; flex-direction: column;
+  border-radius: var(--r-md); overflow: hidden;
+  border: 1px solid var(--line-2); background: var(--menu-bg);
+  box-shadow: var(--shadow-lg);
+  animation: tray-in 0.16s ease-out;
+}
+.palette__bar {
+  display: flex; align-items: center; gap: 10px; padding: 12px 14px;
+  border-bottom: 1px solid var(--line); color: var(--faint);
+}
+.palette__bar input {
+  flex: 1; min-width: 0; border: 0; background: transparent; color: var(--ink);
+  font-family: 'Manrope', sans-serif; font-size: 15px;
+}
+.palette__bar input:focus { outline: none; }
+.palette__esc {
+  display: inline-flex; align-items: center; gap: 6px; cursor: pointer; flex: 0 0 auto;
+  padding: 5px 10px; border-radius: var(--r-pill); border: 1px solid var(--line-2);
+  background: var(--surface-2); color: var(--muted);
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+.palette__esc kbd { font-family: inherit; font-size: 10px; }
+.palette__list { margin: 0; padding: 8px; list-style: none; overflow-y: auto; }
+.palette__sec {
+  padding: 10px 10px 6px; font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--faint);
+}
+.palette__sec[hidden] { display: none; }
+.palette__item {
+  display: flex; align-items: center; gap: 10px; cursor: pointer;
+  padding: 10px 12px; border-radius: 10px;
+  color: var(--text); font-size: 14px;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.palette__item[hidden] { display: none; }
+.palette__item .ico { color: var(--sky); }
+.palette__item[aria-selected="true"] { background: var(--surface-2); color: var(--ink); }
+.palette__item[aria-selected="true"] .ico { color: var(--sun-deep); }
+.palette__hit { flex-direction: column; align-items: flex-start; gap: 3px; }
+.palette__hit b { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--sun-deep); }
+.palette__hit em { font-style: normal; font-size: 12.5px; color: var(--muted); line-height: 1.65; }
+.palette__foot {
+  margin: 0; padding: 10px 14px; border-top: 1px solid var(--line);
+  background: var(--surface-2); color: var(--faint);
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap;
+}
+.palette__foot em { font-style: normal; }
+
+.to-top {
+  position: fixed; right: 18px; bottom: 18px; z-index: 80;
+  width: 42px; height: 42px; display: grid; place-items: center; cursor: pointer;
+  border-radius: 50%; border: 1px solid var(--line-2); background: var(--surface);
+  color: var(--muted); box-shadow: var(--shadow-md);
+  opacity: 0; pointer-events: none; transform: translateY(8px);
+  transition: opacity 0.25s ease, transform 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+.to-top.on { opacity: 1; pointer-events: auto; transform: none; }
+.to-top:hover { color: var(--sun-deep); border-color: var(--line-glow); }
+
+/* ── 17 Responsive ────────────────────────────────────────── */
 /* Progressive retreat of the wide row. Each step hands more of the
    nav to the overflow tray, so the row never clips its last item. */
 
@@ -1352,6 +1558,12 @@ html:not([lang^="zh"]) .poem-cn { display: none; }
 
 @media (max-width: 900px) {
   .grid-2, .grid-3, .code-row, .contact-grid { grid-template-columns: 1fr; }
+  /* The bento layout is an id-scoped rule, so it has to be undone explicitly
+     here — a plain .grid-2 override would lose to #ai .grid-2. */
+  #ai .grid-2 { grid-template-columns: 1fr; }
+  #ai .ai-card { grid-column: auto; }
+  .glance { grid-template-columns: 1fr; }
+  .palette { padding-top: 6vh; }
   .sec { padding: 72px 20px; }
   .frame-load, .frame-embed { height: 480px; }
   .now-body { grid-template-columns: 1fr; }
@@ -1412,12 +1624,48 @@ html:not([lang^="zh"]) .poem-cn { display: none; }
   .nav-brand__text { display: none; }
 }
 
-/* ── 16 Reduced motion ────────────────────────────────────── */
+/* ── 18 Print — a CV a recruiter can actually keep ──────────
+   ⌘P / Ctrl+P used to produce a dark, animated, half-truncated poster. Print
+   forces the light palette, drops every decorative layer and every
+   interaction-only control, opens the collapsed career list, and writes each
+   external URL after its link text. */
+@media print {
+  :root {
+    --bg: #ffffff; --bg-2: #ffffff; --surface: #ffffff; --surface-2: #ffffff;
+    --surface-3: #ffffff; --ink: #000000; --text: #1c1c1c; --muted: #333333;
+    --faint: #4a4a4a; --line: #cccccc; --line-2: #bbbbbb; --footer-bg: #ffffff;
+    --footer-dim: #333333; --footer-brand: #1c1c1c; --footer-link: #1c1c1c;
+  }
+  html, body { background: #ffffff !important; color: #000000; }
+  .bg-mesh, .scanlines, #progress, .nav, .palette, .to-top, .scroll-hint,
+  .hero-frame, .hero-grid, .hero-scan, #stars, .quote-banner, .browser-frame,
+  .stats-row, .code-row, .hero-cta, .frame-privacy, .career-actions,
+  .footer::after, .card::after, .card::before, .contact-card::before { display: none !important; }
+  .hero { min-height: 0; padding: 0 0 18px; text-align: left; }
+  .hero-inner::before { display: none; }
+  .hero-title, .sec-head h2, .hero-sub { -webkit-text-fill-color: #000000; color: #000000; background: none; }
+  .sec, .sec-alt { padding: 20px 0; border: 0; background: #ffffff; }
+  .sec-alt::before { display: none; }
+  .card, .glance__item, .contact-panel, .stat { box-shadow: none; border-color: #cccccc; break-inside: avoid; }
+  .grid-2, .grid-3, .contact-grid, .code-row { grid-template-columns: 1fr 1fr; gap: 10px; }
+  #ai .grid-2 { grid-template-columns: 1fr 1fr; }
+  #ai .ai-card { grid-column: auto; }
+  /* Print the whole career, not the collapsed five. */
+  html.js .timeline-more { display: flex !important; }
+  .career-toggle-more, .career-toggle-less, .career-count { display: none !important; }
+  /* A printed page cannot be clicked, so the link's URL has to be visible. */
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 9px; color: #555555; word-break: break-all; }
+  .footer { background: #ffffff; color: #333333; border-top: 1px solid #cccccc; }
+  .foot-brand, .foot-credits a { color: #1c1c1c; }
+}
+
+/* ── 19 Reduced motion ────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   html.js .reveal { opacity: 1; transform: none; transition: none; }
   .mesh, .caret, .scroll-hint, .code-tag::before,
-  .grid-overlay-2, .hero-grid, .hero-scan, .nav-scan, .hud__dot { animation: none !important; }
+  .grid-overlay-2, .hero-grid, .hero-scan, .nav-scan, .hud__dot,
+  .palette__box { animation: none !important; }
   /* 矩阵屏：屏幕的闪烁 / 回扫亮带 / 光标停住，但雨照下 ——
      JS 只把下落与换字放慢（calm / tick）。这块屏是本节的主角，
      把它换成一张不动的静态代码，比缓慢下落的字符更让人意外。
@@ -1426,9 +1674,14 @@ html:not([lang^="zh"]) .poem-cn { display: none; }
   .char-head { transition: none !important; }
   /* 双燕：停在半空，不循环飞行 */
   .pa-flock, .pa-bird-b, .pa-trail { animation-play-state: paused !important; }
-  .card, .btn, .stat, .quote-overlay, #quote, #quote-author, .contact-card,
-  .nav, .nav-brand, .browser-frame, .browser-stage, .frame-load, .frame-load__play,
-  .seal { transition: none !important; }
+  /* Transitions on the decorative pseudo-elements were uncovered before, so
+     the grid wash and the hairline rules still animated. */
+  .card, .card::before, .card::after, .btn, .stat, .stat::before,
+  .quote-overlay, #quote, #quote-author, .contact-card, .contact-card::before,
+  .contact-card__icon, .contact-card__go, .menu > a, .menu > a::after,
+  .nav, .nav-brand, .nav-brand__mark, .nav::after, .nav-frame, .nav-scan,
+  .browser-frame, .browser-stage, .frame-load, .frame-load__play,
+  .palette__item, .to-top, .glance__item, .code-tap, .seal { transition: none !important; }
   .card:hover, .stat:hover, .btn:hover, .contact-card:hover { transform: none; }
   .frame-load:hover .frame-load__play { transform: none; }
   .poem-card:hover .seal { transform: rotate(-4deg); }

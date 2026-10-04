@@ -1,9 +1,9 @@
 <section class="sec sec-alt" id="insights">
   <div class="wrap">
     <div class="sec-head reveal">
-      <p class="eyebrow"><i aria-hidden="true">07</i><span data-i18n="insights.kicker">insights</span></p>
+      <p class="eyebrow"><i aria-hidden="true">08</i><span data-i18n="insights.kicker">insights</span></p>
       <h2><span data-i18n="insights.title">Zen Is the Worldview,</span> <em data-i18n="insights.titleEm">Code Is the Method</em></h2>
-      <p class="sub" data-i18n="insights.sub">Classical Buddhist concepts, re-expressed in the language of programmers — the other side of the same practice.</p>
+      <p class="sub" data-i18n="insights.sub">Classical Buddhist ideas, said again in the language of programmers — the other side of the same practice.</p>
     </div>
 
     <div class="grid-3">
@@ -11,9 +11,9 @@
         <span class="tag">Heart Sutra · OOP</span>
         <h3 data-i18n="insights.c1Title">Emptiness Is an Abstract Class · 空即是色</h3>
         <p data-i18n="insights.c1Text">
-          Emptiness is an abstract class, Form a concrete class, Appearance an instance. You see a cat:
-          this specific cat is the instance, "cat" is the abstract class, "black cat" the concrete class.
-          The mind moves from concrete to abstract — a verifiable cognitive path.
+          Emptiness is an abstract class, form a concrete class, appearance an instance. You see a cat: this
+          particular cat is the instance, "cat" is the abstract class, "black cat" the concrete class. The mind
+          moves from the concrete to the abstract.
         </p>
         <span class="eng" data-i18n="insights.c1Eng">Emptiness : Form : Appearance = abstract class : concrete class : instance</span>
       </article>
@@ -22,9 +22,9 @@
         <span class="tag">Diamond Sutra · Design</span>
         <h3 data-i18n="insights.c2Title">"I" Cannot Be Instantiated</h3>
         <p data-i18n="insights.c2Text">
-          "I" is fundamentally an abstract class: cannot use <code>this</code> → no self; cannot instantiate
-          → no person; no lifecycle methods → no lifespan. The end of the four lines is an object
-          that can never be new-ed.
+          "I" is fundamentally an abstract class: it cannot use <code>this</code>, so there is no self; it cannot
+          be instantiated, so there is no person; it has no lifecycle methods, so there is no lifespan. Four
+          lines of code, and an object that can never be created.
         </p>
         <span class="eng" data-i18n="insights.c2Eng">no this · no instantiate · no lifecycle</span>
       </article>
@@ -45,6 +45,15 @@
       <article class="card code-card reveal" aria-label="Conceptual Python model, Ego = 1 / Knowledge">
         <div class="crt" aria-hidden="true"></div>
         <span class="code-tag" aria-hidden="true">crt://monitor · live</span>
+        <!-- Keyboard and touch equivalent of tapping a falling character: the
+             rain itself is aria-hidden decoration, so the interaction needs a
+             real control. Both paths run the same collapse cycle. -->
+        <button type="button" class="code-tap" id="code-tap">
+          <svg class="ico" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3v18M5 10l7-7 7 7" />
+          </svg><span data-i18n="insights.codeTap">Freeze the screen</span>
+        </button>
         <p class="code-osd" aria-hidden="true">ego = <b>1</b> / knowledge<i class="code-caret"></i></p>
         <pre class="code" id="code-source"><code><span class="c-k">class</span> <span class="c-t">Supreme_Wisdom</span>:
     knowledge = math.inf
@@ -104,6 +113,6 @@
       </article>
     </div>
 
-    <p class="code-hint" data-i18n="insights.codeHint">Click any falling character — the screen freezes, one of my Python functions surfaces, then it collapses.</p>
+    <p class="code-hint" data-i18n="insights.codeHint">Click the leading character of any falling column — or the Freeze button — and the screen stops, one of my Python functions surfaces, then it collapses.</p>
   </div>
 </section>

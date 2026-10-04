@@ -17,5 +17,14 @@
       <b data-i18n="frame.loadLabel">Load live preview</b>
       <em data-i18n="frame.loadNote">Third-party page — it loads only when you ask or scroll here.</em>
     </button>
+    <!-- A loaded frame keeps a way back: the reload chip clears the stage and
+         loads it again, and the bar's Open link is always there if the third
+         party is down. Without this the stage became a permanent empty box. -->
+    <button type="button" class="frame-reload" data-reload>
+      <svg class="ico" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M20 11a8 8 0 1 0-2.3 6.1M20 5v6h-6" />
+      </svg><span data-i18n="frame.reload">Reload</span>
+    </button>
   </div>
 </div>

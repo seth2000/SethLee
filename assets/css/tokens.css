@@ -20,11 +20,15 @@
   --surface-3: #e8eefb;
   --edge: rgba(37, 99, 235, 0.55);
 
-  /* Ink — deep space navy */
+  /* Ink — deep space navy.
+     --faint is a *text* tone, so it has to clear 4.5:1 on --bg, --surface and
+     --surface-2 (tools/site-verify.mjs measures it). It used to be #8d9ab4,
+     which was 2.8:1 on white while carrying 9.5px labels. Decoration uses
+     --hair/--line, never a text token. */
   --ink: #0d1730;
   --text: #3c4a68;
   --muted: #5a6885;
-  --faint: #8d9ab4;
+  --faint: #5e6c88;
 
   /* Lines + luminous borders */
   --line: rgba(13, 23, 48, 0.10);
@@ -32,21 +36,51 @@
   --line-glow: rgba(56, 189, 248, 0.42);
   --hair: rgba(13, 23, 48, 0.07);
 
-  /* Brand accents — indigo primary, cyan secondary, teal zen */
+  /* Brand accents — indigo primary, cyan secondary, teal zen.
+     --sky and --leaf are used for small uppercase micro-labels, so they are
+     darkened to clear 4.5:1 on the paper ground; the vivid originals survive
+     as --neon and inside the decorative gradients. */
   --sun: #2563eb;          /* electric blue — primary */
   --sun-deep: #1d4ed8;     /* deep blue */
   --peach: #7c3aed;        /* violet — hover */
-  --sky: #0891b2;          /* cyan — data / HUD */
-  --leaf: #0d9488;         /* teal — zen */
+  --sky: #0e7490;          /* cyan — data / HUD (readable as text) */
+  --leaf: #0f766e;         /* teal — zen (readable as text) */
   --rose: #e11d8f;         /* magenta — rare accent */
-  --neon: #22d3ee;         /* neon cyan — glows and markers */
+  --neon: #22d3ee;         /* neon cyan — glows, markers, decoration only */
+
+  /* Accent surfaces that carry white text. Separate stops from --grad-tech
+     because that gradient is also used with background-clip:text, where a
+     darker stop would be unreadable in night mode. Every stop clears 4.5:1
+     against --on-accent, in both themes — see the contrast-tokens check. */
+  --accent-1: #0e7490;
+  --accent-2: #1d4ed8;
+  --accent-3: #6d28d9;
+  --on-accent: #ffffff;
+  --grad-accent: linear-gradient(120deg, var(--accent-1) 0%, var(--accent-2) 52%, var(--accent-3) 100%);
 
   --grad-sun: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
   --grad-tech: linear-gradient(120deg, #22d3ee 0%, #2563eb 52%, #7c3aed 100%);
   --grad-hair: linear-gradient(90deg, transparent, var(--neon), var(--peach), transparent);
   --sun-soft: rgba(37, 99, 235, 0.10);
-  --sky-soft: rgba(8, 145, 178, 0.10);
-  --leaf-soft: rgba(13, 148, 136, 0.10);
+  --sky-soft: rgba(14, 116, 144, 0.10);
+  --leaf-soft: rgba(15, 118, 110, 0.10);
+
+  /* Shape + rhythm — one scale each, so components stop inventing numbers.
+     The old file declared --hud-radius and then used 11 literal radii. */
+  --r-xs: 7px;
+  --r-sm: 11px;
+  --r-md: 16px;
+  --r-pill: 999px;
+  --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px; --s6: 40px;
+
+  /* The blueprint grid, defined once. Six copies of this image existed. */
+  --grid-image: linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  --grid-size: 42px 42px;
+
+  /* Film grain, layered at ~3% to stop the large flat grounds looking like
+     plastic. A data URI so it costs no request and no animation. */
+  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
 
   /* Effects — crisp, luminous, screen-like */
   --glow: rgba(37, 99, 235, 0.32);
@@ -75,6 +109,13 @@
   --footer-bg: #070d1c;
   --footer-ink: #eef2f9;
   --footer-dim: #8fa0bf;
+  /* The footer plate is dark in both themes, so its own chrome is defined
+     once here rather than per theme. */
+  --footer-grid: rgba(148, 163, 184, 0.09);
+  --footer-rule: rgba(148, 163, 184, 0.28);
+  --footer-brand: #7dd3fc;
+  --footer-link: #a5d8f5;
+  --footer-link-hover: #d6ecfb;
   --scrim: linear-gradient(180deg, rgba(6, 11, 24, 0) 32%, rgba(6, 11, 24, 0.82) 100%);
 
   /* Background fx — aurora haze + tech grid */
@@ -109,8 +150,8 @@ html[data-theme="night"] {
 
   --ink: #eaf2ff;
   --text: #b8c7e2;
-  --muted: #8a9dc0;
-  --faint: #5f7396;
+  --muted: #a3b4d4;
+  --faint: #8b9cbb;
 
   --line: rgba(234, 242, 255, 0.10);
   --line-2: rgba(234, 242, 255, 0.20);
@@ -120,10 +161,13 @@ html[data-theme="night"] {
   --sun: #60a5fa;
   --sun-deep: #93c5fd;
   --peach: #c4b5fd;
-  --sky: #38bdf8;
-  --leaf: #2dd4bf;
+  --sky: #7dd3fc;
+  --leaf: #5eead4;
   --rose: #f472b6;
   --neon: #22d3ee;
+  /* --accent-*, --on-accent, --grad-accent, the radii and the grid/noise
+     tokens are inherited from :root on purpose: they are contrast-driven and
+     must not drift between themes. */
 
   --grad-sun: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
   --grad-tech: linear-gradient(120deg, #22d3ee 0%, #3b82f6 52%, #a78bfa 100%);

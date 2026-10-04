@@ -7,7 +7,7 @@
 ## Identity
 
 - Full-Stack Engineer and Database Developer, DASH Technology Group (WealthTech), Sydney.
-- Former CTO, AME Group — founded the company's AI research centre (NLP / BERT extraction of
+- Former CTO, AME Group — started the company's AI research group (NLP / BERT extraction of
   financial tables from unstructured PDFs) and led an ML GIS data-mining system.
 - Founder of Feng Tech (fengtech.com.au), a Sydney IT services company.
 - Creator of Hui Deng Zen Temple (zen.sethfengli.com), a digital Buddhist practice site.
@@ -15,9 +15,9 @@
 
 ## Verified work
 
-- Triumph (DASH, 2024–present): re-architected core Holdings & Performance systems to 1/50 of the
-  original compute (2,400+ vCPU×6h → 16 vCPU×4h) while carrying 4× the users and volume.
-  An earlier pass delivered 4× faster on 1/22.5 of the infrastructure.
+- Triumph (DASH, since 2022): re-architected the core Holdings & Performance systems in two
+  passes — first 4× faster on 1/22.5 of the servers, then the same work at 1/225 of the compute
+  (2,400 vCPU×6h → 16 vCPU×4h) while carrying 4× the users and volume.
 - PDF Table Extractor (AME Group, 2017–2019): reconstructs tables from unstructured PDFs using
   BERT in place of CNN+LSTM for region classification, plus graph search for border detection.
 - Sniper (AME Group, 2016–2018): cash-flow and valuation reporting for thousands of projects;
@@ -25,21 +25,24 @@
 - AME Ajax (AME Group, 2018): mining & metals finance model moved from WinForms to
   .NET Core + Angular, delivered by a 6-person team in 6 months.
 
-## Current direction (rev 2026.10)
+## Current direction (rev 2026.10, reviewed 2026-10-04)
 
 Four positions the site argues, each with what he is building against:
 
-1. The agent harness is the product — tool/MCP contracts, failure semantics, cost and latency
-   budgets treated as SLOs. A distributed-systems problem more than a prompt problem.
-2. Context beats cleverness — hybrid retrieval, permissions carried into the vector store,
-   provenance and freshness on every retrieved fact.
-3. Evaluation is the new regression suite — versioned eval sets that fail the build,
-   traces and feedback loops as first-class data, cost and quality measured together.
-4. Regulated verticals are the open field — agent tooling is crowded; wealth, lending,
-   insurance and health are not, and they demand auditable, explainable, boring systems.
+1. Reliability is the whole job — a demo takes a weekend; something a regulated business will
+   actually run takes a year. Retries, concurrent edits, confident wrongness and "why did the
+   system decide that?" are plumbing problems, not model problems.
+2. Finding the right facts beats clever reasoning — clean data, kept current, split so the
+   meaning survives, under the same access rules the staff already have, with provenance.
+3. Evaluation is the new regression suite — a fixed set of test questions with known good
+   answers, re-run automatically on every change, failures and corrections recorded. Cost,
+   speed and quality judged together.
+4. Regulated verticals are the open field — most AI tooling is aimed at writing and marketing;
+   banking, lending, insurance and health care are where being right matters most and a mistake
+   is expensive, and where an auditable process matters more than a cleverer model.
 
-Currently learning: agent frameworks on .NET (Microsoft Agent Framework / Semantic Kernel
-lineage), evaluation harnesses and CI gates, hybrid retrieval over enterprise SQL and documents.
+Currently learning: agents on .NET (Microsoft agent tooling), evaluation as a release gate, and
+grounded retrieval over a company's own SQL databases and documents without breaking permissions.
 
 ## Open source
 
@@ -57,9 +60,15 @@ lineage), evaluation harnesses and CI gates, hybrid retrieval over enterprise SQ
 
 ## Page notes for agents
 
-- Sections in order: hero, about, career, stack, projects, ventures, ai, insights, contact.
-- The `ventures` section embeds two live third-party sites; they load only on request
-  or when scrolled into view, so a fetch of this page returns no frames.
-- Performance and date claims are reconciled to a single source of truth (the Projects
-  section). The page carries a revision stamp (`rev 2026.10`) that moves when content does.
+- Sections in order: 01 hero, 02 about, 03 career, 04 stack, 05 projects, 06 ventures, 07 ai,
+  08 insights, 09 contact. The English text is in the HTML; the Chinese is substituted at
+  runtime from a dictionary, so a fetched page shows English unless the reader's browser asks
+  for Chinese.
+- The `ventures` section embeds two live third-party sites, each in a sandboxed frame; they load
+  only on request or when scrolled into view, so a fetch of this page returns no frames.
+- Performance, tenure and date claims are reconciled to a single source of truth (the Projects
+  section). The page carries a revision stamp (`rev 2026.10`) and a review date
+  (`2026-10-04`) that move when the content does.
+- The page itself offers a keyboard search-and-jump palette (press `/`), a print view, and copy
+  buttons for the contact details. Search runs locally in the browser.
 - Verification tooling for this repository lives in `../tools/` (not published).

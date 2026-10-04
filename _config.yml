@@ -6,27 +6,35 @@
 # 内容模型（改内容前先读这一段）
 #   英文正文写在 _includes/*.html 里（利于 SEO 与无 JS 访问），
 #   中文文案集中在 assets/js/main.js 的 ZH 字典，双语由 data-i18n 键关联。
-#   改动后必须运行 node tools/site-verify.mjs，它会把缺失的中文键、
-#   失效的 CSS 选择器、被破坏的双语切换全部报出来。
+#   改写文案前先看 README 的「写作规则」：说人话、具体压过形容词、
+#   中文是写出来的而不是翻出来的。改动后必须运行 node tools/site-verify.mjs。
 #
 # 版本节奏
-#   页脚与「当下与下一步」带 rev 标记（如 2026.10）。每次实质更新内容：
-#   1) 提升 rev；2) 在 ai.html 的「本页变化」里写清改了什么；3) 重跑校验。
+#   页脚、首屏 HUD 与「当下与下一步」都带 rev 标记（形如 2026.10），
+#   「复查于」写完整日期（形如 2026-10-04）。每次实质更新内容：
+#   1) 把四处 rev 与那一处日期改成同一次复查；2) 在 ai.html 的
+#   「本页变化」里写清改了什么（写给访客看，不是写给自己的日记）；
+#   3) 同步 head.html 里 JSON-LD 的 dateModified；4) 重跑校验。
 # ════════════════════════════════════════════════════════════════════
 
 # ── 基础站点信息 ──────────────────────────────────────────────
-title: "Seth (Feng) Li — Full-Stack & Database Engineer · .NET / C# · AI"
+# 与 _includes/head.html 的 <title> 保持同一句话：jekyll-seo-tag 会再发一个
+# <title>，两处不一致时浏览器取靠前的那个，说不清哪个生效。
+title: "Seth (Feng) Li — Full-Stack & Database Engineer, Sydney"
 description: >-
   Seth (Feng) Li — full-stack and database engineer in Sydney. 33 years in production: .NET 10 / C#,
-  Python, TypeScript, SQL and AWS. Creator of the PDF Table Extractor (NLP / BERT) and former CTO of
-  AME Group. Now building the retrieval, agent and evaluation layers around AI models.
-  Founder of Feng Tech (fengtech.com.au) and Hui Deng Zen Temple (zen.sethfengli.com).
+  Python, TypeScript, SQL and AWS. He rebuilt his company's core portfolio systems to 1/225 of the
+  compute they once needed, started an AI research group that read financial tables out of PDFs, and
+  is now working on the retrieval, agent and evaluation layers around AI models.
+  Founder of Feng Tech (fengtech.com.au) and creator of Hui Deng Zen Temple (zen.sethfengli.com).
 
 url: "https://sethfengli.com"
 lang: en
 timezone: Australia/Sydney
 
 # ── 插件（GitHub Pages 白名单）─────────────────────────────
+# 只装这两个。jekyll-feed 曾被考虑过：本站没有 _posts，它只会生成一个空
+# feed，多一个"永远没有更新"的地址，不如不做。需要 RSS 时先有内容再装。
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
@@ -58,4 +66,3 @@ exclude:
   - Gemfile.lock
   - vendor
   - .bundle
-

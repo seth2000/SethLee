@@ -4,3 +4,7 @@ Allow: /
 # Bilingual personal site: one URL serves English and Chinese
 # (assets/js/main.js swaps the copy client-side).
 Sitemap: https://sethfengli.com/sitemap.xml
+
+# A plain-text summary for AI agents, linked from every page as
+# <link rel="alternate" type="text/plain">.
+# llms.txt: https://sethfengli.com/llms.txt

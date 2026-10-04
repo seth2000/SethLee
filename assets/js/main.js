@@ -22,98 +22,119 @@
      once so switching back to EN needs no duplication.     */
   var ZH = {
     'nav.about': '关于', 'nav.career': '履历', 'nav.stack': '技术', 'nav.projects': '项目',
-    'nav.ai': 'AI 方向', 'nav.ventures': '旗下项目', 'nav.insights': '哲思',
+    'nav.ai': 'AI 方向', 'nav.ventures': '旗下项目', 'nav.insights': '代码与禅',
     'nav.contact': '联系', 'nav.github': 'GitHub ↗',
     'nav.brandName': 'Seth Li', 'nav.brandRole': '全栈 · AI · 数据', 'nav.moreLabel': '更多',
+    'nav.search': '搜索',
+    'nav.paletteTitle': '搜索与跳转',
+    'nav.palettePlaceholder': '跳到某个分区，或者搜索本页内容',
+    'nav.paletteEsc': '关闭',
+    'nav.paletteActions': '操作',
+    'nav.paletteSections': '分区',
+    'nav.paletteOnPage': '本页命中',
+    'nav.paletteHint': '↑↓ 移动，Enter 打开，Esc 关闭。',
+    'nav.paletteLocal': '搜索在你自己的浏览器里跑——输入的内容不会离开这一页。',
+    'nav.paletteTheme': '切换白天 / 夜晚主题',
+    'nav.paletteLang': '切换语言 · 中 / EN',
+    'nav.paletteTop': '回到页首',
 
     'hero.eyebrow': '~/seth-li ▸ 悉尼 · 全栈与数据库工程师 · AI 探索者',
-    'hero.hudStatus': '在线', 'hero.hudLocation': '悉尼 · 澳洲',
+    'hero.hudStatus': '在线', 'hero.hudLocation': '悉尼 · 澳大利亚',
     'hero.hudStackLabel': '技术栈', 'hero.hudSinceLabel': '始于', 'hero.hudRevLabel': '版本',
     'hero.hudRev': '2026.10',
-    'hero.sub': '码 × AI × 禅 —— 33 年生产实践',    'hero.bio': '我是悉尼 <strong>DASH Technology Group</strong>（财富科技）的全栈与数据库工程师，手上交付过的软件已经积累了 <strong>33 年</strong>。我把核心投资组合系统重建到<strong>提速 4 倍、基础设施只剩 1/22.5</strong>，然后没有停手——同样的活儿如今压进<strong>原来 1/50 的算力</strong>，业务量却是 4 倍。更早的时候，我在 AME Group 做 CTO，组建 AI 研究中心，教机器读懂财报（NLP / BERT）；到了晚上，我还在教机器写格律诗。<strong>Feng Tech</strong> 创始人，<strong>慧灯禅院</strong> 创建者。',
-    'hero.ctaCompany': '🏢 Feng Tech',
-    'hero.ctaZen': '🪷 慧灯禅院',
-    'hero.statYears': '年生产实践', 'hero.statPerf': '算力降至原来的',
-    'hero.statScale': '倍的业务承载', 'hero.statAi': '年起深耕 AI / 数据挖掘',
+    'hero.sub': '码 × AI × 禅——我做的系统，必须一直跑得住',
+    'hero.bio': '我在悉尼的财富科技公司 <strong>DASH Technology Group</strong> 写软件，写了 <strong>33 年</strong>，大半时间都在数据这一层——数据库、报表，那些托着别的东西的地基。在 DASH 我把核心投资组合系统重构了两遍：第一遍<strong>提速 4 倍，服务器只剩 1/22.5</strong>；第二遍把同样的活压到<strong>原来 1/225 的算力</strong>，业务量却是 <strong>4 倍</strong>。再早，我在 AME Group 做 CTO，拉起一个<strong> AI 研究小组</strong>，教模型读财报。此外我经营 <strong>Feng Tech</strong>，守着<strong>慧灯禅院</strong>；夜里教机器写格律诗。',
+    'hero.ctaCompany': 'Feng Tech',
+    'hero.ctaZen': '慧灯禅院',
+    'hero.statYears': '年写软件', 'hero.statPerf': '算力降至原来的',
+    'hero.statScale': '业务量倍数，同一套系统', 'hero.statAi': '年起做 AI 与数据挖掘',
 
-    'about.title': '工程价值', 'about.titleEm': '· AI · 数据 · 交付',
+    'about.title': '我做什么', 'about.titleEm': '· AI · 数据 · 交付',
     'about.kicker': '为何选我',
-    'about.sub': '三十年持续交付生产级系统——专注 AI、数据与扎实工程三者交汇之处。',
+    'about.sub': '做了 33 年生产系统，最近几年都花在 AI 最要命的那一环：它到底能不能让人信。',
     'about.nowLabel': '当前',
     'about.aiTitle': 'AI 与生成式 AI',
-    'about.aiText': '任 CTO 期间组建公司<strong>AI 研究中心</strong>，让模型从非结构化 PDF 财报中读出数据（NLP / BERT），并落地了背后的<strong>PDF 表格提取器</strong>。如今我围绕模型构建检索、智能体与评估三层能力；chinesepoem 里，机器则在写格律诗。',
+    'about.aiText': '做 CTO 时我拉起一个 AI 研究小组，让模型从非结构化 PDF 里读出财报，并把背后的表格提取器做成了产品。（当年用的语言模型叫 BERT——今天这些 AI 助手，底子上是同一个思路。）如今我做的是让助手靠得住的那部分：找对资料、给对工具、量准它到底有没有变好。',
     'about.aiChip1': '生成式 AI', 'about.aiChip2': 'NLP', 'about.aiChip3': 'LLM',
     'about.aiChip4': 'BERT', 'about.aiChip5': 'RAG', 'about.aiChip6': 'AI 智能体',
     'about.aiChip7': '效果评估',
-    'about.aiNow': '.NET 上的 AI 助手 · 认真做测试 · 帮它找对资料',
+    'about.aiNow': '让助手在不知道的时候，老实说不知道',
     'about.dbTitle': '数据库与数据',
-    'about.dbText': '我首先、也始终是一名<strong>数据库开发者</strong>：SQL、库表设计与数据挖掘，横跨 SQL Server、PostgreSQL、MongoDB 与 Redshift，之间用 Kafka/CDC 打通。我做过一套被投行与政府机构采购的大宗商品经济数据库——因为模型的上限，取决于底下数据的质量。',
+    'about.dbText': '我首先、到现在也还是<strong>数据库开发者</strong>：库表设计、SQL、数据挖掘，横跨 SQL Server、PostgreSQL、MongoDB 与 Redshift，彼此之间用变更捕获管道打通。我做过一套大宗商品经济数据库，投行与政府机构都买过。',
     'about.dbChip1': 'SQL', 'about.dbChip2': '数据库设计', 'about.dbChip3': '数据挖掘',
     'about.dbChip4': 'PostgreSQL', 'about.dbChip5': 'Kafka / CDC', 'about.dbChip6': '数据质量',
-    'about.dbNow': '让 AI 读企业自己的文档，权限规则和员工本人一模一样',
+    'about.dbNow': '让助手读企业自己的文档，权限和员工本人一模一样',
     'about.fsTitle': '全栈与金融科技',
-    'about.fsText': '现职 <strong>DASH Technology Group</strong> 全栈工程师，此前任职 Simpology 与 Roar——.NET / .NET Core、C#、TypeScript、Angular / React / Vue、AWS 与 Azure。我把核心 Holdings 与 Performance 系统重构到<strong>算力降至 1/50、业务量提升 4 倍</strong>，并主导 .NET Framework → .NET 10 现代化迁移。',
+    'about.fsText': '现职 <strong>DASH Technology Group</strong> 全栈工程师，此前待过 Simpology、Roar、Deepend 与 Argent Software。.NET 与 C#、TypeScript、Angular / React / Vue、AWS 与 Azure。我重构了核心的 Holdings 与 Performance 系统，并主导从 .NET Framework 4.6.1 迁到 .NET 10。',
     'about.fsChip1': '金融科技', 'about.fsChip2': '现代化迁移', 'about.fsChip3': 'C#',
     'about.fsChip4': 'Angular', 'about.fsChip5': 'AWS', 'about.fsChip6': 'Azure',
-    'about.fsNow': '为受监管的系统做好接 AI 的准备，并且留下证据',
+    'about.fsNow': '把受监管的系统准备好接 AI，并且留下证据',
 
-    'career.title': '33 年工程履历', 'career.titleEm': '· 从第一行代码到 AI',
+    'career.title': '33 年工程履历', 'career.titleEm': '· 还在写代码',
     'career.kicker': '履历',
-    'career.sub': '持续交付、自动化与学习的记录——留下的是至今仍能解释我如何做事的那几个节点。',
+    'career.sub': '几个至今还能解释我怎么做事的节点。',
+    'career.glanceNowK': '现职',
+    'career.glanceNowV': '全栈工程师 · DASH Technology Group，悉尼',
+    'career.glanceCtoK': '最高职位',
+    'career.glanceCtoV': 'CTO · AME Group（2007–19）——组建公司的 AI 研究小组，并把 PDF 表格提取器做成产品',
+    'career.glanceStartK': '第一份有报酬的活',
+    'career.glanceStartV': '1993 年，还在念大学——此后没有中断过',
+    'career.workGroup': '更早的岗位',
+    'career.eduGroup': '教育经历',
     'career.dashTitle': '全栈工程师 · DASH Technology Group',
-    'career.dashText': '重构核心 Holdings 与 Performance 系统：先是提速 4 倍、基础设施降至 1/22.5，最终同样的计算只需原来的 1/50，同时承载 4 倍的户数与业务量。自动化流动性检查（节省 2 个全职人力），并主导 .NET Framework 4.6.1 → .NET 10 现代化迁移。',
+    'career.dashText': '分两步重构核心的 Holdings 与 Performance 系统：先做到提速 4 倍、服务器只剩 1/22.5；再压到原来 1/225 的算力，同时扛住 4 倍的户数与业务量。把流动性检查自动化（省下 2 个全职人力），并主导 .NET Framework 4.6.1 到 .NET 10 的迁移。',
     'career.dashChip1': '财富科技', 'career.dashChip2': '.NET 10',
     'career.dashChip3': 'AWS Aurora', 'career.dashChip4': 'PostgreSQL',
     'career.ftTitle': '创始人兼首席工程师 · Feng Tech',
-    'career.ftText': '悉尼 IT 服务公司——高效建站、快速排障与可靠支持（The tech experts）。下方「旗下项目」有实时预览。',
+    'career.ftText': '悉尼的 IT 服务公司——建站、AI 自动化、数据库与技术支持。下方「旗下项目」有实时预览。',
     'career.ftChip1': 'IT 服务', 'career.ftChip2': '网站开发', 'career.ftChip3': '技术支持',
     'career.simpTitle': '软件工程师 · Simpology Australia',
-    'career.simpText': '云原生数字贷款平台——.NET Core 与 AWS 后端服务，Angular 与 TypeScript 前端。',
+    'career.simpText': '云原生的数字贷款平台——后端用 .NET Core 与 AWS，前端用 Angular 与 TypeScript，面向经纪人与贷款机构。',
     'career.simpChip1': '数字贷款', 'career.simpChip2': '.NET Core', 'career.simpChip3': 'Angular',
     'career.roarTitle': '软件工程师 · Roar Software',
-    'career.roarText': '基于 Azure 与 .NET Core 构建可扩展系统；集成 OAuth2 / Identity Server 4 与 DocuSign；Vue.js、Angular 与 TypeScript 前端开发。',
+    'career.roarText': '在 Azure 与 .NET Core 上构建系统；集成 OAuth2 / Identity Server 4 与 DocuSign；前端用 Vue.js、Angular 与 TypeScript。',
     'career.roarChip1': 'Azure', 'career.roarChip2': 'OAuth2', 'career.roarChip3': 'Vue.js',
     'career.learnTitle': '全栈工程师 · Learn It All',
-    'career.learnText': '主导基于 NopCommerce 的在线教育平台开发，覆盖课程管理、支付集成与学习体验优化。',
+    'career.learnText': '主导一个基于 NopCommerce 的在线教育平台：课程管理、支付，以及学习体验本身。',
     'career.learnChip1': 'NopCommerce', 'career.learnChip2': '在线教育',
     'career.deependTitle': '全栈工程师 · Deepend',
-    'career.deependText': '使用 React 与 Redux 开发 API 与复杂前端功能，服务多个品牌客户的数字项目。',
+    'career.deependText': '用 React 与 Redux 做 API 和吃力的前端功能，服务好几个品牌客户。',
     'career.deependChip1': 'React', 'career.deependChip2': 'Redux',
     'career.argentTitle': '售前技术支持工程师 · Argent Software',
-    'career.argentText': '使用 SQL Server 与 .NET 提供现场技术支持与方案演示；负责澳大利亚及周边地区的客户开发与支持。',
+    'career.argentText': '用 SQL Server 与 .NET 做现场技术支持和方案演示，客户遍布澳大利亚及周边地区。',
     'career.argentChip1': 'SQL Server', 'career.argentChip2': '.NET',
     'career.ameTitle': '首席技术官（CTO）· AME Group',
-    'career.ameText': '作为 CTO 我组建了公司的 AI 研究中心，带团队让模型从财报里把表格抠出来——用 BERT 换掉了早期的 CNN+LSTM。此外还主导了一套 GIS 机器学习数据挖掘系统，用 Git 与 Jira/Agile 立起 IT 规范，并做出被投行与政府机构采购的大宗商品经济数据库。',
+    'career.ameText': '作为 CTO，我组建了公司的 AI 研究小组，带团队把表格从财报文件里抠出来——用 BERT 换掉了早期的 CNN+LSTM。此外还主导了一套面向 GIS 的机器学习数据挖掘系统，用 Git 与 Jira/Agile 立起 IT 规范，并做出投行与政府机构都采购过的大宗商品经济数据库。',
     'career.ameChip1': 'CTO', 'career.ameChip2': 'AI / NLP', 'career.ameChip3': '数据挖掘',
     'career.bpsTitle': '软件工程师 · BPS Australia',
-    'career.bpsText': '主导 EFS 设备租赁管理系统；实现银行账务、邮局地址与信用管理数据库的自动对接，降低人力与资金风险。',
+    'career.bpsText': '主导 EFS 设备租赁管理系统；把银行、邮政地址与征信机构的对接全部自动化，既省人力也降风险。',
     'career.bpsChip1': '.NET', 'career.bpsChip2': '系统集成',
     'career.mtcTitle': '软件工程师 · MTC Australia',
-    'career.mtcText': '基于遗留 MS Access 系统开发数据库；担任 Web 应用设计师。',
+    'career.mtcText': '在一套遗留的 MS Access 系统上做数据库开发，同时设计网页界面。',
     'career.mtcChip1': 'Access', 'career.mtcChip2': '网页设计',
     'career.austcareTitle': '数据开发 · AUSTCARE',
-    'career.austcareText': '数据库助理，负责数据库维护与数据处理，支持难民援助项目的信息系统稳定运行。',
+    'career.austcareText': '负责数据库维护与数据处理，支持难民援助项目的日常运作。',
     'career.austcareChip1': '数据库',
     'career.abcTitle': '运维工程师 · 中国农业银行（长沙分行）',
-    'career.abcText': '构建《银行OA管理系统》（数据挖掘 + 决策支持）与面向信用卡用户的信使平台（Email/短信对账单）。',
+    'career.abcText': '做了银行的 OA 管理系统（数据挖掘 + 决策支持），以及面向持卡人的消息通知平台（邮件与短信对账单）。',
     'career.abcChip1': 'VB6 / VC6', 'career.abcChip2': 'Sybase', 'career.abcChip3': 'Exchange SDK',
     'career.jinshiTitle': '项目经理 · 长沙金石电脑公司',
-    'career.jinshiText': '创始团队核心成员——主导《商业银行国际贸易系统》（信用证、托收、汇兑），运行于全国交通银行各分行。',
+    'career.jinshiText': '创始团队成员——主导《商业银行国际贸易系统》（信用证、托收、汇兑），运行于全国交通银行各分行。',
     'career.jinshiChip1': 'COBOL / C', 'career.jinshiChip2': 'Delphi', 'career.jinshiChip3': 'Sybase',
-    'career.edu1Title': '湘潭大学 · 硕士（人工智能与数据挖掘方向）',
-    'career.edu1Text': '计算机应用工程专业硕士（人工智能与数据挖掘方向）——以全日制、公费全额身份录取，在职攻读完成。与上文工作经历的时间重叠是真实的，并非笔误。',
+    'career.edu1Title': '湘潭大学 Xiangtan University · 硕士 M.Eng（人工智能与数据挖掘）',
+    'career.edu1Text': '计算机应用工程专业硕士（人工智能与数据挖掘方向）——以全日制、公费全额录取，在职读完，所以时间与上面的工作有重叠。',
     'career.edu1Chip1': '硕士 · 双一流',
     'career.edu1Chip2': '公费全额 · 在职攻读',
-    'career.edu2Title': '长沙大学 · 计算机科学与技术',
-    'career.edu2Text': '计算机科学与技术专业大专——全日制，工程思维在此扎根。',
+    'career.edu2Title': '长沙大学 · 计算机科学与技术（大专）',
+    'career.edu2Text': '计算机科学与技术大专，全日制——工程思维就是从这里扎下根的。',
     'career.edu2Chip1': '高等教育',
     'career.netTitle': 'LinkedIn · 职业网络',
-    'career.netText': '500+ 联系人 · 576 位关注者——欢迎连接，一起构建有意义的事。',
+    'career.netText': '500+ 联系人——欢迎来打个招呼。',
     'career.more': '展开全部履历', 'career.less': '收起',
 
-    'stack.title': '技术栈', 'stack.titleEm': '· 日常共修的工具',
+    'stack.title': '技术栈', 'stack.titleEm': '· 每天上手用的工具',
     'stack.kicker': '技术栈',
-    'stack.sub': '选工具如选法器——趁手、可靠、可维护。',
+    'stack.sub': '用得够久、也有自己看法的那些工具。',
     'stack.g1Title': '编程语言', 'stack.g2Title': 'AI 与数据',
     'stack.genAI': '生成式 AI', 'stack.llm': 'LLM', 'stack.agents': 'AI 智能体',
     'stack.rag': 'RAG 检索增强', 'stack.nlp': 'NLP', 'stack.evals': '效果评估',
@@ -123,40 +144,43 @@
 
     'projects.title': '精选项目', 'projects.titleEm': '· 交付 · 开源 · 修行',
     'projects.kicker': '项目',
-    'projects.sub': '数十年交付的亮点——以及我持续练习的开源仓库。',
-    'projects.f1Text': '分两步重建核心的 Holdings 与 Performance 系统。第一步先做到提速 4 倍、基础设施降到 1/22.5；第二步把同样的活儿压到 16 vCPU×4 小时——过去要 2,400+ vCPU×6 小时。算力只剩原来的 1/50，却扛着 4 倍的户数与业务量。',
-    'projects.f1Meta': 'DASH Technology Group · 2024–至今 · AWS Aurora · SQS · PostgreSQL',
-    'projects.f2Text': '从非结构化 PDF 中还原表格：以 BERT 取代 CNN+LSTM 做区域分类，并用图搜索定位表格边框。目标是无人值守地跑完海量财报，把人工录入整段替换掉。',
+    'projects.sub': '几件做完了还在跑的东西，以及我持续练手的那几个仓库。',
+    'projects.f1Text': '分两步重建核心的 Holdings 与 Performance 系统。第一步提速 4 倍、服务器降到 1/22.5；第二步把同样的活压到 16 vCPU 跑 4 小时——过去要 2,400 vCPU 跑 6 小时。算力只剩 1/225，业务量却是 4 倍。',
+    'projects.f1Meta': 'DASH Technology Group · 自 2022 年 · AWS Aurora · SQS · PostgreSQL',
+    'projects.f2Text': '从非结构化 PDF 里还原表格：用语言模型 BERT 取代 CNN+LSTM 做区域分类，再用图搜索定位表格边框。目标是无人值守地跑完一批批财报，而不是靠人一行行录。',
     'projects.f2Meta': 'AME Group · 2017–2019 · NLP · 深度学习',
-    'projects.f3Text': '为数千个项目自动生成现金流与估值报告；将 .NET 后端逻辑自动转换为 VBA/Excel，使分析师可直接在 Excel 中建模。',
+    'projects.f3Text': '为数千个项目自动生成现金流与估值报告；把 .NET 后端逻辑翻成 VBA/Excel，分析师可以直接在 Excel 里建模。',
     'projects.f3Meta': 'AME Group · 2016–2018 · Excel · VBA',
-    'projects.f4Text': '把分析师赖以工作的矿业金属财务模型从 WinForms 迁到 .NET Core + Angular，交互速度与桌面版持平——6 人团队、6 个月交付，模型口径零回归。',
+    'projects.f4Text': '6 人团队、6 个月，把分析师赖以工作的矿业金属财务模型从 WinForms 迁到 .NET Core + Angular，交互速度与桌面版持平，模型口径零回归。',
     'projects.f4Meta': 'AME Group · 2018 · .NET Core · Angular',
     'projects.osTitle': '开源项目',
-    'projects.p1': '自动生成中国古典格律诗——NLP / 生成模型实验：教机器写诗，也从内部观察创造力。',
-    'projects.p2': '灵棋经的数字实现——对传统占卜的现代化、可复现实验：结构化数据进，结构化预测出。',
-    'projects.p3': '企业运维工具——从 Active Directory 查询用户登录时间，用于审计与账号治理：那种每天都会回本的自动化。',
-    'projects.p4': '预测档案——记录、复盘与验证，让时间给出答案：一个在不确定性下校准判断的个人实验室。',
+    'projects.p1': '自动生成中国古典格律诗——一个 NLP 实验：教机器写诗，也从里面看创造力长什么样。',
+    'projects.p2': '《灵棋经》的数字实现——把一个古老的占卜方法做成可复现的实验：结构化数据进，结构化预测出。',
+    'projects.p3': '一个运维小工具：从 Active Directory 里查用户登录时间，用于审计与账号治理。那种每天都能回本的自动化。',
+    'projects.p4': '预测档案——先记下来，回头复盘，让时间给答案。一个校准判断力的私人实验室。',
     'projects.more': '更多仓库：', 'projects.moreLink': '在 GitHub 查看全部 ↗',
-    'projects.statsNote': '卡片由 github-readme-stats 实时渲染——始终为最新数据。',
+    'projects.statsNote': '卡片由 github-readme-stats 实时渲染，所以一直是最新的。',
+    'projects.statsFallback': '卡片加载不出来时，同样的数据在',
 
     'ventures.title': '本职工作之外', 'ventures.titleEm': '· 两个事业，一门修行',
     'ventures.kicker': '旗下项目',
-    'ventures.sub': '我拥有的两个产品的实时预览——IT 服务公司与数字禅院。预览会在你点击或滚动到该处时加载；上方按钮可切换设备宽度。',
+    'ventures.sub': '我自己拥有并运营的两样东西。预览只在你按下按钮、或滚到这里时才加载——第三方站点因此拖不慢这一页。',
     'ventures.ftTag': '· 悉尼 IT 服务公司',
     'ventures.ftSlogan': 'The tech experts',
     'ventures.ztTag': '· 慧灯禅院',
-    'ventures.ztNote': '佛学文章 · 法音宣流 · 在线祈福 · 观音灵签——一盏心灯，长明不灭。小屏设备建议点击「全屏打开」获得完整体验。',
+    'ventures.ztNote': '佛学文章、法音宣流、在线祈福、观音灵签——一盏长明的灯。小屏上点「全屏打开」看完整效果。',
+    'ventures.privacy': '这两个预览是独立的网站。每个都跑在沙箱框架里，读不到这一页，也不能为本站域名写 cookie。',
 
     'frame.desktop': '桌面', 'frame.tablet': '平板', 'frame.mobile': '手机', 'frame.open': '全屏打开 ↗',
-    'frame.loadLabel': '加载实时预览', 'frame.loadNote': '这是第三方页面，你点了它才加载，滚到这里也会自动加载。',
+    'frame.loadLabel': '加载实时预览', 'frame.loadNote': '第三方页面——你点了它才加载，滚到这里也会自动加载。',
+    'frame.reload': '重新加载',
 
     'ai.title': '我看 AI 往哪走', 'ai.titleEm': '· 以及我站在哪里',
     'ai.kicker': 'AI 方向',
-    'ai.sub': '我用大白话说四件自己真心相信的事——以及为什么三十年起早贪黑伺候数据，恰好是应付这四件事最好的底子。',
+    'ai.sub': '关于 AI，我真正相信的四件事，用大白话说——以及为什么 33 年伺候数据的苦活，恰好是最好的准备。',
     'ai.d1Title': '做个演示只要一个周末，做得让人敢用要一年', 'ai.d1Tag': '可靠性',
-    'ai.d1Text': '谁都能让一个 AI 助手在五分钟里看起来很惊艳。难的是剩下那 99% 的时间。',
-    'ai.d1Text2': '中间某一步失败了怎么办？两件事同时改同一条数据怎么办？AI 一本正经地说错话怎么办？客户追问「你凭什么这么判断」又怎么办？这些都不是模型的问题，而是模型外面那套管道的问题——而这套管道，我在银行系统里已经修了三十年。',
+    'ai.d1Text': '谁都能让一个 AI 助手在五分钟里看起来挺惊艳。难的是剩下那 99% 的时间。',
+    'ai.d1Text2': '中间某一步失败了怎么办？两件事同时改同一条数据怎么办？AI 一本正经地说错话怎么办？客户追问「你凭什么这么判断」又怎么办？这些都不是模型的问题，而是模型外面那套管道的问题——而这套管道，我在银行系统里已经修了 33 年。',
     'ai.d1L1': '每一步要么能安全重来，要么能干净撤回',
     'ai.d1L2': '拿不准就停下来问人，而不是硬猜',
     'ai.d1L3': '每个决定都留档，连花了多少钱一起记，事后能解释清楚',
@@ -166,73 +190,80 @@
     'ai.d2L1': '按意思找、按关键词找，再让数据自己筛一遍',
     'ai.d2L2': '员工本来能看什么，AI 就只能看什么',
     'ai.d2L3': '每个答案都能追回它出自哪份文件、哪一天',
-    'ai.d3Title': '你从来没量过的东西，不可能会变好', 'ai.d3Tag': '测试',
+    'ai.d3Title': '没量过的东西，不可能变好', 'ai.d3Tag': '测试',
     'ai.d3Text': '要是没人记下上周 AI 表现如何，这周的改动是让它变好还是变坏，谁也说不清。真正靠 AI 拿到价值的团队，都会养一批「标准答案题」，每次改动自动跑一遍，把每一次失败和每一次纠正都记下来。听着确实枯燥。可这正是「大家悄悄不用了」和「敢拿它干正经活」之间的差别。',
     'ai.d3L1': '固定一套测试题，每次改动后自动重跑',
     'ai.d3L2': '失败和纠正都留痕，不许忘',
     'ai.d3L3': '质量、速度、花销放在一起看，而不是只看一样',
     'ai.d4Title': '最大的机会，在那些谁都觉得没劲的行业里', 'ai.d4Tag': '机会',
-    'ai.d4Text': '帮人写营销文案的 AI 工具成百上千，可银行、信贷、保险、医疗却少有人做——恰恰因为这些地方最不容出错，错一次的代价最大。一个准确率 95% 的助手，放在聊天窗口里是个有趣的玩具，放进一笔贷款决策里就是不能接受。这里拼的不是模型更聪明，而是一套风控和监管都点头的流程。在财富科技与数字贷款里泡了二十年，在这个市场不是短板，而是入场券。',
+    'ai.d4Text': '大多数 AI 工具是给写作和营销做的，很少有人做银行、信贷、保险和医疗——可这些地方恰恰最不容出错，错一次代价最大。一个准确率 95% 的助手，放在聊天窗口里是玩具，放进一笔贷款决策里就是不能接受。这里要的不是更聪明的模型，而是一套风控和监管都点头的流程。我整个职业生涯都在银行、贷款平台和财富管理系统里，在这个市场上这不是短板——它是我知道该问什么问题的原因。',
     'ai.d4L1': '凡涉及受监管的建议，人始终留在环里',
     'ai.d4L2': '每一个自动决定都留下经得起查的证据',
     'ai.d4L3': '数据不许出内网，就把小模型放进内网跑',
 
     'now.title': '当下与下一步',
     'now.revLabel': '版本', 'now.rev': '2026.10',
-    'now.updatedLabel': '更新于', 'now.updated': '2026-10',
+    'now.updatedLabel': '复查于', 'now.updated': '2026-10-04',
     'now.learningLabel': '正在学',
     'now.learning1': '用 .NET 和微软的智能体工具搭 AI 助手——以及什么时候一个简单循环就够了，不必搞复杂架构',
     'now.learning2': '让 AI 保持诚实的测试习惯：固定测试题、自动打分、每次发布前先过一道闸',
     'now.learning3': '让 AI 在企业自己的数据库和文档里找到对的答案，同时不越权限的界',
     'now.nextLabel': '未来 90 天',
     'now.next1': '开源一个能跑的样例：一个跑在真实数据库上的 AI 助手，连测试一起给',
-    'now.next2': '把反复向团队解释的数据与测试套路写下来，让别人也能直接用',
-    'now.next3': '把一件真实的财富管理事务从全人工推进到 AI 辅助，并留下可查的证据链',
+    'now.next2': '把上一季度写下来的那套套路，做成别人不靠我也能直接上手的东西',
+    'now.next3': '让那件 AI 辅助的财富管理事务继续在生产里跑，并且量一量它到底靠不靠得住',
     'now.changedLabel': '本页变化',
-    'now.changed1': '本页开始讲自己的方向与版本，而不只是履历',
-    'now.changed2': 'AI 一节改用大白话重写，去掉了行业黑话',
-    'now.changed3': '性能数据统一口径（见「项目」）；旗下项目预览改为按需加载',
-    'now.foot': '这一节我每季度重看一次，上面的版本日期就是那次重看的痕迹。要是这里有哪句话已经过时了，欢迎拿它来质问我——这个日期就是为了这个。',
+    'now.changed1': '算力数字更正为 1/225——原来的 1/50 和旁边印着的原始数字对不上',
+    'now.changed2': '英文全篇改用更直白的写法；中文整篇重写成像中文，而不是英文的译本',
+    'now.changed3': '新增搜索跳转面板（页面上按 / 就行）、打印版式，以及联系方式的复制按钮',
+    'now.foot': '这一节我每季度重看一次，上面的日期就是那次重看的痕迹。要是这里有哪句话已经过时了，欢迎拿它来质问我——这个日期就是为了这个。',
 
     'insights.title': '禅是世界观，', 'insights.titleEm': '代码是方法论',
-    'insights.kicker': '哲思',
-    'insights.sub': '以程序员的语言重新诠释佛学经典——同一种修行的另一面。',
+    'insights.kicker': '代码与禅',
+    'insights.sub': '用程序员的语言再说一遍佛学里的老概念——同一件事的另一面。',
     'insights.c1Title': '「空」是抽象类 · 空即是色',
-    'insights.c1Text': '空（Emptiness）是 abstract class，色（Form）是 concrete class，相（Appearance）是 instance。你看见一只猫：眼前这只具体的猫是实例，「猫」是抽象类，「黑猫」是具体类——心智从具体走向抽象，一条可验证的认知路径。',
+    'insights.c1Text': '空是抽象类，色是具体类，相是实例。你看见一只猫：眼前这只是实例，「猫」是抽象类，「黑猫」是具体类。心智就是从具体走向抽象。',
     'insights.c1Eng': 'Emptiness : Form : Appearance = 抽象类 : 具体类 : 实例',
     'insights.c2Title': '「我」无法被实例化',
-    'insights.c2Text': '「我」在本质上是一个抽象类：不能使用 <code>this</code> → 无我；不能实例化 → 无人；没有生命周期方法 → 无寿者。四句偈的尽头，是一个永远无法 new 出来的对象。',
-    'insights.c2Eng': 'no this · no instantiate · no lifecycle',
+    'insights.c2Text': '「我」本质上是一个抽象类：不能用 <code>this</code>，所以无我；不能实例化，所以无人；没有生命周期方法，所以无寿者。四句偈读到最后，是一个永远 new 不出来的对象。',
+    'insights.c2Eng': '无 this · 无实例化 · 无生命周期',
     'insights.c3Title': '知识越多，我执越少 · Ego = 1 / Knowledge',
-    'insights.c3Text': '「知识越多，我执越少；知识越少，我执越多。」以及提醒：「当心别把理智奉若神明——它虽肌肉强健，却没有个性。」',
-    'insights.c3Eng': 'More the knowledge, lesser the ego',
+    'insights.c3Text': '「知识越多，我执越少；知识越少，我执越多。」还有一句提醒：「当心别把理智奉若神明——它肌肉强健，却没有个性。」',
+    'insights.c3Eng': '知识越多，我执越少',
     'insights.poemLabel': '📜 定场诗',
     'insights.poemEn': '双燕归南国，<br>来寻王谢家。<br>画堂春昼静，<br>于此托生涯。<br>气回天地运，<br>财聚八方华。<br>人途新起色，<br>福泽满云霞。',
-    'insights.codeHint': '点中任意一个下落的字符 —— 屏幕冻结，我的一个 Python 函数浮出来，随后崩塌。',
+    'insights.codeTap': '冻结屏幕',
+    'insights.codeHint': '点中任意一列最前面那个下落的字符——或者按「冻结屏幕」——屏幕就停住，我的一个 Python 函数浮出来，随后崩塌。',
     'contact.title': '结缘', 'contact.titleEm': '· 代码 · AI · 禅',
     'contact.kicker': '联系',
-    'contact.line': '期待与有趣的你交谈——代码、AI、数据、禅，或任何「看似不可能」的想法。',
-    'contact.email': '✉️ 邮箱',
-    'contact.zen': '🪷 慧灯禅院',
-    'contact.cardEmailLabel': '邮件主通道', 'contact.cardEmailNote': '最快的联系渠道——通常当天回复。',
-    'contact.cardPhoneLabel': '语音线路', 'contact.cardPhoneNote': '悉尼时间 · 紧急问题优先。',
-    'contact.cardLiLabel': '职业网络', 'contact.cardLiNote': '500+ 联系人 · 576 位关注者。',
+    'contact.line': '想聊点有意思的——代码、AI、数据、禅，或者任何「看起来不可能」的事。',
+    'contact.email': '写邮件',
+    'contact.zen': '慧灯禅院',
+    'contact.availOn': '此刻在工位上——邮件最快',
+    'contact.availOff': '悉尼这边已是深夜——明天回你',
+    'contact.cardEmailLabel': '邮件主通道', 'contact.cardEmailNote': '最快的渠道——通常当天回。',
+    'contact.cardPhoneLabel': '语音线路', 'contact.cardPhoneNote': '悉尼时间——急事先说。',
+    'contact.cardLiLabel': '职业网络', 'contact.cardLiNote': '完整的工作经历都在那里。',
     'contact.cardGhLabel': '源代码', 'contact.cardGhNote': '开源仓库、实验与档案。',
     'contact.cardFtLabel': '业务线路', 'contact.cardFtCity': '悉尼 IT 服务',
     'contact.cardFtNote': '网站、AI 自动化、数据库与技术支持。',
     'contact.cardZenLabel': '修行', 'contact.cardZenNote': '佛学文章、法音、在线祈福与观音灵签。',
-    'contact.panelStatus': '信号畅通',
-    'contact.panelOrgLabel': '组织', 'contact.panelFocusLabel': '方向', 'contact.panelModeLabel': '方式',
+    'contact.panelOrgLabel': '现职',
+    'contact.panelOrg': '全栈工程师 · DASH Technology Group · 澳大利亚大悉尼地区',
+    'contact.panelFocusLabel': '方向', 'contact.panelModeLabel': '方式',
     'contact.panelHoursLabel': '时间', 'contact.panelSinceLabel': '构建',
     'contact.panelMode': '远程服务全球 · 悉尼地区可上门',
-    'contact.panelSince': '自 1993 年持续交付软件，未曾中断',
+    'contact.panelSince': '自 1993 年起持续交付软件，从未中断',
+    'contact.copyEmail': '复制邮箱', 'contact.copyPhone': '复制电话',
+    'contact.copied': '已复制', 'contact.print': '打印或存为 PDF',
 
-    'footer.role': '全栈与数据库工程师 · .NET / C# / AI 探索者',
+    'footer.role': '全栈与数据库工程师 · .NET / C# / AI',
     'footer.photos': '图片来源（免费可商用）：', 'footer.pexels': 'Pexels',
     'footer.fonts': '字体：', 'footer.stats': '数据卡片：', 'footer.host': '托管于 GitHub Pages',
-    'footer.keywords': '关键词：全栈工程师 · 数据库开发 · .NET / .NET Core · C# · Python · TypeScript · Angular · React · SQL · AWS · Azure · Kubernetes · 生成式 AI · LLM · RAG · AI 智能体 · NLP · 提示词工程 · 效果评估 · 金融科技 · 财富科技 · 数据挖掘 · 悉尼 澳大利亚',
+    'footer.llms': '给 AI 读的 llms.txt',
     'footer.rev': '版本 2026.10 · All things being equal = Everything happens as expected'
   };
+
 
   /* 浏览器语言默认值：zh* → 中文，其余英文（本地存储优先） */
   function detectLang() {
@@ -244,10 +275,18 @@
   var lang = fetchStore('sl-lang');
   if (lang !== 'zh' && lang !== 'en') { lang = detectLang(); }
   var i18nEls = qsa('[data-i18n]');
+  /* Attribute translations (placeholders, titles) need their own pass: the
+     dictionary supplies innerHTML, which a placeholder does not accept. */
+  var i18nAttrs = qsa('[data-i18n-placeholder]');
 
   function captureOriginals() {
     i18nEls.forEach(function (el) {
       if (!el.hasAttribute('data-en-orig')) { el.setAttribute('data-en-orig', el.innerHTML); }
+    });
+    i18nAttrs.forEach(function (el) {
+      if (!el.hasAttribute('data-en-placeholder')) {
+        el.setAttribute('data-en-placeholder', el.getAttribute('placeholder') || '');
+      }
     });
   }
 
@@ -260,6 +299,13 @@
       el.innerHTML = (lang === 'zh' && ZH[key] !== undefined)
         ? ZH[key]
         : el.getAttribute('data-en-orig');
+    });
+    i18nAttrs.forEach(function (el) {
+      var key = el.getAttribute('data-i18n-placeholder');
+      var zh = ZH[key];
+      el.setAttribute('placeholder', (lang === 'zh' && zh !== undefined)
+        ? zh
+        : (el.getAttribute('data-en-placeholder') || ''));
     });
     qsa('[data-lang]').forEach(function (b) {
       var on = b.getAttribute('data-lang') === lang;
@@ -348,6 +394,7 @@
     var p = max > 0 ? window.scrollY / max : 0;
     if (bar) { bar.style.transform = 'scaleX(' + p + ')'; }
     if (nav) { nav.classList.toggle('scrolled', window.scrollY > 20); }
+    if (toTop) { toTop.classList.toggle('on', window.scrollY > 700); }
     spy();
   }
 
@@ -434,17 +481,17 @@
   var PHRASES = {
     en: [
       'Code with clarity. Build with intent.',
-      '33 years of full-stack & database engineering.',
-      'Full-Stack Engineer · DASH Technology Group (WealthTech)',
-      'Core systems: 1/50 of the compute, 4× the load.',
-      'Agents, retrieval, evals — the harness is the product.'
+      '33 years of full-stack and database work.',
+      'Full-stack engineer · DASH Technology Group, Sydney',
+      'Core systems: 1/225 of the compute, 4× the load.',
+      'Retrieval, agents, evaluations — and the dull parts that make them trustworthy.'
     ],
     zh: [
-      '以码之清明，铸系统之可靠。',
-      '三十三年全栈与数据库工程实践。',
-      '全栈工程师 · DASH Technology Group（财富科技）',
-      '核心系统：算力降至 1/50，业务量提升 4 倍。',
-      '智能体 · 检索 · 评估 —— 承载层才是产品。'
+      '把代码写清楚，把事情做成。',
+      '33 年，全栈与数据库。',
+      '全栈工程师 · DASH Technology Group（悉尼）',
+      '核心系统：算力降到 1/225，业务量 4 倍。',
+      '检索、智能体、效果评估——还有那些让它们可信的无聊功夫。'
     ]
   };
   var pi = 0, ci = 0, deleting = false, typeTimer = null;
@@ -590,7 +637,10 @@
     iframe.setAttribute('title', stage.getAttribute('data-frame-title') || url);
     iframe.setAttribute('loading', force ? 'eager' : 'lazy');
     iframe.setAttribute('allowfullscreen', '');
-    iframe.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
+    /* A third-party site framed in our page should not be able to reach the
+       page: sandbox it, and do not hand it our full URL as a referrer. */
+    iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-popups allow-forms');
+    iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
     iframe.style.display = 'block';
     iframe.style.width = (w > 0 ? w : 960) + 'px';
     iframe.style.height = (h > 0 ? h : 620) + 'px';
@@ -628,6 +678,18 @@
         if (f) { loadFrame(f, true); }
       });
     }
+    var again = stage.querySelector ? stage.querySelector('[data-reload]') : null;
+    if (again) {
+      again.addEventListener('click', function () {
+        var f = again.closest ? again.closest('.browser-frame') : null;
+        if (!f) { return; }
+        var box = stage.querySelector ? stage.querySelector('.frame-embed') : null;
+        if (box && stage.removeChild) { stage.removeChild(box); }
+        stage.setAttribute('data-loaded', '0');
+        stage.classList.remove('is-loaded');
+        loadFrame(f, true);
+      });
+    }
   });
   if ('IntersectionObserver' in window) {
     var frameIO = new IntersectionObserver(function (entries) {
@@ -641,6 +703,363 @@
     }, { rootMargin: '300px 0px' });
     frameStages.forEach(function (s) { frameIO.observe(s); });
   }
+
+  /* ── 07b Menu focus management ─────────────────────────────
+     The burger overlay and the overflow tray are two menus with one job:
+     open, take focus, close on Escape, and give focus back to whatever
+     opened them. Previously Escape only knew about the tray, so a keyboard
+     user could tab through the page behind the open burger overlay. */
+  var lastFocus = null;
+
+  function closeMenus(restore) {
+    var changed = false;
+    if (menu && menu.classList.contains('open')) {
+      menu.classList.remove('open');
+      if (burger) { burger.setAttribute('aria-expanded', 'false'); }
+      changed = true;
+    }
+    if (moreMenu && moreMenu.classList.contains('open')) {
+      moreMenu.classList.remove('open');
+      if (moreBtn) { moreBtn.setAttribute('aria-expanded', 'false'); }
+      changed = true;
+    }
+    if (changed && restore && lastFocus && typeof lastFocus.focus === 'function') {
+      lastFocus.focus();
+    }
+    return changed;
+  }
+
+  doc.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { closeMenus(true); }
+  });
+
+  /* ── 07c Copy buttons / print / back to top ────────────────
+     Copy uses the async clipboard where it exists and a selected-textarea
+     fallback where it does not. A failure stays silent rather than showing
+     "Copied" for something that was not copied. */
+  function copyText(text, done) {
+    var nav = window.navigator || {};
+    if (nav.clipboard && typeof nav.clipboard.writeText === 'function') {
+      nav.clipboard.writeText(text).then(function () { done(true); }, function () { done(false); });
+      return;
+    }
+    try {
+      var ta = doc.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      doc.body.appendChild(ta);
+      if (typeof ta.select === 'function') { ta.select(); }
+      var ok = typeof doc.execCommand === 'function' ? doc.execCommand('copy') : false;
+      if (doc.body.removeChild) { doc.body.removeChild(ta); }
+      done(!!ok);
+    } catch (e) { done(false); }
+  }
+
+  qsa('[data-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      copyText(btn.getAttribute('data-copy') || '', function (ok) {
+        if (!ok) { return; }
+        btn.classList.add('is-done');
+        setTimeout(function () { btn.classList.remove('is-done'); }, 1600);
+      });
+    });
+  });
+
+  var printBtn = doc.getElementById('print-btn');
+  if (printBtn) {
+    printBtn.addEventListener('click', function () {
+      if (typeof window.print === 'function') { window.print(); }
+    });
+  }
+
+  var toTop = doc.getElementById('to-top');
+  if (toTop) {
+    toTop.addEventListener('click', function () {
+      if (typeof window.scrollTo === 'function') { window.scrollTo(0, 0); }
+    });
+  }
+
+  /* ── 07d Availability, from the real Sydney clock ──────────
+     "AEST UTC+10" was hard-coded, so for the six months of daylight saving
+     the page stated the wrong timezone next to a correctly-computed clock.
+     Intl gives the zone, its current name and the hour; without Intl the
+     arithmetic fallback is right outside daylight saving and says so. */
+  var avail = doc.getElementById('avail');
+
+  function sydneyNow() {
+    var now = new Date();
+    var out = { hour: null, minute: 0, tz: '', weekday: null };
+    if (typeof Intl !== 'undefined' && Intl.DateTimeFormat) {
+      try {
+        var opts = {
+          timeZone: 'Australia/Sydney', hour12: false, weekday: 'short',
+          hour: '2-digit', minute: '2-digit', timeZoneName: 'shortOffset'
+        };
+        var parts = new Intl.DateTimeFormat('en-AU', opts).formatToParts(now);
+        for (var i = 0; i < parts.length; i++) {
+          var v = parts[i].value;
+          if (parts[i].type === 'hour') { out.hour = parseInt(v, 10) % 24; }
+          else if (parts[i].type === 'minute') { out.minute = parseInt(v, 10); }
+          else if (parts[i].type === 'weekday') { out.weekday = v; }
+          else if (parts[i].type === 'timeZoneName') {
+            out.tz = String(v).replace(/^GMT/, 'UTC').replace(/^UTC([+-])0?/, 'UTC$1');
+          }
+        }
+      } catch (e) { out.hour = null; }
+    }
+    if (out.hour === null) {
+      var d = new Date(now.getTime() + (now.getTimezoneOffset() + 600) * 60000);
+      out.hour = d.getHours();
+      out.minute = d.getMinutes();
+      out.tz = 'AEST';
+      out.weekday = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][d.getDay()];
+    }
+    return out;
+  }
+
+  function applyAvail(t) {
+    if (!avail) { return; }
+    var weekend = t.weekday === 'Sat' || t.weekday === 'Sun';
+    var open = !weekend && t.hour >= 8 && t.hour < 19;
+    avail.classList.toggle('is-on', open);
+    avail.classList.toggle('is-off', !open);
+  }
+
+  /* ── 07e Search-and-jump palette ───────────────────────────
+     The commands and section links are static markup, so they translate with
+     the rest of the page. Only the "on this page" hits are built here, from
+     the text already rendered in the DOM — which means search runs entirely
+     in the browser and matches whatever language the page is showing. */
+  var paletteEl = doc.getElementById('palette');
+  var paletteBtn = doc.getElementById('palette-btn');
+  var paletteInput = doc.getElementById('palette-input');
+
+  if (paletteEl && paletteBtn && paletteInput) {
+    var paletteList = doc.getElementById('palette-list');
+    var hitsSec = doc.getElementById('palette-hits-sec');
+    var cmds = qsa('.palette__item', paletteList);
+    var hits = [];
+    var visible = [];
+    var cursor = 0;
+    var openedBy = null;
+
+    function isTyping(el) {
+      if (!el || !el.tagName) { return false; }
+      var t = el.tagName.toUpperCase();
+      return t === 'INPUT' || t === 'TEXTAREA' || t === 'SELECT' || el.isContentEditable === true;
+    }
+
+    function paletteOpen() { return paletteEl.classList.contains('open'); }
+
+    /* Strip the tags a card may carry and flatten whitespace, so a hit reads
+       as one line of prose rather than as markup. */
+    function flat(el) {
+      var t = el && el.textContent ? el.textContent : '';
+      return String(t).replace(/\s+/g, ' ').trim();
+    }
+
+    function index() {
+      var out = [];
+      qsa('#main section').forEach(function (sec) {
+        var id = sec.getAttribute('id');
+        if (!id) { return; }
+        var head = sec.querySelector ? sec.querySelector('h2') : null;
+        var label = head ? flat(head) : id;
+        var body = [];
+        qsa('p, li', sec).forEach(function (n) {
+          var t = flat(n);
+          if (t.length > 30) { body.push(t); }
+        });
+        if (body.length) { out.push({ id: id, label: label, body: body.join('  ·  ') }); }
+      });
+      return out;
+    }
+
+    function clearHits() {
+      for (var i = 0; i < hits.length; i++) {
+        var n = hits[i].node;
+        if (n && n.parentNode === paletteList) { paletteList.removeChild(n); }
+      }
+      hits = [];
+    }
+
+    function makeHit(entry, snippet) {
+      var li = doc.createElement('li');
+      li.className = 'palette__item palette__hit';
+      li.setAttribute('role', 'option');
+      li.setAttribute('tabindex', '-1');
+      li.setAttribute('aria-selected', 'false');
+      li.setAttribute('data-goto', '#' + entry.id);
+      var b = doc.createElement('b');
+      b.textContent = entry.label;
+      var em = doc.createElement('em');
+      em.textContent = snippet;
+      li.appendChild(b);
+      li.appendChild(em);
+      return li;
+    }
+
+    function search(q) {
+      clearHits();
+      var terms = q.toLowerCase().split(/\s+/).filter(function (t) { return t.length > 1; });
+      if (!terms.length) { return; }
+      var found = [];
+      index().forEach(function (entry) {
+        var hay = (entry.label + ' ' + entry.body).toLowerCase();
+        var score = 0;
+        for (var i = 0; i < terms.length; i++) {
+          if (hay.indexOf(terms[i]) >= 0) { score += 1; }
+        }
+        if (!score) { return; }
+        if (entry.label.toLowerCase().indexOf(terms[0]) >= 0) { score += 2; }
+        var at = entry.body.toLowerCase().indexOf(terms[0]);
+        var snippet = at < 0 ? entry.body.slice(0, 110)
+          : (at > 40 ? '…' : '') + entry.body.slice(Math.max(0, at - 30), at + 90);
+        found.push({ entry: entry, score: score, snippet: snippet.trim() + '…' });
+      });
+      found.sort(function (a, b) { return b.score - a.score; });
+      found = found.slice(0, 6);
+      for (var k = 0; k < found.length; k++) {
+        var node = makeHit(found[k].entry, found[k].snippet);
+        paletteList.appendChild(node);
+        hits.push({ node: node });
+      }
+    }
+
+    function refresh() {
+      var q = paletteInput.value || '';
+      search(q);
+      visible = cmds.concat(hits.map(function (h) { return h.node; })).filter(function (item) {
+        var text = flat(item).toLowerCase();
+        var keep = !q || text.indexOf(q.toLowerCase().split(/\s+/)[0]) >= 0;
+        if (item.setAttribute) { /* hidden must be an attribute, not a class: the
+            palette list is a listbox and screen readers honour [hidden]. */
+          if (keep) { item.removeAttribute('hidden'); } else { item.setAttribute('hidden', ''); }
+        }
+        return keep;
+      });
+      if (hitsSec) {
+        if (hits.length) { hitsSec.removeAttribute('hidden'); } else { hitsSec.setAttribute('hidden', ''); }
+      }
+      /* Section headings only make sense when something under them shows. */
+      var isSec = function (n) {
+        return (n.className || '').split(/\s+/).indexOf('palette__sec') >= 0;
+      };
+      qsa('.palette__sec', paletteList).forEach(function (sec) {
+        if (sec === hitsSec) { return; }
+        var any = false;
+        var n = sec.nextElementSibling;
+        while (n && !isSec(n)) {
+          if (visible.indexOf(n) >= 0) { any = true; break; }
+          n = n.nextElementSibling;
+        }
+        if (!any) { sec.setAttribute('hidden', ''); }
+      });
+      cursor = 0;
+      paint();
+    }
+
+    function paint() {
+      for (var i = 0; i < visible.length; i++) {
+        visible[i].setAttribute('aria-selected', i === cursor ? 'true' : 'false');
+      }
+      /* Focus stays in the input, so the selected option is announced through
+         aria-activedescendant — which needs the option to carry an id. */
+      var sel = visible[cursor];
+      if (sel && sel.getAttribute) {
+        if (!sel.getAttribute('id')) { sel.setAttribute('id', 'palette-opt-' + cursor); }
+        paletteInput.setAttribute('aria-activedescendant', sel.getAttribute('id'));
+      }
+    }
+
+    function move(step) {
+      if (!visible.length) { return; }
+      cursor = (cursor + step + visible.length) % visible.length;
+      paint();
+    }
+
+    function activate(item) {
+      if (!item) { return; }
+      var cmd = item.getAttribute('data-cmd');
+      var href = item.getAttribute('data-href');
+      var goto = item.getAttribute('data-goto');
+      closePalette(true);
+      if (cmd === 'copy-email') { copyText('sethfengli@yahoo.com.au', function () {}); return; }
+      if (cmd === 'print') { if (typeof window.print === 'function') { window.print(); } return; }
+      if (cmd === 'theme') { applyTheme(theme === 'night' ? 'light' : 'night'); return; }
+      if (cmd === 'lang') { applyLang(lang === 'zh' ? 'en' : 'zh'); return; }
+      if (cmd === 'top') { if (typeof window.scrollTo === 'function') { window.scrollTo(0, 0); } return; }
+      if (href) {
+        if (typeof window.open === 'function') { window.open(href, '_blank', 'noopener'); }
+        return;
+      }
+      if (goto) {
+        var target = doc.querySelector(goto);
+        if (target && target.scrollIntoView) { target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); }
+      }
+    }
+
+    function openPalette(from) {
+      openedBy = from || null;
+      lastFocus = from || null;
+      paletteEl.classList.add('open');
+      paletteInput.value = '';
+      refresh();
+      if (typeof paletteInput.focus === 'function') { paletteInput.focus(); }
+    }
+
+    function closePalette(restore) {
+      if (!paletteOpen()) { return; }
+      paletteEl.classList.remove('open');
+      clearHits();
+      if (restore && openedBy && typeof openedBy.focus === 'function') { openedBy.focus(); }
+    }
+
+    paletteBtn.addEventListener('click', function () { openPalette(paletteBtn); });
+    qsa('[data-palette-close]', paletteEl).forEach(function (n) {
+      n.addEventListener('click', function () { closePalette(true); });
+    });
+    paletteInput.addEventListener('input', refresh);
+    paletteInput.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown') { e.preventDefault(); move(1); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); move(-1); }
+      else if (e.key === 'Enter') { e.preventDefault(); activate(visible[cursor]); }
+      else if (e.key === 'Tab') {
+        /* Only two focusable things in here: keep Tab inside the dialog. */
+        e.preventDefault();
+        var esc = paletteEl.querySelector('.palette__esc');
+        if (esc && typeof esc.focus === 'function') { esc.focus(); }
+      }
+    });
+    paletteList.addEventListener('click', function (e) {
+      var item = e.target && e.target.closest ? e.target.closest('.palette__item') : null;
+      if (item) { activate(item); }
+    });
+
+    doc.addEventListener('keydown', function (e) {
+      var k = e.key;
+      if (k === 'Escape' && paletteOpen()) { e.preventDefault(); closePalette(true); return; }
+      if (paletteOpen() || isTyping(e.target)) { return; }
+      if (k === '/' || ((e.ctrlKey || e.metaKey) && (k === 'k' || k === 'K'))) {
+        e.preventDefault();
+        openPalette(paletteBtn);
+      }
+    });
+  }
+
+  /* ── 07f Pointer spotlight on cards ────────────────────────
+     One delegated listener instead of 40 per-card ones; the coordinates land
+     in --mx/--my and the paint is CSS. */
+  doc.addEventListener('pointermove', function (e) {
+    var card = e.target && e.target.closest ? e.target.closest('.card') : null;
+    if (!card || typeof card.getBoundingClientRect !== 'function') { return; }
+    var r = card.getBoundingClientRect();
+    if (!r.width || !r.height) { return; }
+    card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
+    card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
+  }, { passive: true });
 
   /* ── 08 Starfield (theme-aware palette) ─────────────────── */
   var stars = [];
@@ -658,6 +1077,16 @@
     stars.forEach(function (s) {
       s.c = cols[Math.floor(Math.random() * cols.length)];
     });
+  }
+
+  /* Scroll the hero away and the canvas stops being drawn. The loop keeps
+     re-arming so it can resume instantly, but a frame that only returns is
+     ~free, whereas 120 arcs per frame forever is not. */
+  var starsOn = true;
+  if (heroSec && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      for (var i = 0; i < entries.length; i++) { starsOn = entries[i].isIntersecting; }
+    }, { threshold: 0 }).observe(heroSec);
   }
 
   if (cv && cv.getContext && !reduce) {
@@ -696,6 +1125,8 @@
     }
 
     (function frame() {
+      requestAnimationFrame(frame);          /* re-arm first: the early outs below must not stop the loop */
+      if (!starsOn || doc.hidden) { return; }
       ctx.clearRect(0, 0, W, H);
       for (var k = 0; k < stars.length; k++) {
         var s = stars[k];
@@ -943,6 +1374,14 @@
       }, reduce ? 1200 : (1800 + rnd(2400)));
     }
 
+    /* Keyboard and touch route into the same cycle. The rain is aria-hidden
+       decoration, which left the whole interaction unreachable without a
+       pointer — this button is the accessible equivalent of tapping a head. */
+    var codeTap = doc.getElementById('code-tap');
+    if (codeTap) {
+      codeTap.addEventListener('click', function () { if (!busy) { collapseCycle(); } });
+    }
+
     function bindTap(el) {
       if (!el || typeof el.addEventListener !== 'function') { return; }
       var x0 = 0, y0 = 0, moved = false;
@@ -1094,20 +1533,23 @@
   var yr = doc.getElementById('year');
   if (yr) { yr.textContent = String(new Date().getFullYear()); }
 
-  /* HUD clocks — Sydney wall time (AEST, UTC+10). */
+  /* HUD clocks — Sydney wall time, with the zone label the clock actually is
+     (AEST UTC+10 / AEDT UTC+11) instead of a fixed string that is wrong for
+     half the year. */
   var hudClock = doc.getElementById('hud-clock');
   var contactClock = doc.getElementById('contact-clock');
   function two(n) { return (n < 10 ? '0' : '') + n; }
-  function sydneyNow() {
-    var d = new Date();
-    return new Date(d.getTime() + (d.getTimezoneOffset() + 600) * 60000);
-  }
   function tickClock() {
     var t = sydneyNow();
-    if (hudClock) { hudClock.textContent = two(t.getHours()) + ':' + two(t.getMinutes()) + ':' + two(t.getSeconds()); }
-    if (contactClock) { contactClock.textContent = 'AEST UTC+10 · ' + two(t.getHours()) + ':' + two(t.getMinutes()); }
+    if (hudClock) {
+      hudClock.textContent = two(t.hour) + ':' + two(t.minute) + ':' + two(new Date().getSeconds());
+    }
+    if (contactClock) {
+      contactClock.textContent = (t.tz ? t.tz + ' · ' : '') + two(t.hour) + ':' + two(t.minute);
+    }
+    applyAvail(t);
   }
-  if (hudClock || contactClock) {
+  if (hudClock || contactClock || avail) {
     tickClock();
     setInterval(tickClock, 1000);
   }

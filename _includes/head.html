@@ -6,22 +6,24 @@
 
 {% seo %}
 
-<title>Seth (Feng) Li — Full-Stack &amp; Database Engineer · .NET / C# / AI | Sydney</title>
+<title>Seth (Feng) Li — Full-Stack &amp; Database Engineer, Sydney</title>
 
-<!-- One URL serves both languages (the switch is client-side), so point
-     crawlers and agents at each variant explicitly rather than letting
-     them index whichever one they happened to fetch. -->
-<link rel="alternate" hreflang="en" href="https://sethfengli.com/">
-<link rel="alternate" hreflang="zh-Hans" href="https://sethfengli.com/">
-<link rel="alternate" hreflang="x-default" href="https://sethfengli.com/">
+<!-- One URL serves both languages (the switch is client-side), so there is no
+     second URL to point hreflang at. Three annotations that all named this same
+     URL told Google nothing and risked the cluster being dropped, so the
+     language signal is carried by og:locale, the JSON-LD inLanguage and the
+     lang attribute instead. -->
 <meta property="og:locale" content="en_AU">
 <meta property="og:locale:alternate" content="zh_CN">
 <meta property="og:type" content="profile">
+<!-- No og:image:width/height on purpose: the share image is the GitHub avatar
+     (square, and resized by GitHub without notice), so any number here would be
+     a guess. A hand-made 1200×630 share card is the real fix, and it is not
+     worth inventing dimensions until that exists. -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://images.pexels.com">
-<link rel="preconnect" href="https://github-readme-stats.vercel.app">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Sora:wght@600;700;800&family=JetBrains+Mono:wght@400;500;700;800&family=Noto+Serif+SC:wght@500;700;900&display=swap" rel="stylesheet">
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='s' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%236366f1'/%3E%3Cstop offset='1' stop-color='%237c3aed'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23s)'/%3E%3Ctext x='32' y='43' font-family='sans-serif' font-size='32' font-weight='800' fill='white' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
@@ -29,8 +31,13 @@
 <link rel="stylesheet" href="{{ '/assets/css/tokens.css?v=' | append: site.github.build_revision | relative_url }}">
 <link rel="stylesheet" href="{{ '/assets/css/main.css?v=' | append: site.github.build_revision | relative_url }}">
 
+<!-- The machine-readable summary of this page, for agents that read HTML but
+     never look for /llms.txt on their own. -->
+<link rel="alternate" type="text/plain" href="{{ '/llms.txt' | relative_url }}" title="llms.txt">
+
 <!-- Structured data: who this is, and that the page is maintained on purpose.
-     "dateModified" is the human-facing rev stamp from ai.html — keep them together. -->
+     "dateModified" tracks the human-facing rev stamp in ai.html and the footer;
+     tools/site-verify.mjs fails the build if they drift apart. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -38,17 +45,24 @@
   "url": "https://sethfengli.com/",
   "inLanguage": ["en", "zh-Hans"],
   "dateModified": "2026-10-04",
-  "about": {
+  "mainEntity": {
     "@type": "Person",
+    "@id": "https://sethfengli.com/#person",
     "name": "Seth (Feng) Li",
     "alternateName": "李枫",
     "jobTitle": "Full-Stack Engineer & Database Developer",
-    "description": "Full-stack and database engineer in Sydney with 33 years in production. Founder of an AI research centre (NLP / BERT financial-document extraction), former CTO of AME Group, now working on retrieval, agents and evaluation for AI systems.",
+    "description": "Full-stack and database engineer in Sydney with 33 years in production. Founded an AI research group that extracted tables from financial documents (NLP / BERT), former CTO of AME Group, now working on retrieval, agents and evaluation for AI systems.",
     "url": "https://sethfengli.com/",
     "image": "https://avatars.githubusercontent.com/u/13928333?v=4",
+    "email": "mailto:sethfengli@yahoo.com.au",
+    "telephone": "+61-411-758-128",
     "knowsLanguage": ["en", "zh-Hans"],
     "address": { "@type": "PostalAddress", "addressLocality": "Sydney", "addressCountry": "AU" },
     "worksFor": { "@type": "Organization", "name": "DASH Technology Group" },
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Xiangtan University"
+    },
     "knowsAbout": [
       ".NET / C#", "Python", "SQL & database design", "TypeScript", "AWS", "Azure",
       "Generative AI", "LLM", "RAG / retrieval", "AI agents", "Evaluations",

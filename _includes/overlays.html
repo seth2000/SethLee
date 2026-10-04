@@ -1,0 +1,120 @@
+<!-- ── Page overlays ────────────────────────────────────────────────────
+     Two things that belong to the page rather than to a section:
+
+     1. The search-and-jump palette. It filters the commands below and the
+        section links, and searches the text of this page — locally, in the
+        browser. Nothing typed here is sent anywhere, so the label says so.
+     2. Back to the top, once you are far enough down to want it.
+
+     Everything translatable is static markup with data-i18n, so the palette
+     obeys the same EN-in-HTML / ZH-in-dictionary rule as the rest of the site.
+     ------------------------------------------------------------------- -->
+<div class="palette" id="palette">
+  <div class="palette__scrim" data-palette-close></div>
+  <div class="palette__box" role="dialog" aria-modal="true" aria-labelledby="palette-title">
+    <h2 class="sr-only" id="palette-title" data-i18n="nav.paletteTitle">Search and jump</h2>
+
+    <div class="palette__bar">
+      <svg class="ico" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="7" />
+        <path d="m20 20-3.5-3.5" />
+      </svg>
+      <input id="palette-input" type="search" autocomplete="off" spellcheck="false"
+        aria-labelledby="palette-title" role="combobox" aria-expanded="true"
+        aria-controls="palette-list" aria-autocomplete="list"
+        data-i18n-placeholder="nav.palettePlaceholder" placeholder="Jump to a section, or search this page">
+      <button type="button" class="palette__esc" data-palette-close>
+        <span data-i18n="nav.paletteEsc">Close</span> <kbd aria-hidden="true">Esc</kbd>
+      </button>
+    </div>
+
+    <!-- The grouping labels are decorative: a listbox may only contain options
+         (or groups), so they are presentational. Each option names itself. -->
+    <ul class="palette__list" id="palette-list" role="listbox" aria-labelledby="palette-title">
+      <li class="palette__sec" role="presentation" data-i18n="nav.paletteActions">Actions</li>
+
+      <li class="palette__item" role="option" tabindex="-1" aria-selected="false" data-cmd="copy-email">
+        <svg class="ico" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="9" y="9" width="11" height="11" rx="2" />
+          <path d="M5 15V5a2 2 0 0 1 2-2h8" />
+        </svg><span data-i18n="contact.copyEmail">Copy email</span>
+      </li>
+      <li class="palette__item" role="option" tabindex="-1" aria-selected="false" data-cmd="print">
+        <svg class="ico" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M7 8V3h10v5M7 18H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2M7 14h10v7H7z" />
+        </svg><span data-i18n="contact.print">Print or save as PDF</span>
+      </li>
+      <li class="palette__item" role="option" tabindex="-1" aria-selected="false" data-cmd="theme">
+        <svg class="ico" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
+        </svg><span data-i18n="nav.paletteTheme">Switch between light and night</span>
+      </li>
+      <li class="palette__item" role="option" tabindex="-1" aria-selected="false" data-cmd="lang">
+        <svg class="ico" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M3 12h18M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18z" />
+        </svg><span data-i18n="nav.paletteLang">Switch language · 中 / EN</span>
+      </li>
+      <li class="palette__item" role="option" tabindex="-1" aria-selected="false" data-cmd="top">
+        <svg class="ico" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 19V5M5 12l7-7 7 7" />
+        </svg><span data-i18n="nav.paletteTop">Back to the top</span>
+      </li>
+      <li class="palette__item" role="option" tabindex="-1" aria-selected="false"
+        data-href="https://www.linkedin.com/in/sethfengli">
+        <svg class="ico" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="7" width="18" height="13" rx="2" />
+          <path d="M9 7V5.5A2.5 2.5 0 0 1 11.5 3h1A2.5 2.5 0 0 1 15 5.5V7" />
+        </svg><span>LinkedIn ↗</span>
+      </li>
+      <li class="palette__item" role="option" tabindex="-1" aria-selected="false"
+        data-href="https://github.com/seth2000">
+        <svg class="ico" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="6" width="20" height="12" rx="2" />
+          <path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M8 14h8" />
+        </svg><span>GitHub ↗</span>
+      </li>
+
+      <li class="palette__sec" role="presentation" data-i18n="nav.paletteSections">Sections</li>
+
+      <li class="palette__item" role="option" tabindex="-1" aria-selected="false" data-goto="#about"><span
+          data-i18n="nav.about">About</span></li>
+      <li class="palette__item" role="option" tabindex="-1" aria-selected="false" data-goto="#career"><span
+          data-i18n="nav.career">Career</span></li>
+      <li class="palette__item" role="option" tabindex="-1" aria-selected="false" data-goto="#stack"><span
+          data-i18n="nav.stack">Stack</span></li>
+      <li class="palette__item" role="option" tabindex="-1" aria-selected="false" data-goto="#projects"><span
+          data-i18n="nav.projects">Projects</span></li>
+      <li class="palette__item" role="option" tabindex="-1" aria-selected="false" data-goto="#ventures"><span
+          data-i18n="nav.ventures">Ventures</span></li>
+      <li class="palette__item" role="option" tabindex="-1" aria-selected="false" data-goto="#ai"><span
+          data-i18n="nav.ai">AI</span></li>
+      <li class="palette__item" role="option" tabindex="-1" aria-selected="false" data-goto="#insights"><span
+          data-i18n="nav.insights">Insights</span></li>
+      <li class="palette__item" role="option" tabindex="-1" aria-selected="false" data-goto="#contact"><span
+          data-i18n="nav.contact">Contact</span></li>
+
+      <li class="palette__sec" role="presentation" id="palette-hits-sec" data-i18n="nav.paletteOnPage" hidden>On this page</li>
+    </ul>
+
+    <p class="palette__foot">
+      <span data-i18n="nav.paletteHint">↑↓ to move, Enter to open, Esc to close.</span>
+      <em data-i18n="nav.paletteLocal">Search runs in your browser — nothing you type leaves this page.</em>
+    </p>
+  </div>
+</div>
+
+<button type="button" class="to-top" id="to-top" aria-label="Back to top">
+  <svg class="ico" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M12 19V5M5 12l7-7 7 7" />
+  </svg>
+</button>
