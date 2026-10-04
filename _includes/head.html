@@ -1,8 +1,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#f6f8fc">
+<meta name="theme-color" content="#eff3fa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#050a16" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
 
 {% seo %}
+
+<title>Seth (Feng) Li — Full-Stack &amp; Database Engineer · .NET / C# / AI | Sydney</title>
+
+<!-- One URL serves both languages (the switch is client-side), so point
+     crawlers and agents at each variant explicitly rather than letting
+     them index whichever one they happened to fetch. -->
+<link rel="alternate" hreflang="en" href="https://sethfengli.com/">
+<link rel="alternate" hreflang="zh-Hans" href="https://sethfengli.com/">
+<link rel="alternate" hreflang="x-default" href="https://sethfengli.com/">
+<meta property="og:locale" content="en_AU">
+<meta property="og:locale:alternate" content="zh_CN">
+<meta property="og:type" content="profile">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,6 +28,41 @@
 
 <link rel="stylesheet" href="{{ '/assets/css/tokens.css?v=' | append: site.github.build_revision | relative_url }}">
 <link rel="stylesheet" href="{{ '/assets/css/main.css?v=' | append: site.github.build_revision | relative_url }}">
+
+<!-- Structured data: who this is, and that the page is maintained on purpose.
+     "dateModified" is the human-facing rev stamp from ai.html — keep them together. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "url": "https://sethfengli.com/",
+  "inLanguage": ["en", "zh-Hans"],
+  "dateModified": "2026-10-04",
+  "about": {
+    "@type": "Person",
+    "name": "Seth (Feng) Li",
+    "alternateName": "李枫",
+    "jobTitle": "Full-Stack Engineer & Database Developer",
+    "description": "Full-stack and database engineer in Sydney with 33 years in production. Founder of an AI research centre (NLP / BERT financial-document extraction), former CTO of AME Group, now working on retrieval, agents and evaluation for AI systems.",
+    "url": "https://sethfengli.com/",
+    "image": "https://avatars.githubusercontent.com/u/13928333?v=4",
+    "knowsLanguage": ["en", "zh-Hans"],
+    "address": { "@type": "PostalAddress", "addressLocality": "Sydney", "addressCountry": "AU" },
+    "worksFor": { "@type": "Organization", "name": "DASH Technology Group" },
+    "knowsAbout": [
+      ".NET / C#", "Python", "SQL & database design", "TypeScript", "AWS", "Azure",
+      "Generative AI", "LLM", "RAG / retrieval", "AI agents", "Evaluations",
+      "NLP / BERT", "Data mining", "WealthTech", "Fintech"
+    ],
+    "sameAs": [
+      "https://www.linkedin.com/in/sethfengli",
+      "https://github.com/seth2000",
+      "https://zen.sethfengli.com/",
+      "https://www.fengtech.com.au/"
+    ]
+  }
+}
+</script>
 
 <script>
 /* 提前应用语言与主题偏好，避免首屏闪烁。

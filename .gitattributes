@@ -1,0 +1,28 @@
+# Normalise line endings: store LF in the repository, regardless of the
+# platform that checks the file out. core.autocrlf is set to `true` on this
+# machine, which is why four files (LICENSE, .gitignore, .well-known/*) sit as
+# LF in the index but CRLF in the working tree and produce a warning on every
+# commit. Declaring it here makes the repository the source of truth.
+* text=auto eol=lf
+
+# ...except the ACME challenge tokens. These are byte-exact strings served for
+# TLS/domain validation: rewriting a line ending (or a trailing newline) breaks
+# the check they exist for. -text tells git to store and restore them verbatim.
+.well-known/** -text
+.well-known/**/* -text
+
+# ...and LICENSE, which is already committed with CRLF. Normalising it would
+# rewrite all 553 lines in a single no-op diff.
+LICENSE -text
+
+# Binary assets, if any are ever added.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary

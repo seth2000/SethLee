@@ -9,7 +9,13 @@
       <a class="btn btn-ghost btn-sm" href="{{ include.url }}" target="_blank" rel="noopener" data-i18n="frame.open">Open ↗</a>
     </div>
   </div>
-  <div class="browser-stage">
-    <iframe src="{{ include.url }}" title="{{ include.title }}" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+  <!-- The live site is fetched only when this frame nears the viewport (or on
+       request), so third-party CSS/JS never blocks first paint. -->
+  <div class="browser-stage" data-frame-url="{{ include.url }}" data-frame-title="{{ include.title }}">
+    <button type="button" class="frame-load" aria-label="Load live preview of {{ include.url }}">
+      <span class="frame-load__play" aria-hidden="true">▶</span>
+      <b data-i18n="frame.loadLabel">Load live preview</b>
+      <em data-i18n="frame.loadNote">Third-party page — it loads only when you ask or scroll here.</em>
+    </button>
   </div>
 </div>

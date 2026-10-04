@@ -2,15 +2,25 @@
 # Seth (Feng) Li · sethfengli.com — Jekyll / GitHub Pages 站点配置
 # 站点结构：index.html 拼装 _includes/ 下各分区，样式在 assets/css/，
 # 交互与双语在 assets/js/main.js。README.md 仅作为 GitHub 仓库首页。
+#
+# 内容模型（改内容前先读这一段）
+#   英文正文写在 _includes/*.html 里（利于 SEO 与无 JS 访问），
+#   中文文案集中在 assets/js/main.js 的 ZH 字典，双语由 data-i18n 键关联。
+#   改动后必须运行 node tools/site-verify.mjs，它会把缺失的中文键、
+#   失效的 CSS 选择器、被破坏的双语切换全部报出来。
+#
+# 版本节奏
+#   页脚与「当下与下一步」带 rev 标记（如 2026.10）。每次实质更新内容：
+#   1) 提升 rev；2) 在 ai.html 的「本页变化」里写清改了什么；3) 重跑校验。
 # ════════════════════════════════════════════════════════════════════
 
 # ── 基础站点信息 ──────────────────────────────────────────────
 title: "Seth (Feng) Li — Full-Stack & Database Engineer · .NET / C# · AI"
 description: >-
-  Personal homepage of Seth (Feng) Li — Full-Stack Engineer at DASH Technology Group (WealthTech),
-  Sydney. 30+ years across fintech, digital lending and AI: .NET/.NET Core, C#, Python, TypeScript,
-  Angular/React/Vue, SQL, AWS & Azure. Former CTO of AME Group (AI/NLP). Founder of Feng Tech
-  (fengtech.com.au) and creator of Hui Deng Zen Temple (zen.sethfengli.com).
+  Seth (Feng) Li — full-stack and database engineer in Sydney. 33 years in production: .NET 10 / C#,
+  Python, TypeScript, SQL and AWS. Creator of the PDF Table Extractor (NLP / BERT) and former CTO of
+  AME Group. Now building the retrieval, agent and evaluation layers around AI models.
+  Founder of Feng Tech (fengtech.com.au) and Hui Deng Zen Temple (zen.sethfengli.com).
 
 url: "https://sethfengli.com"
 lang: en
@@ -30,7 +40,22 @@ social:
     - https://www.linkedin.com/in/sethfengli
     - https://github.com/seth2000
     - https://zen.sethfengli.com/
-    - https://www.fengtech.com.au/home
+    - https://www.fengtech.com.au/
 
 # og:image（Open Graph 分享图；使用 GitHub 头像，稳定且可免费商用）
 logo: https://avatars.githubusercontent.com/u/13928333?v=4
+
+# ── 构建 ──────────────────────────────────────────────────
+# .well-known 以点开头，Jekyll 默认忽略；证书校验与域名验证文件必须发布。
+include:
+  - .well-known
+
+# 本地/仓库文件，不要进入站点产物。
+exclude:
+  - README.md
+  - LICENSE
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .bundle
+

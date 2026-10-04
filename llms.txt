@@ -1,0 +1,65 @@
+# Seth (Feng) Li — sethfengli.com
+
+> Personal homepage of Seth (Feng) Li (李枫), a full-stack and database engineer in Sydney,
+> Australia: 33 years in production across fintech, digital lending, enterprise data and AI.
+> Bilingual (English / 简体中文); one URL serves both, switched client-side.
+
+## Identity
+
+- Full-Stack Engineer and Database Developer, DASH Technology Group (WealthTech), Sydney.
+- Former CTO, AME Group — founded the company's AI research centre (NLP / BERT extraction of
+  financial tables from unstructured PDFs) and led an ML GIS data-mining system.
+- Founder of Feng Tech (fengtech.com.au), a Sydney IT services company.
+- Creator of Hui Deng Zen Temple (zen.sethfengli.com), a digital Buddhist practice site.
+- Master of Engineering, Computer Application Engineering (AI & Data Mining), Xiangtan University.
+
+## Verified work
+
+- Triumph (DASH, 2024–present): re-architected core Holdings & Performance systems to 1/50 of the
+  original compute (2,400+ vCPU×6h → 16 vCPU×4h) while carrying 4× the users and volume.
+  An earlier pass delivered 4× faster on 1/22.5 of the infrastructure.
+- PDF Table Extractor (AME Group, 2017–2019): reconstructs tables from unstructured PDFs using
+  BERT in place of CNN+LSTM for region classification, plus graph search for border detection.
+- Sniper (AME Group, 2016–2018): cash-flow and valuation reporting for thousands of projects;
+  .NET logic translated to VBA/Excel so analysts could model in place.
+- AME Ajax (AME Group, 2018): mining & metals finance model moved from WinForms to
+  .NET Core + Angular, delivered by a 6-person team in 6 months.
+
+## Current direction (rev 2026.10)
+
+Four positions the site argues, each with what he is building against:
+
+1. The agent harness is the product — tool/MCP contracts, failure semantics, cost and latency
+   budgets treated as SLOs. A distributed-systems problem more than a prompt problem.
+2. Context beats cleverness — hybrid retrieval, permissions carried into the vector store,
+   provenance and freshness on every retrieved fact.
+3. Evaluation is the new regression suite — versioned eval sets that fail the build,
+   traces and feedback loops as first-class data, cost and quality measured together.
+4. Regulated verticals are the open field — agent tooling is crowded; wealth, lending,
+   insurance and health are not, and they demand auditable, explainable, boring systems.
+
+Currently learning: agent frameworks on .NET (Microsoft Agent Framework / Semantic Kernel
+lineage), evaluation harnesses and CI gates, hybrid retrieval over enterprise SQL and documents.
+
+## Open source
+
+- https://github.com/seth2000/chinesepoem — automatic classical Chinese poetry generation.
+- https://github.com/seth2000/linqijing — digital implementation of Ling Qi Jing (灵棋经).
+- https://github.com/seth2000/PSGetUserLogonTimeFromAD — Active Directory logon-time auditing.
+- https://github.com/seth2000/predictions — a personal calibration archive for judgement.
+
+## Contact
+
+- Email: sethfengli@yahoo.com.au
+- LinkedIn: https://www.linkedin.com/in/sethfengli
+- GitHub: https://github.com/seth2000
+- Business: https://www.fengtech.com.au/ · Phone: +61 411 758 128
+
+## Page notes for agents
+
+- Sections in order: hero, about, career, stack, projects, ventures, ai, insights, contact.
+- The `ventures` section embeds two live third-party sites; they load only on request
+  or when scrolled into view, so a fetch of this page returns no frames.
+- Performance and date claims are reconciled to a single source of truth (the Projects
+  section). The page carries a revision stamp (`rev 2026.10`) that moves when content does.
+- Verification tooling for this repository lives in `../tools/` (not published).

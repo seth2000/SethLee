@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# Bilingual personal site: one URL serves English and Chinese
+# (assets/js/main.js swaps the copy client-side).
+Sitemap: https://sethfengli.com/sitemap.xml

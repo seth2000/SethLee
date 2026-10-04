@@ -1,0 +1,128 @@
+<section class="sec sec-alt" id="ai">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow"><i aria-hidden="true">07</i><span data-i18n="ai.kicker">ai direction</span></p>
+      <h2><span data-i18n="ai.title">Where I Think AI Is Going</span> <em data-i18n="ai.titleEm">· And Where I Fit</em></h2>
+      <p class="sub" data-i18n="ai.sub">A working position, not a forecast: four shifts I am building against — and the part of each one that thirty years of data and delivery work actually makes easier.</p>
+    </div>
+
+    <div class="grid-2">
+      <article class="card ai-card reveal">
+        <div class="ai-top">
+          <span class="ai-num" aria-hidden="true">01</span>
+          <h3 data-i18n="ai.d1Title">The harness becomes the product</h3>
+          <span class="ai-tag" data-i18n="ai.d1Tag">agents</span>
+        </div>
+        <p data-i18n="ai.d1Text">
+          The 2026 conversation has moved past the prompt. What production teams argue about now is
+          the <strong>harness</strong> around the model — tool contracts, retries, budgets, permissions, the
+          trace you replay after a bad run. Once you see it that way it is an unglamorous distributed-systems
+          problem: idempotency, back-pressure, exactly-once, audit. That is the work I have been doing since
+          Sybase and MQ-era banking systems.
+        </p>
+        <ul class="ai-list">
+          <li data-i18n="ai.d1L1">Tool / MCP contracts designed like APIs, not scripts</li>
+          <li data-i18n="ai.d1L2">Failure semantics: retry, compensate, escalate to a human</li>
+          <li data-i18n="ai.d1L3">Cost and latency budgets treated as SLOs</li>
+        </ul>
+      </article>
+
+      <article class="card ai-card reveal" style="--d:.08s">
+        <div class="ai-top">
+          <span class="ai-num" aria-hidden="true">02</span>
+          <h3 data-i18n="ai.d2Title">Context beats cleverness</h3>
+          <span class="ai-tag" data-i18n="ai.d2Tag">retrieval</span>
+        </div>
+        <p data-i18n="ai.d2Text">
+          Most disappointing AI features are not model failures, they are <strong>retrieval</strong> failures.
+          The durable differentiator is the boring middle: clean schemas, lineage, chunking that respects
+          document structure, permissions enforced at query time, and knowing what to leave out.
+          My PDF Table Extractor already had to reconstruct a table's <em>structure</em> from an
+          unstructured page — the same instinct, one architecture later.
+        </p>
+        <ul class="ai-list">
+          <li data-i18n="ai.d2L1">Semantic + lexical + structured hybrid retrieval</li>
+          <li data-i18n="ai.d2L2">Row-level security carried into the vector store</li>
+          <li data-i18n="ai.d2L3">Freshness and provenance on every retrieved fact</li>
+        </ul>
+      </article>
+
+      <article class="card ai-card reveal">
+        <div class="ai-top">
+          <span class="ai-num" aria-hidden="true">03</span>
+          <h3 data-i18n="ai.d3Title">Evaluation is the new regression suite</h3>
+          <span class="ai-tag" data-i18n="ai.d3Tag">evals</span>
+        </div>
+        <p data-i18n="ai.d3Text">
+          You cannot ship what you cannot measure. The teams getting value out of agents are the ones who
+          built a <strong>dataset, a grader and a gate</strong> before they built the demo — golden cases in CI,
+          scored on every change, with a human in the loop only where judgement is genuinely required.
+          This is the part most teams skip, and it is where database discipline pays for itself.
+        </p>
+        <ul class="ai-list">
+          <li data-i18n="ai.d3L1">Versioned eval sets that fail the build, not the user</li>
+          <li data-i18n="ai.d3L2">Traces and feedback loops as first-class data</li>
+          <li data-i18n="ai.d3L3">Cost, latency and quality measured together</li>
+        </ul>
+      </article>
+
+      <article class="card ai-card reveal" style="--d:.08s">
+        <div class="ai-top">
+          <span class="ai-num" aria-hidden="true">04</span>
+          <h3 data-i18n="ai.d4Title">Regulated verticals are the open field</h3>
+          <span class="ai-tag" data-i18n="ai.d4Tag">opportunity</span>
+        </div>
+        <p data-i18n="ai.d4Text">
+          Agent tooling is crowded; <strong>wealth, lending, insurance and health</strong> are not — and they
+          are exactly where an agent has to be auditable, explainable and boring. Twenty years inside
+          WealthTech and digital lending is not a disadvantage in that market, it is the entry ticket.
+          The value is not a smarter model; it is a defensible process the regulator accepts.
+        </p>
+        <ul class="ai-list">
+          <li data-i18n="ai.d4L1">Human-in-the-loop where advice is regulated</li>
+          <li data-i18n="ai.d4L2">Deterministic audit trail for every automated decision</li>
+          <li data-i18n="ai.d4L3">Small, owned models where data cannot leave the building</li>
+        </ul>
+      </article>
+    </div>
+
+    <article class="card now-card reveal" aria-labelledby="now-title">
+      <div class="now-head">
+        <h3 id="now-title" data-i18n="now.title">Now &amp; Next</h3>
+        <span class="now-stamp">
+          <span data-i18n="now.revLabel">rev</span>
+          <b data-i18n="now.rev">2026.10</b>
+          <span data-i18n="now.updatedLabel">updated</span>
+          <b data-i18n="now.updated">2026-10</b>
+        </span>
+      </div>
+      <div class="now-body">
+        <div class="now-col">
+          <p class="now-label" data-i18n="now.learningLabel">learning now</p>
+          <ul class="now-list">
+            <li data-i18n="now.learning1">Agent frameworks on .NET — Microsoft Agent Framework / Semantic Kernel lineage, and when a graph beats a loop</li>
+            <li data-i18n="now.learning2">Evaluation harnesses: graders, golden sets and the CI gate that keeps an agent honest</li>
+            <li data-i18n="now.learning3">Hybrid retrieval over enterprise SQL and document stores, with permissions intact</li>
+          </ul>
+        </div>
+        <div class="now-col">
+          <p class="now-label" data-i18n="now.nextLabel">next 90 days</p>
+          <ul class="now-list">
+            <li data-i18n="now.next1">Ship an open-source reference: a measurable agent over a real schema, evals included</li>
+            <li data-i18n="now.next2">Publish the retrieval and evaluation patterns I keep re-explaining to teams</li>
+            <li data-i18n="now.next3">Take one WealthTech workflow from manual review to assisted, with the audit trail</li>
+          </ul>
+        </div>
+        <div class="now-col">
+          <p class="now-label" data-i18n="now.changedLabel">what changed here</p>
+          <ul class="now-list">
+            <li data-i18n="now.changed1">This page now records its own direction and revision, not just its history</li>
+            <li data-i18n="now.changed2">Performance claims reconciled to one source of truth (see Projects)</li>
+            <li data-i18n="now.changed3">Venture previews load on demand — the page opens without them</li>
+          </ul>
+        </div>
+      </div>
+      <p class="now-foot" data-i18n="now.foot">This section is expected to age. When it does, the revision above goes up and the item moves to what changed — a self-introduction should be a living document, not a plaque.</p>
+    </article>
+  </div>
+</section>

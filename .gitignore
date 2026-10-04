@@ -1,107 +1,11 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
+# ---------------------------------------------------------------------------
+# Seth (Feng) Li - sethfengli.com
+# This repo holds ONLY the published Jekyll site. The build tooling lives one
+# level up in ../tools/ and ../.preview/ (outside the repo, never published).
+# ---------------------------------------------------------------------------
 
-# C extensions
-*.so
-
-# Distribution / packaging
-.Python
-env/
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
-
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-.hypothesis/
-
-# Translations
-*.mo
-*.pot
-
-# Django stuff:
-*.log
-local_settings.py
-
-# Flask stuff:
-instance/
-.webassets-cache
-
-# Scrapy stuff:
-.scrapy
-
-# Sphinx documentation
-docs/_build/
-
-# PyBuilder
-target/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# pyenv
-.python-version
-
-# celery beat schedule file
-celerybeat-schedule
-
-# SageMath parsed files
-*.sage.py
-
-# dotenv
-.env
-
-# virtualenv
-.venv
-venv/
-ENV/
-
-# Spyder project settings
-.spyderproject
-.spyproject
-
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
-/site
-
-# mypy
-.mypy_cache/
-
-# ── Personal documents — never commit to GitHub ──────────────
-# Resume / CV and any Office binary documents stay local only.
+# --- Personal documents: never commit ---------------------------------------
+# Resume / CV and any Office binary documents stay local.
 *.docx
 *.doc
 *.pdf
@@ -109,4 +13,43 @@ ENV/
 *.key
 *.pptx
 *.xlsx
+*.csv
+
+# Office / LibreOffice lock files ("~$Resume.docx") that appear while a
+# document is open. They contain the document name, so never publish them.
 ~$*
+
+# --- Jekyll build output ----------------------------------------------------
+# GitHub Pages builds from source; _site/ is only produced by a local
+# `jekyll serve` / `jekyll build` and must never be committed.
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+
+# --- Local tooling (the Node checks write here) -----------------------------
+# The verifier writes .preview/ at the repo root normally; this line covers a
+# future run from inside the site directory.
+.preview/
+
+# --- OS / editor cruft ------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+
+# --- Python experiments ----------------------------------------------------
+# Not used by the site, but the sibling repos (chinesepoem, linqijing) are
+# Python; keep the essentials so a dropped-in notebook never gets committed.
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# --- Secrets ----------------------------------------------------------------
+.env
+.env.*
+!.env.example

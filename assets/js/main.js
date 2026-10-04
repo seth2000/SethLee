@@ -1,9 +1,9 @@
 /* ════════════════════════════════════════════════════════════
    Seth Li — homepage interactions
    01 i18n (EN default in DOM, ZH dictionary) · 02 theme ·
-   03 nav (progress, scrollspy, burger, float-nav) · 04 typing ·
-   05 reveal · 06 quotes · 07 device preview · 08 starfield ·
-   09 matrix rain · 10 misc
+   03 nav (progress, scrollspy, burger, overflow tray) · 04 typing ·
+   05 reveal · 06 quotes · 07 device preview + lazy frames ·
+   08 starfield · 09 matrix rain · 10 misc
    ════════════════════════════════════════════════════════════ */
 (function () {
   'use strict';
@@ -22,41 +22,48 @@
      once so switching back to EN needs no duplication.     */
   var ZH = {
     'nav.about': '关于', 'nav.career': '履历', 'nav.stack': '技术', 'nav.projects': '项目',
-    'nav.ventures': '旗下项目', 'nav.insights': '哲思', 'nav.contact': '联系', 'nav.github': 'GitHub ↗',
+    'nav.ai': 'AI 方向', 'nav.ventures': '旗下项目', 'nav.insights': '哲思',
+    'nav.contact': '联系', 'nav.github': 'GitHub ↗',
     'nav.brandName': 'Seth Li', 'nav.brandRole': '全栈 · AI · 数据', 'nav.moreLabel': '更多',
 
     'hero.eyebrow': '~/seth-li ▸ 悉尼 · 全栈与数据库工程师 · AI 探索者',
     'hero.hudStatus': '在线', 'hero.hudLocation': '悉尼 · 澳洲',
-    'hero.hudStackLabel': '技术栈', 'hero.hudSinceLabel': '始于',
-    'hero.sub': '码 × AI × 禅 —— 30 余年工程实践',
-    'hero.bio': '现任悉尼 <strong>DASH Technology Group</strong>（财富科技）全栈与数据库工程师，<strong>30 余年</strong>深耕金融科技、数字贷款与 AI。我重构核心投资组合系统，使其<strong>性能提升 4 倍、基础设施降至 1/22.5</strong>；组建 AI 研究中心，让机器学会从财报中提取数据（NLP / BERT）；夜里仍教机器写格律诗。<strong>Feng Tech</strong> 创始人，<strong>慧灯禅院</strong> 创建者。',
+    'hero.hudStackLabel': '技术栈', 'hero.hudSinceLabel': '始于', 'hero.hudRevLabel': '版本',
+    'hero.hudRev': '2026.10',
+    'hero.sub': '码 × AI × 禅 —— 33 年生产实践',    'hero.bio': '现任悉尼 <strong>DASH Technology Group</strong>（财富科技）全栈与数据库工程师，<strong>33 年</strong>一线生产实践，横跨金融科技、数字贷款、企业数据与 AI。我把核心投资组合系统重构到<strong>提速 4 倍、基础设施降至 1/22.5</strong>，然后继续往前推：如今同样的算力只需原来的 <strong>1/50</strong>，业务量却涨到 4 倍。再往前，我在 AME Group 任 CTO 时组建 AI 研究中心，让机器学会从财报中提取数据（NLP / BERT）；夜里我仍在教机器写格律诗。<strong>Feng Tech</strong> 创始人，<strong>慧灯禅院</strong> 创建者。',
     'hero.ctaCompany': '🏢 Feng Tech',
     'hero.ctaZen': '🪷 慧灯禅院',
-    'hero.statYears': '年工程经验', 'hero.statNetwork': 'LinkedIn 人脉',
-    'hero.statPerf': '核心系统提速', 'hero.statLearn': '持续精进',
+    'hero.statYears': '年生产实践', 'hero.statPerf': '算力降至原来的',
+    'hero.statScale': '倍的业务承载', 'hero.statAi': '年起深耕 AI / 数据挖掘',
 
     'about.title': '工程价值', 'about.titleEm': '· AI · 数据 · 交付',
     'about.kicker': '为何选我',
     'about.sub': '三十年持续交付生产级系统——专注 AI、数据与扎实工程三者交汇之处。',
+    'about.nowLabel': '当前',
     'about.aiTitle': 'AI 与生成式 AI',
-    'about.aiText': '组建公司<strong>AI 研究中心</strong>，训练模型从非结构化 PDF 财报中提取数据（NLP / BERT），打造业内领先的<strong>PDF 表格提取器</strong>；还有我的 chinesepoem 项目——教机器写格律诗。',
+    'about.aiText': '任 CTO 期间组建公司<strong>AI 研究中心</strong>，让模型从非结构化 PDF 财报中读出数据（NLP / BERT），并落地了背后的<strong>PDF 表格提取器</strong>。如今我围绕模型构建检索、智能体与评估三层能力；chinesepoem 里，机器则在写格律诗。',
     'about.aiChip1': '生成式 AI', 'about.aiChip2': 'NLP', 'about.aiChip3': 'LLM',
-    'about.aiChip4': 'BERT', 'about.aiChip5': '提示词工程',
+    'about.aiChip4': 'BERT', 'about.aiChip5': 'RAG', 'about.aiChip6': 'AI 智能体',
+    'about.aiChip7': '效果评估',
+    'about.aiNow': '.NET 智能体框架 · 评估流水线 · 混合检索',
     'about.dbTitle': '数据库与数据',
-    'about.dbText': '30 余年 SQL、库表设计与数据挖掘的<strong>数据库开发</strong>经验——SQL Server、PostgreSQL、MongoDB、Redshift，以及 Kafka/CDC 数据管道。我打造过被多家投行与政府部门采购的大宗商品经济研究数据库。',
+    'about.dbText': '我首先、也始终是一名<strong>数据库开发者</strong>：SQL、库表设计与数据挖掘，横跨 SQL Server、PostgreSQL、MongoDB 与 Redshift，之间用 Kafka/CDC 打通。我做过一套被投行与政府机构采购的大宗商品经济数据库——因为模型的上限，取决于底下数据的质量。',
     'about.dbChip1': 'SQL', 'about.dbChip2': '数据库设计', 'about.dbChip3': '数据挖掘',
-    'about.dbChip4': 'PostgreSQL', 'about.dbChip5': 'Kafka / CDC',
+    'about.dbChip4': 'PostgreSQL', 'about.dbChip5': 'Kafka / CDC', 'about.dbChip6': '数据血缘',
+    'about.dbNow': '向量库与关系型数据并存，权限边界不变',
     'about.fsTitle': '全栈与金融科技',
-    'about.fsText': '现职 <strong>DASH Technology Group</strong> 全栈工程师，历经 Simpology 与 Roar——.NET/.NET Core、C#、TypeScript、Angular/React/Vue、AWS 与 Azure。我重构核心 Holdings 与 Performance 系统，使其<strong>提速 4 倍</strong>，并主导 .NET Framework → .NET 6/8/10 现代化迁移。',
-    'about.fsChip1': '金融科技', 'about.fsChip2': '.NET Core', 'about.fsChip3': 'C#',
-    'about.fsChip4': 'Angular', 'about.fsChip5': 'AWS',
+    'about.fsText': '现职 <strong>DASH Technology Group</strong> 全栈工程师，此前任职 Simpology 与 Roar——.NET / .NET Core、C#、TypeScript、Angular / React / Vue、AWS 与 Azure。我把核心 Holdings 与 Performance 系统重构到<strong>算力降至 1/50、业务量提升 4 倍</strong>，并主导 .NET Framework → .NET 10 现代化迁移。',
+    'about.fsChip1': '金融科技', 'about.fsChip2': '现代化迁移', 'about.fsChip3': 'C#',
+    'about.fsChip4': 'Angular', 'about.fsChip5': 'AWS', 'about.fsChip6': 'Azure',
+    'about.fsNow': '为受监管系统补上智能体接口与审计链路',
 
-    'career.title': '30 余年工程履历', 'career.titleEm': '· 从第一行代码到 AI',
+    'career.title': '33 年工程履历', 'career.titleEm': '· 从第一行代码到 AI',
     'career.kicker': '履历',
-    'career.sub': '持续交付、自动化与学习的记录——重要里程碑一览。',
+    'career.sub': '持续交付、自动化与学习的记录——留下的是至今仍能解释我如何做事的那几个节点。',
     'career.dashTitle': '全栈工程师 · DASH Technology Group',
-    'career.dashText': '重构核心 Holdings 与 Performance 系统（提速约 4 倍、基础设施降至 1/22.5）；自动化流动性检查（节省 2 个全职人力）；主导 .NET Framework 4.6.1 → .NET 6/8/10 现代化迁移。',
-    'career.dashChip1': '财富科技', 'career.dashChip2': '.NET Core', 'career.dashChip3': 'AWS',
+    'career.dashText': '重构核心 Holdings 与 Performance 系统：先是提速 4 倍、基础设施降至 1/22.5，最终同样的计算只需原来的 1/50，同时承载 4 倍的户数与业务量。自动化流动性检查（节省 2 个全职人力），并主导 .NET Framework 4.6.1 → .NET 10 现代化迁移。',
+    'career.dashChip1': '财富科技', 'career.dashChip2': '.NET 10',
+    'career.dashChip3': 'AWS Aurora', 'career.dashChip4': 'PostgreSQL',
     'career.ftTitle': '创始人兼首席工程师 · Feng Tech',
     'career.ftText': '悉尼 IT 服务公司——高效建站、快速排障与可靠支持（The tech experts）。下方「旗下项目」有实时预览。',
     'career.ftChip1': 'IT 服务', 'career.ftChip2': '网站开发', 'career.ftChip3': '技术支持',
@@ -76,7 +83,7 @@
     'career.argentText': '使用 SQL Server 与 .NET 提供现场技术支持与方案演示；负责澳大利亚及周边地区的客户开发与支持。',
     'career.argentChip1': 'SQL Server', 'career.argentChip2': '.NET',
     'career.ameTitle': '首席技术官（CTO）· AME Group',
-    'career.ameText': '组建公司 AI 研究中心（NLP / BERT 财报抽取）；主导机器学习 GIS 数据挖掘系统；制定 IT 战略并引入 Git + Jira/Agile；打造被投行与政府机构采购的大宗商品经济研究数据库。',
+    'career.ameText': '作为 CTO 组建公司 AI 研究中心（NLP / BERT 财务报表提取，以 BERT 取代 CNN+LSTM）；主导机器学习 GIS 数据挖掘系统；以 Git 与 Jira/Agile 制定 IT 战略；打造被投行与政府机构采购的大宗商品经济研究数据库。',
     'career.ameChip1': 'CTO', 'career.ameChip2': 'AI / NLP', 'career.ameChip3': '数据挖掘',
     'career.bpsTitle': '软件工程师 · BPS Australia',
     'career.bpsText': '主导 EFS 设备租赁管理系统；实现银行账务、邮局地址与信用管理数据库的自动对接，降低人力与资金风险。',
@@ -91,11 +98,12 @@
     'career.abcText': '构建《银行OA管理系统》（数据挖掘 + 决策支持）与面向信用卡用户的信使平台（Email/短信对账单）。',
     'career.abcChip1': 'VB6 / VC6', 'career.abcChip2': 'Sybase', 'career.abcChip3': 'Exchange SDK',
     'career.jinshiTitle': '项目经理 · 长沙金石电脑公司',
-    'career.jinshiText': '创始团队核心成员——主导《商业银行国际贸易系统》（信用证、托收、汇兑），运行于南京、上海、青岛等地交通银行。',
+    'career.jinshiText': '创始团队核心成员——主导《商业银行国际贸易系统》（信用证、托收、汇兑），运行于全国交通银行各分行。',
     'career.jinshiChip1': 'COBOL / C', 'career.jinshiChip2': 'Delphi', 'career.jinshiChip3': 'Sybase',
     'career.edu1Title': '湘潭大学 · 硕士（人工智能与数据挖掘方向）',
-    'career.edu1Text': '计算机应用工程专业硕士（人工智能与数据挖掘方向）——全日制，全额奖学金。',
+    'career.edu1Text': '计算机应用工程专业硕士（人工智能与数据挖掘方向）——以全日制、公费全额身份录取，在职攻读完成。与上文工作经历的时间重叠是真实的，并非笔误。',
     'career.edu1Chip1': '硕士 · 双一流',
+    'career.edu1Chip2': '公费全额 · 在职攻读',
     'career.edu2Title': '长沙大学 · 计算机科学与技术',
     'career.edu2Text': '计算机科学与技术专业大专——全日制，工程思维在此扎根。',
     'career.edu2Chip1': '高等教育',
@@ -107,37 +115,82 @@
     'stack.kicker': '技术栈',
     'stack.sub': '选工具如选法器——趁手、可靠、可维护。',
     'stack.g1Title': '编程语言', 'stack.g2Title': 'AI 与数据',
-    'stack.genAI': '生成式 AI', 'stack.llm': 'LLM', 'stack.nlp': 'NLP', 'stack.ml': '机器学习',
+    'stack.genAI': '生成式 AI', 'stack.llm': 'LLM', 'stack.agents': 'AI 智能体',
+    'stack.rag': 'RAG 检索增强', 'stack.nlp': 'NLP', 'stack.evals': '效果评估',
+    'stack.ml': '机器学习', 'stack.vector': '向量数据库',
     'stack.prompt': '提示词工程', 'stack.data': '数据工程', 'stack.mining': '数据挖掘',
     'stack.g3Title': '前端与框架', 'stack.g4Title': '云与 DevOps', 'stack.micro': '微服务',
 
     'projects.title': '精选项目', 'projects.titleEm': '· 交付 · 开源 · 修行',
     'projects.kicker': '项目',
     'projects.sub': '数十年交付的亮点——以及我持续练习的开源仓库。',
-    'projects.f1Text': '重构核心 Holdings 与 Performance 系统，处理性能提升约 10 倍，基础设施从 2,400+ vCPU×6 小时降至 16 vCPU×4 小时（仅为原来的 1/50），并支撑 4 倍用户与交易量增长。',
+    'projects.f1Text': '分两步重构核心 Holdings 与 Performance 系统：先做到提速 4 倍、基础设施降至 1/22.5；最终同样的工作量只需 16 vCPU×4 小时，而此前需要 2,400+ vCPU×6 小时——算力降至原来的 1/50，同时承载 4 倍的户数与业务量。',
     'projects.f1Meta': 'DASH Technology Group · 2024–至今 · AWS Aurora · SQS · PostgreSQL',
-    'projects.f2Text': '业内领先的 PDF 表格提取器：从复杂非结构化版面还原行列结构；采用 BERT（替代 CNN+LSTM）做 NLP 分类，并以图搜索改进表格边框识别，每年节省大量人工成本。',
+    'projects.f2Text': '从非结构化 PDF 中还原表格：以 BERT 取代 CNN+LSTM 做区域分类，并用图搜索定位表格边框。目标是无人值守地跑完海量财报，把人工录入整段替换掉。',
     'projects.f2Meta': 'AME Group · 2017–2019 · NLP · 深度学习',
     'projects.f3Text': '为数千个项目自动生成现金流与估值报告；将 .NET 后端逻辑自动转换为 VBA/Excel，使分析师可直接在 Excel 中建模。',
     'projects.f3Meta': 'AME Group · 2016–2018 · Excel · VBA',
-    'projects.f4Text': '将业内最复杂的矿业金属财务模型从 WinForms 迁移至 .NET Core + Angular，交互与桌面版同样流畅；由 6 人团队半年内交付。',
+    'projects.f4Text': '把分析师赖以工作的矿业金属财务模型从 WinForms 迁到 .NET Core + Angular，交互速度与桌面版持平——6 人团队、6 个月交付，模型口径零回归。',
     'projects.f4Meta': 'AME Group · 2018 · .NET Core · Angular',
     'projects.osTitle': '开源项目',
     'projects.p1': '自动生成中国古典格律诗——NLP / 生成模型实验：教机器写诗，也从内部观察创造力。',
     'projects.p2': '灵棋经的数字实现——对传统占卜的现代化、可复现实验：结构化数据进，结构化预测出。',
-    'projects.p3': '企业运维工具——从 Active Directory 查询用户登录时间，用于审计与账号治理：那种每天都会回本的自助化。',
+    'projects.p3': '企业运维工具——从 Active Directory 查询用户登录时间，用于审计与账号治理：那种每天都会回本的自动化。',
     'projects.p4': '预测档案——记录、复盘与验证，让时间给出答案：一个在不确定性下校准判断的个人实验室。',
     'projects.more': '更多仓库：', 'projects.moreLink': '在 GitHub 查看全部 ↗',
+    'projects.statsNote': '卡片由 github-readme-stats 实时渲染——始终为最新数据。',
 
     'ventures.title': '本职工作之外', 'ventures.titleEm': '· 两个事业，一门修行',
     'ventures.kicker': '旗下项目',
-    'ventures.sub': '我拥有的两个产品的实时预览——IT 服务公司与数字禅院。用预览上方的按钮切换设备宽度。',
+    'ventures.sub': '我拥有的两个产品的实时预览——IT 服务公司与数字禅院。预览会在你点击或滚动到该处时加载；上方按钮可切换设备宽度。',
     'ventures.ftTag': '· 悉尼 IT 服务公司',
     'ventures.ftSlogan': 'The tech experts',
     'ventures.ztTag': '· 慧灯禅院',
     'ventures.ztNote': '佛学文章 · 法音宣流 · 在线祈福 · 观音灵签——一盏心灯，长明不灭。小屏设备建议点击「全屏打开」获得完整体验。',
 
     'frame.desktop': '桌面', 'frame.tablet': '平板', 'frame.mobile': '手机', 'frame.open': '全屏打开 ↗',
+    'frame.loadLabel': '加载实时预览', 'frame.loadNote': '第三方页面——只在你点击或滚动到此处时才加载。',
+
+    'ai.title': '我看 AI 的走向', 'ai.titleEm': '· 以及我在其中的位置',
+    'ai.kicker': 'AI 方向',
+    'ai.sub': '这是一份可被检验的判断，而不是预言：四个我正在动手的方向，以及每一个方向里，三十年的数据与交付经验恰好能派上用场的地方。',
+    'ai.d1Title': '「承载层」本身就是产品', 'ai.d1Tag': '智能体',
+    'ai.d1Text': '2026 年的讨论早已越过提示词。生产团队真正争论的是模型外面的<strong>承载层</strong>——工具契约、重试、预算、权限，以及出问题后可以回放的那条链路。一旦这样看，它就是一道不出彩的分布式系统题：幂等、背压、精确一次、可审计。这正是我从 Sybase 与银行中间件时代就在做的事。',
+    'ai.d1L1': '工具 / MCP 契约按 API 设计，而不是写成脚本',
+    'ai.d1L2': '失败语义清晰：重试、补偿、或转交人工',
+    'ai.d1L3': '把成本与延迟预算当作 SLO 来管',
+    'ai.d2Title': '上下文比小聪明更重要', 'ai.d2Tag': '检索',
+    'ai.d2Text': '大多数令人失望的 AI 功能并不是模型失败，而是<strong>检索</strong>失败。真正的壁垒在不起眼的中间层：干净的 schema、数据血缘、尊重文档结构的切分、在查询时生效的权限，以及知道该舍弃什么。我的 PDF 表格提取器当年就要从一页非结构化版面里重建表格的<em>结构</em>——同一种直觉，晚了一代的架构。',
+    'ai.d2L1': '语义 + 关键词 + 结构化 的混合检索',
+    'ai.d2L2': '行级权限一直延伸到向量库',
+    'ai.d2L3': '每一条被检索到的事实都带时效与出处',
+    'ai.d3Title': '评估就是新的回归测试', 'ai.d3Tag': '评估',
+    'ai.d3Text': '测不了的东西就交付不了。真正从智能体拿到价值的团队，是在做 Demo 之前先搭好了<strong>数据集、评分器和闸门</strong>——黄金用例进 CI，每次改动都打分，只有在确实需要判断的地方才引入人工。这一步多数团队会跳过，而这恰恰是数据库纪律最值钱的地方。',
+    'ai.d3L1': '带版本的评估集：让构建失败，而不是让用户失败',
+    'ai.d3L2': '把链路追踪与反馈当作一等数据',
+    'ai.d3L3': '成本、延迟与质量放在一起衡量',
+    'ai.d4Title': '受监管行业仍是一片空地', 'ai.d4Tag': '机会',
+    'ai.d4Text': '智能体工具链已经拥挤，<strong>财富管理、信贷、保险与医疗</strong>却没有——而这些领域恰恰要求智能体可审计、可解释、足够「无聊」。在这个市场里，二十年财富科技与数字贷款的经验不是劣势，而是入场券。价值不在于模型更聪明，而在于监管认可的那套可辩护流程。',
+    'ai.d4L1': '在受监管的建议环节保留人工在环',
+    'ai.d4L2': '每一个自动决策都留下确定性的审计轨迹',
+    'ai.d4L3': '数据不出内网时，就用自有小模型',
+
+    'now.title': '当下与下一步',
+    'now.revLabel': '版本', 'now.rev': '2026.10',
+    'now.updatedLabel': '更新于', 'now.updated': '2026-10',
+    'now.learningLabel': '正在学',
+    'now.learning1': '.NET 上的智能体框架——Microsoft Agent Framework / Semantic Kernel 一脉，以及什么时候该用图而不是循环',
+    'now.learning2': '评估流水线：评分器、黄金用例集，以及让智能体保持诚实的 CI 闸门',
+    'now.learning3': '在企业 SQL 与文档库之上的混合检索，且权限边界完好',
+    'now.nextLabel': '未来 90 天',
+    'now.next1': '开源一个参考实现：跑在真实 schema 上、自带评估的可度量智能体',
+    'now.next2': '把反复向团队解释的检索与评估模式写成公开文档',
+    'now.next3': '把一个财富科技流程从人工复核推进到 AI 辅助，并留下审计轨迹',
+    'now.changedLabel': '本页变化',
+    'now.changed1': '本页开始记录自己的方向与版本，而不只是履历',
+    'now.changed2': '性能数据统一为唯一口径（见「项目」）',
+    'now.changed3': '旗下项目预览改为按需加载——首屏不再依赖它们',
+    'now.foot': '这一节本就该过期。等它过期时，上面的版本号会前进，条目会移入「本页变化」——自我介绍应该是一份活文档，而不是一块牌匾。',
 
     'insights.title': '禅是世界观，', 'insights.titleEm': '代码是方法论',
     'insights.kicker': '哲思',
@@ -158,8 +211,7 @@
     'contact.kicker': '联系',
     'contact.line': '期待与有趣的你交谈——代码、AI、数据、禅，或任何「看似不可能」的想法。',
     'contact.email': '✉️ 邮箱',
-    'contact.zen': '🪷 慧灯禅院', 'contact.ft': '🏢 Feng Tech',
-    'contact.info': '📍 澳大利亚大悉尼地区 · ✉️ sethfengli@yahoo.com.au · 📞 +61 411 758 128 · 🕉 自 1993 持续构建',
+    'contact.zen': '🪷 慧灯禅院',
     'contact.cardEmailLabel': '邮件主通道', 'contact.cardEmailNote': '最快的联系渠道——通常当天回复。',
     'contact.cardPhoneLabel': '语音线路', 'contact.cardPhoneNote': '悉尼时间 · 紧急问题优先。',
     'contact.cardLiLabel': '职业网络', 'contact.cardLiNote': '500+ 联系人 · 576 位关注者。',
@@ -176,7 +228,8 @@
     'footer.role': '全栈与数据库工程师 · .NET / C# / AI 探索者',
     'footer.photos': '图片来源（免费可商用）：', 'footer.pexels': 'Pexels',
     'footer.fonts': '字体：', 'footer.stats': '数据卡片：', 'footer.host': '托管于 GitHub Pages',
-    'footer.keywords': '关键词：全栈工程师 · 数据库开发 · .NET / .NET Core · C# · Python · TypeScript · Angular · React · SQL · AWS · Azure · Kubernetes · 生成式 AI · NLP · LLM · 提示词工程 · 金融科技 · 财富科技 · 数据挖掘 · 悉尼 澳大利亚'
+    'footer.keywords': '关键词：全栈工程师 · 数据库开发 · .NET / .NET Core · C# · Python · TypeScript · Angular · React · SQL · AWS · Azure · Kubernetes · 生成式 AI · LLM · RAG · AI 智能体 · NLP · 提示词工程 · 效果评估 · 金融科技 · 财富科技 · 数据挖掘 · 悉尼 澳大利亚',
+    'footer.rev': '版本 2026.10 · All things being equal = Everything happens as expected'
   };
 
   /* 浏览器语言默认值：zh* → 中文，其余英文（本地存储优先） */
@@ -236,8 +289,18 @@
     theme = t === 'night' ? 'night' : 'light';
     root.setAttribute('data-theme', theme);
     store('sl-theme', theme);
+    syncThemeColor();
     syncStatsCards();
     recolorStars();
+  }
+
+  /* 主题切换时同步浏览器界面色（移动端地址栏）。
+     带 media 的两条 meta 交给浏览器按系统偏好选，无 media 的那条由这里改写。 */
+  function syncThemeColor() {
+    var color = theme === 'night' ? '#050a16' : '#eff3fa';
+    qsa('meta[name="theme-color"]').forEach(function (m) {
+      if (!m.getAttribute('media')) { m.setAttribute('content', color); }
+    });
   }
 
   var themeBtn = doc.getElementById('theme-btn');
@@ -259,16 +322,24 @@
   }
 
   /* ── 03 Nav: progress, scrollspy, smooth scroll, burger,
-        float-nav ──────────────────────────────────────────── */
+        overflow tray ───────────────────────────────────────── */
   var bar = doc.getElementById('progress');
   var nav = doc.getElementById('nav');
-  var spyLinks = qsa('.menu a[data-scroll], .float-menu a[data-scroll]');
+  var spyLinks = qsa('.menu a[data-scroll]');
   var navSpyLinks = qsa('.menu a[data-scroll]:not([data-nav-dup])');
   var spyTargets = navSpyLinks
     .map(function (a) { return doc.querySelector(a.getAttribute('data-scroll')); })
     .filter(Boolean);
   var navCount = doc.getElementById('nav-count');
+  /* 顶部读数按「全站第几节」计数：hero 是 01，其后每个分区 +1，
+     与各分区 eyebrow 里的编号一致（导航不必列出全部，例如 Ventures）。 */
+  var SECTION_IDS = ['#top', '#about', '#career', '#stack', '#projects', '#ventures', '#ai', '#insights', '#contact'];
+  var numberedSections = SECTION_IDS
+    .map(function (sel) { return doc.querySelector(sel); })
+    .filter(Boolean);
+  var navTotal = doc.querySelector('.nav-index u');
   var scrollLinks = qsa('a[data-scroll]');
+  if (navTotal) { navTotal.textContent = '/' + (SECTION_IDS.length < 10 ? '0' : '') + SECTION_IDS.length; }
 
   function onScroll() {
     var max = doc.documentElement.scrollHeight - window.innerHeight;
@@ -289,9 +360,14 @@
       a.classList.toggle('active', current >= 0 && t === spyTargets[current]);
     });
     if (navCount) {
-      /* Section 01 is the hero, then each nav target follows in order. */
-      var n = current >= 0 ? current + 2 : 1;
-      navCount.textContent = (n < 10 ? '0' : '') + n;
+      /* 读数用「全站第几节」，不是「导航第几项」——Ventures 不在导航里，
+         但它仍是第 06 节。 */
+      var here = 1;
+      for (var k = 0; k < numberedSections.length; k++) {
+        var sec = numberedSections[k];
+        if (sec.getBoundingClientRect().top + window.scrollY <= y) { here = k + 1; }
+      }
+      navCount.textContent = (here < 10 ? '0' : '') + here;
     }
   }
 
@@ -329,7 +405,7 @@
   function closeMore() {
     if (!moreMenu) { return; }
     moreMenu.classList.remove('open');
-    moreBtn.setAttribute('aria-expanded', 'false');
+    if (moreBtn) { moreBtn.setAttribute('aria-expanded', 'false'); }
   }
   if (moreBtn && moreMenu) {
     moreBtn.addEventListener('click', function (e) {
@@ -351,52 +427,22 @@
     window.addEventListener('resize', closeMore);
   }
 
-
-  /* Float-nav (top-left quick menu) */
-  var floatBrand = doc.getElementById('float-brand');
-  var floatMenu = doc.getElementById('float-menu');
-  function closeFloat() {
-    floatMenu.classList.remove('open');
-    floatBrand.setAttribute('aria-expanded', 'false');
-  }
-  if (floatBrand && floatMenu) {
-    /* 品牌按钮：阻止冒泡，避免同一次点击被 document 的
-       "点击外部关闭" 监听判定为外部点击（修复：点击后无法展开） */
-    floatBrand.addEventListener('click', function (e) {
-      e.stopPropagation();
-      var open = floatMenu.classList.toggle('open');
-      floatBrand.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-    doc.addEventListener('click', function (e) {
-      if (!floatMenu.classList.contains('open')) { return; }
-      if (e.target && e.target.closest && e.target.closest('.float-nav')) { return; }
-      closeFloat();
-    });
-    doc.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && floatMenu.classList.contains('open')) { closeFloat(); }
-    });
-    floatMenu.addEventListener('click', function (e) {
-      var a = e.target.closest ? e.target.closest('a[data-scroll]') : null;
-      if (a) { closeFloat(); }
-    });
-  }
-
   /* ── 04 Typing effect ───────────────────────────────────── */
   var typeEl = doc.getElementById('typing');
   var PHRASES = {
     en: [
       'Code with clarity. Build with intent.',
-      '30+ years of full-stack & database engineering.',
+      '33 years of full-stack & database engineering.',
       'Full-Stack Engineer · DASH Technology Group (WealthTech)',
-      'Core systems 4× faster on 1/22.5 of the infrastructure.',
-      'Generative AI · NLP · Zen — one practice.'
+      'Core systems: 1/50 of the compute, 4× the load.',
+      'Agents, retrieval, evals — the harness is the product.'
     ],
     zh: [
       '以码之清明，铸系统之可靠。',
-      '三十余年全栈与数据库工程实践。',
+      '三十三年全栈与数据库工程实践。',
       '全栈工程师 · DASH Technology Group（财富科技）',
-      '核心系统提速 4 倍 · 基础设施降至 1/22.5。',
-      '生成式 AI · NLP · 禅 —— 一门修行。'
+      '核心系统：算力降至 1/50，业务量提升 4 倍。',
+      '智能体 · 检索 · 评估 —— 承载层才是产品。'
     ]
   };
   var pi = 0, ci = 0, deleting = false, typeTimer = null;
@@ -503,7 +549,9 @@
     }, 6500);
   }
 
-  /* ── 07 Device preview toggles (event delegation) ───────── */
+  /* ── 07 Device preview toggles + lazy venture frames ─────
+     两个事业预览是第三方站点：首屏不建 iframe，等容器接近视口
+     或访客按下按钮时再注入，第三方 CSS / JS 因此不会拖慢首屏。 */
   doc.addEventListener('click', function (e) {
     var btn = e.target.closest ? e.target.closest('button[data-device]') : null;
     if (!btn) { return; }
@@ -516,7 +564,52 @@
     btn.classList.add('on');
     btn.setAttribute('aria-pressed', 'true');
     frame.setAttribute('data-device', btn.getAttribute('data-device'));
+    if (btn.getAttribute('data-device') !== 'desktop') { loadFrame(frame, true); }
   });
+
+  function loadFrame(frame, force) {
+    var stage = frame.querySelector ? frame.querySelector('.browser-stage') : null;
+    if (!stage || stage.getAttribute('data-loaded') === '1') { return; }
+    var url = stage.getAttribute('data-frame-url');
+    if (!url) { return; }
+    stage.setAttribute('data-loaded', '1');
+    var box = doc.createElement('div');
+    box.className = 'frame-embed';
+    var iframe = doc.createElement('iframe');
+    iframe.setAttribute('src', url);
+    iframe.setAttribute('title', stage.getAttribute('data-frame-title') || url);
+    iframe.setAttribute('loading', force ? 'eager' : 'lazy');
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
+    box.appendChild(iframe);
+    var old = stage.querySelector ? stage.querySelector('.frame-load') : null;
+    stage.appendChild(box);
+    if (old && old.parentNode === stage) { stage.removeChild(old); }
+    stage.classList.add('is-loaded');
+  }
+
+  var frameStages = qsa('.browser-stage[data-frame-url]');
+  frameStages.forEach(function (stage) {
+    var btn = stage.querySelector ? stage.querySelector('.frame-load') : null;
+    if (btn) {
+      btn.addEventListener('click', function () {
+        var f = btn.closest ? btn.closest('.browser-frame') : null;
+        if (f) { loadFrame(f, true); }
+      });
+    }
+  });
+  if ('IntersectionObserver' in window) {
+    var frameIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          var f = en.target.closest ? en.target.closest('.browser-frame') : null;
+          if (f) { loadFrame(f, false); }
+          frameIO.unobserve(en.target);
+        }
+      });
+    }, { rootMargin: '300px 0px' });
+    frameStages.forEach(function (s) { frameIO.observe(s); });
+  }
 
   /* ── 08 Starfield (theme-aware palette) ─────────────────── */
   var stars = [];
