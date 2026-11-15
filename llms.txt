@@ -25,7 +25,7 @@
 - AME Ajax (AME Group, 2018): mining & metals finance model moved from WinForms to
   .NET Core + Angular, delivered by a 6-person team in 6 months.
 
-## Current direction (rev 2026.10, reviewed 2026-10-04)
+## Current direction (rev 2026.11, reviewed 2026-11-15)
 
 Four positions the site argues, each with what he is building against:
 
@@ -67,8 +67,11 @@ grounded retrieval over a company's own SQL databases and documents without brea
 - The `ventures` section embeds two live third-party sites, each in a sandboxed frame; they load
   only on request or when scrolled into view, so a fetch of this page returns no frames.
 - Performance, tenure and date claims are reconciled to a single source of truth (the Projects
-  section). The page carries a revision stamp (`rev 2026.10`) and a review date
-  (`2026-10-04`) that move when the content does.
+  section). The page carries a revision stamp (`rev 2026.11`) and a review date
+  (`2026-11-15`) that move when the content does.
+- Every image on the page is either decorative and file-hosted elsewhere inside a fixed-ratio
+  box, or absent. Nothing in the layout depends on a third-party image service: two live GitHub
+  statistics cards were removed in 2026-11 after the service behind them was paused.
 - The page itself offers a keyboard search-and-jump palette (press `/`), a print view, and copy
   buttons for the contact details. Search runs locally in the browser.
 - Verification tooling for this repository lives in `../tools/` (not published).

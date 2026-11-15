@@ -796,13 +796,17 @@ html.js .timeline-more.open { display: flex; }
 }
 .proj-link { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; }
 .proj-more { margin-top: 20px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--faint); }
-.proj-more a { color: var(--muted); }
+/* The trailing repo list is the last thing in the section, so its links have to
+   look clickable: they were plain text until 2026-11. */
+.proj-more a { color: var(--muted); border-bottom: 1px solid var(--line-2); }
+.proj-more a:hover { color: var(--sun-deep); border-bottom-color: var(--line-glow); }
 
-.stats-row { margin-top: 30px; display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
-/* github-readme-stats returns an unpredictable height; reserving the space on
-   the link stops the row from shoving the page down when the cards land. */
-.stats-row a { display: flex; align-items: center; min-height: 195px; }
-.stats-row img { border-radius: 14px; border: 1px solid var(--line-2); box-shadow: var(--shadow-md); }
+/* Two live GitHub statistics cards sat here until 2026-11, with a 195px
+   min-height written to stop the row shoving the page down as they loaded.
+   When the service behind them went down that reservation turned two broken
+   images into a ~400px empty band — reserving space for a remote image without
+   a failure path is worse than the jump it prevents. Removed with the cards;
+   `img-reserve` in the verifier is the guard that replaced this. */
 
 /* ── 10 Browser frames (venture previews) ─────────────────── */
 .venture-block { margin-bottom: 18px; scroll-margin-top: 78px; }
@@ -1379,11 +1383,6 @@ html.js #avail.is-off .avail-off { display: inline; }
 }
 .card-now span { min-width: 0; }
 
-.stats-note {
-  margin: 12px 0 0; text-align: center;
-  font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--faint);
-}
-
 /* ── 18 AI direction + Now/Next ───────────────────────────── */
 .ai-card { padding: 26px 26px 24px; }
 .ai-top { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
@@ -1639,7 +1638,7 @@ html.js #avail.is-off .avail-off { display: inline; }
   html, body { background: #ffffff !important; color: #000000; }
   .bg-mesh, .scanlines, #progress, .nav, .palette, .to-top, .scroll-hint,
   .hero-frame, .hero-grid, .hero-scan, #stars, .quote-banner, .browser-frame,
-  .stats-row, .code-row, .hero-cta, .frame-privacy, .career-actions,
+  .code-row, .hero-cta, .frame-privacy, .career-actions,
   .footer::after, .card::after, .card::before, .contact-card::before { display: none !important; }
   .hero { min-height: 0; padding: 0 0 18px; text-align: left; }
   .hero-inner::before { display: none; }

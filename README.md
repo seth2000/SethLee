@@ -45,7 +45,7 @@ SethLee/                              # ← Jekyll source root (the .git directo
 │   ├── about.html             #   what I do: AI / Database / Full-Stack cards (+ "now" line)
 │   ├── career.html            #   glance strip + timeline (DASH → earlier roles → education)
 │   ├── stack.html             #   tech stack groups
-│   ├── projects.html          #   selected work + open source + GitHub stats
+│   ├── projects.html          #   selected work + open source repo links
 │   ├── ventures.html          #   Feng Tech + Zen Temple (lazy sandboxed live previews)
 │   ├── ai.html                #   AI direction + "Now & Next" (this file ages on purpose)
 │   ├── browser-frame.html     #   reusable browser-mockup partial (loads its iframe on demand)
@@ -78,9 +78,9 @@ Ruby/Jekyll is not required to check a change — the tooling assembles the page
 `main.js` against a DOM shim.
 
 ```powershell
-node tools/site-verify.mjs        # 25 checks — must exit 0 before you push
+node tools/site-verify.mjs        # 26 checks — must exit 0 before you push
 node tools/site-verify.mjs --json # machine-readable
-node tools/negative-test.mjs      # proves 11 of those checks still catch a regression
+node tools/negative-test.mjs      # proves 13 of those checks still catch a regression
 node tools/check-links.mjs        # every outbound URL, with sources for each failure
 node tools/serve.mjs              # browse the assembled previews at 127.0.0.1:8791
 node tools/inspect-preview.mjs preview-zh-CN-light.html   # eyeball an assembled preview
@@ -104,6 +104,7 @@ and CSS:
 | `contrast-tokens` | a text token below 4.5:1 on any surface it is painted on, in either theme |
 | `external-frame-safety` | a third-party iframe with no `sandbox`, or a referrer policy that leaks the URL |
 | `copy-buttons` | a copy button with no value, no feedback label, or nested inside `<a>` |
+| `img-reserve` | an `<img>` with no `alt`, or one with nothing reserving its box |
 | `matrix-rain` / `matrix-tap-collapse` / `matrix-glyph-mix` | the CRT panel going static, the tap cycle breaking, the glyph mix drifting |
 | `verse-linefit` | a 定场诗 line too wide for its column (it would wrap mid-couplet) |
 
@@ -137,7 +138,9 @@ month the whole page was rewritten for the same reason. These rules keep it that
 
 ## 🔄 Keeping it alive (持续演进)
 
-This page is meant to be revised, not framed. **It is reviewed once a quarter** — the review
+This page is meant to be revised, not framed. **It is reviewed regularly — a full pass every
+quarter, a light one most months** (the light pass only moves the "next 90 days" list and the
+revision stamp; it does not rewrite prose that has not changed). The review
 prompt lives outside the published site, in `../prompts/quarterly-self-review.md` (English and
 中文). Start the session with it; it tells the agent to read before writing, judge the copy as an
 editor, ask what actually happened, and then edit under these rules.
@@ -163,12 +166,21 @@ look up belongs in an explanation, not in the prose. `content-stale`, `i18n-figu
 ## 🛠 Stack (技术栈)
 
 Jekyll · Liquid · Vanilla JS (no framework) · CSS custom properties · Google Fonts (Sora / Manrope /
-JetBrains Mono / Noto Serif SC, SIL OFL) · [github-readme-stats](https://github.com/anuraghazra/github-readme-stats) ·
+JetBrains Mono / Noto Serif SC, SIL OFL) ·
 GitHub Pages plugins: `jekyll-seo-tag`, `jekyll-sitemap`
 
 Only those two plugins. `jekyll-feed` was considered in 2026-10 and rejected: this site has no
 `_posts`, so it would publish an Atom feed that can never have an entry — an empty address is
 worse than no address. Add it if and when there is something to syndicate.
+
+**No live third-party imagery.** Two `github-readme-stats` cards rendered the GitHub numbers
+until 2026-11, when the shared public instance they depend on was paused (`503
+DEPLOYMENT_PAUSED`). Every visitor got two broken images, and the height reserved to stop
+layout shift turned that into a ~400px empty band — reserving space for a remote image without a
+failure path is worse than the jump it prevents. They were removed rather than repaired, the
+remaining repository names became links, and `img-reserve` now fails on any image whose failure
+has no sized box. The only off-site images left are decorative Pexels photos, each inside a
+fixed-ratio box.
 
 ## 📸 Image credits (图片来源 — 免费可商用)
 

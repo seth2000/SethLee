@@ -41,7 +41,7 @@
     'hero.eyebrow': '~/seth-li ▸ 悉尼 · 全栈与数据库工程师 · AI 探索者',
     'hero.hudStatus': '在线', 'hero.hudLocation': '悉尼 · 澳大利亚',
     'hero.hudStackLabel': '技术栈', 'hero.hudSinceLabel': '始于', 'hero.hudRevLabel': '版本',
-    'hero.hudRev': '2026.10',
+    'hero.hudRev': '2026.11',
     'hero.sub': '码 × AI × 禅——我做的系统，必须一直跑得住',
     'hero.bio': '我在悉尼的财富科技公司 <strong>DASH Technology Group</strong> 写软件，写了 <strong>33 年</strong>，大半时间都在数据这一层——数据库、报表，那些托着别的东西的地基。在 DASH 我把核心投资组合系统重构了两遍：第一遍<strong>提速 4 倍，服务器只剩 1/22.5</strong>；第二遍把同样的活压到<strong>原来 1/225 的算力</strong>，业务量却是 <strong>4 倍</strong>。再早，我在 AME Group 做 CTO，拉起一个<strong> AI 研究小组</strong>，教模型读财报。此外我经营 <strong>Feng Tech</strong>，守着<strong>慧灯禅院</strong>；夜里教机器写格律诗。',
     'hero.ctaCompany': 'Feng Tech',
@@ -159,8 +159,6 @@
     'projects.p3': '一个运维小工具：从 Active Directory 里查用户登录时间，用于审计与账号治理。那种每天都能回本的自动化。',
     'projects.p4': '预测档案——先记下来，回头复盘，让时间给答案。一个校准判断力的私人实验室。',
     'projects.more': '更多仓库：', 'projects.moreLink': '在 GitHub 查看全部 ↗',
-    'projects.statsNote': '卡片由 github-readme-stats 实时渲染，所以一直是最新的。',
-    'projects.statsFallback': '卡片加载不出来时，同样的数据在',
 
     'ventures.title': '本职工作之外', 'ventures.titleEm': '· 两个事业，一门修行',
     'ventures.kicker': '旗下项目',
@@ -202,8 +200,8 @@
     'ai.d4L3': '数据不许出内网，就把小模型放进内网跑',
 
     'now.title': '当下与下一步',
-    'now.revLabel': '版本', 'now.rev': '2026.10',
-    'now.updatedLabel': '复查于', 'now.updated': '2026-10-04',
+    'now.revLabel': '版本', 'now.rev': '2026.11',
+    'now.updatedLabel': '复查于', 'now.updated': '2026-11-15',
     'now.learningLabel': '正在学',
     'now.learning1': '用 .NET 和微软的智能体工具搭 AI 助手——以及什么时候一个简单循环就够了，不必搞复杂架构',
     'now.learning2': '让 AI 保持诚实的测试习惯：固定测试题、自动打分、每次发布前先过一道闸',
@@ -213,10 +211,10 @@
     'now.next2': '把上一季度写下来的那套套路，做成别人不靠我也能直接上手的东西',
     'now.next3': '让那件 AI 辅助的财富管理事务继续在生产里跑，并且量一量它到底靠不靠得住',
     'now.changedLabel': '本页变化',
-    'now.changed1': '算力数字更正为 1/225——原来的 1/50 和旁边印着的原始数字对不上',
-    'now.changed2': '英文全篇改用更直白的写法；中文整篇重写成像中文，而不是英文的译本',
-    'now.changed3': '新增搜索跳转面板（页面上按 / 就行）、打印版式，以及联系方式的复制按钮',
-    'now.foot': '这一节我每季度重看一次，上面的日期就是那次重看的痕迹。要是这里有哪句话已经过时了，欢迎拿它来质问我——这个日期就是为了这个。',
+    'now.changed1': '删掉了两张实时 GitHub 统计卡片——背后的服务已经停了，图挂掉时还会留出一大片空白。其余仓库现在都是可点的链接',
+    'now.changed2': '这一季「未来 90 天」里的三件事，一件都没完成。清单原样留着——删掉它才是真的把它藏起来',
+    'now.changed3': '这个月没有改写正文。十月那次重写仍然成立；没变的内容每月重写一遍，只是把词换个位置',
+    'now.foot': '这一节我会定期重看，上面的日期就是那次重看的痕迹。要是这里有哪句话已经过时了，欢迎拿它来质问我——这个日期就是为了这个。',
 
     'insights.title': '禅是世界观，', 'insights.titleEm': '代码是方法论',
     'insights.kicker': '代码与禅',
@@ -259,9 +257,9 @@
 
     'footer.role': '全栈与数据库工程师 · .NET / C# / AI',
     'footer.photos': '图片来源（免费可商用）：', 'footer.pexels': 'Pexels',
-    'footer.fonts': '字体：', 'footer.stats': '数据卡片：', 'footer.host': '托管于 GitHub Pages',
+    'footer.fonts': '字体：', 'footer.host': '托管于 GitHub Pages',
     'footer.llms': '给 AI 读的 llms.txt',
-    'footer.rev': '版本 2026.10 · All things being equal = Everything happens as expected'
+    'footer.rev': '版本 2026.11 · All things being equal = Everything happens as expected'
   };
 
 
@@ -338,7 +336,6 @@
     root.setAttribute('data-theme', theme);
     store('sl-theme', theme);
     syncThemeColor();
-    syncStatsCards();
     recolorStars();
   }
 
@@ -356,18 +353,10 @@
     themeBtn.addEventListener('click', function () { applyTheme(theme === 'night' ? 'light' : 'night'); });
   }
 
-  /* GitHub stats cards — light / night variants (indigo palette) */
-  var STATS = [
-    { main: 'https://github-readme-stats.vercel.app/api?username=seth2000&show_icons=true&hide_title=true&hide_rank=true&hide=contribs&bg_color=f6f8fc&title_color=18233f&text_color=45536e&icon_color=6366f1&border_color=dde3f0', langs: 'https://github-readme-stats.vercel.app/api/top-langs/?username=seth2000&layout=compact&hide_title=true&bg_color=f6f8fc&title_color=18233f&text_color=45536e&border_color=dde3f0&langs_count=6' },
-    { main: 'https://github-readme-stats.vercel.app/api?username=seth2000&show_icons=true&hide_title=true&hide_rank=true&hide=contribs&bg_color=131c31&title_color=eef2ff&text_color=c3cde3&icon_color=818cf8&border_color=27314f', langs: 'https://github-readme-stats.vercel.app/api/top-langs/?username=seth2000&layout=compact&hide_title=true&bg_color=131c31&title_color=eef2ff&text_color=c3cde3&border_color=27314f&langs_count=6' }
-  ];
-  function syncStatsCards() {
-    var s = STATS[theme === 'night' ? 1 : 0];
-    var m = doc.getElementById('stats-main');
-    var l = doc.getElementById('stats-langs');
-    if (m) { m.src = s.main; }
-    if (l) { l.src = s.langs; }
-  }
+  /* The two live GitHub statistics cards and their light/night URL swap were
+     removed in 2026-11: the public service behind them is paused, so the cards
+     spent their time showing alt text instead of numbers. Nothing on the page
+     now depends on a third-party image that can take the layout with it. */
 
   /* ── 03 Nav: progress, scrollspy, smooth scroll, burger,
         overflow tray ───────────────────────────────────────── */
